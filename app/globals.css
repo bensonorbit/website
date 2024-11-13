@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--border-color: theme(colors.gray.200);
+
+	@media (prefers-color-scheme: dark) {
+		--border-color: theme(colors.gray.800);
+	}
+}
