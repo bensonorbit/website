@@ -12,43 +12,49 @@ export function ArticleList(props: {
 	return (
 		<div className={twMerge("flex max-w-3xl flex-col", props.className)}>
 			{props.articles.map((article) => (
-				<article key={article._id}>
-					<Link
-						href={article.url}
-						className="group flex flex-col gap-3 text-balance border-b py-3 md:flex-row md:gap-6"
-					>
-						<Image
-							src={article.coverImage.url!}
-							alt={article.coverImage.alt!}
-							className="h-full place-self-center rounded-sm drop-shadow-sm md:max-w-48"
-							width={400}
-							height={250}
-							sizes="(min-width: 768px) 200px, 100vw"
-						/>
-
-						<div>
-							<h3 className="text-lg font-bold group-hover:underline">
-								{article.title}
-							</h3>
-
-							<p className="my-3">{article.summary}</p>
-
-							<p className="text-sm">
-								By{" "}
-								<Authors
-									authors={article.authors}
-									max={4}
-									className="font-semibold"
-								/>{" "}
-								&mdash;{" "}
-								<span className="font-semibold">
-									<DateFormat date={article.date} />
-								</span>
-							</p>
-						</div>
-					</Link>
-				</article>
+				<Article key={article._id} article={article} />
 			))}
 		</div>
+	);
+}
+
+function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
+	return (
+		<article>
+			<Link
+				href={article.url}
+				className="group flex flex-col gap-3 text-balance border-b py-3 md:flex-row md:gap-6"
+			>
+				<Image
+					src={article.coverImage.url!}
+					alt={article.coverImage.alt!}
+					className="h-full rounded-sm drop-shadow-sm md:max-w-48"
+					width={400}
+					height={250}
+					sizes="(min-width: 768px) 200px, 100vw"
+				/>
+
+				<div>
+					<h3 className="text-lg font-bold group-hover:underline">
+						{article.title}
+					</h3>
+
+					<p className="my-3">{article.summary}</p>
+
+					<p className="text-sm">
+						By{" "}
+						<Authors
+							authors={article.authors}
+							max={4}
+							className="font-semibold"
+						/>{" "}
+						&mdash;{" "}
+						<span className="font-semibold">
+							<DateFormat date={article.date} />
+						</span>
+					</p>
+				</div>
+			</Link>
+		</article>
 	);
 }
