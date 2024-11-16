@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 :root {
+	--background: theme(colors.gray.50);
+	--foreground: theme(colors.gray.950);
 	--border-color: theme(colors.gray.200);
 
 	@media (prefers-color-scheme: dark) {
+		--background: theme(colors.gray.950);
+		--foreground: theme(colors.gray.50);
 		--border-color: theme(colors.gray.800);
 	}
 }

@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export function Navbar() {
 	return (
-		<NavbarShadow className="sticky top-0 z-50 border-b bg-gray-50 py-3 transition-shadow dark:bg-gray-950 print:static print:shadow-none">
+		<NavbarShadow className="bg-background sticky top-0 z-50 border-b py-3 transition-shadow print:static print:shadow-none">
 			<div className="mx-auto flex max-w-7xl items-center justify-between px-6">
 				<Menu className="grow basis-0 lg:hidden print:hidden" />
 
@@ -63,7 +63,7 @@ function MoreMenu() {
 			</div>
 
 			<div className="pointer-events-none absolute top-0 -ml-10 -mt-4 -translate-y-1 p-10 opacity-0 transition group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 motion-reduce:transition-none">
-				<div className="flex flex-col text-nowrap rounded border bg-gray-50 drop-shadow dark:bg-gray-950">
+				<div className="bg-background flex flex-col text-nowrap rounded border drop-shadow">
 					<NavbarLink
 						href="/hubble"
 						className="flex items-center gap-2 px-4 py-2"

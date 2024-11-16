@@ -38,7 +38,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 		<html lang="en">
 			<body
 				className={
-					"flex min-h-dvh flex-col justify-between bg-gray-50 font-serif text-gray-950 antialiased dark:bg-gray-950 dark:text-gray-50 " +
+					"bg-background text-foreground flex min-h-dvh flex-col justify-between font-serif antialiased " +
 					notoSerif.variable
 				}
 			>
