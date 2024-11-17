@@ -23,6 +23,7 @@ export function Menu(props: { className?: string }) {
 				<MenuLink href="/archive">Archive</MenuLink>
 				{socials.map((social) => (
 					<MenuLink key={social.name} href={social.href}>
+						<social.icon className="size-4 text-gray-700 dark:text-gray-300" />
 						{social.name}
 					</MenuLink>
 				))}
@@ -37,7 +38,7 @@ function MenuLink(props: { href: string; children: React.ReactNode }) {
 	return (
 		<LinkComponent
 			href={props.href}
-			className="py-2 font-medium hover:underline"
+			className="flex items-center gap-2 py-2 font-medium hover:underline"
 		>
 			{props.children}
 		</LinkComponent>

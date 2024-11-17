@@ -16,7 +16,7 @@ export function Footer() {
 							className="p-1 transition-colors hover:text-foreground"
 							target="_blank"
 						>
-							<social.icon />
+							<social.icon className="size-5 md:size-6" />
 						</a>
 					))}
 				</div>
