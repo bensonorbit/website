@@ -13,7 +13,7 @@ export function Footer() {
 						<a
 							key={social.name}
 							href={social.href}
-							className="hover:text-foreground p-1 transition-colors"
+							className="p-1 transition-colors hover:text-foreground"
 							target="_blank"
 						>
 							<social.icon />

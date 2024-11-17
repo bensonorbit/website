@@ -58,7 +58,7 @@ export default async function AuthorPage(props: Props) {
 					<h2 className="mb-0 py-3">Articles by {firstName}</h2>
 					<ArticleList
 						articles={author.articles}
-						className="not-prose text-foreground mx-auto border-t"
+						className="not-prose mx-auto border-t text-foreground"
 					/>
 				</>
 			)}

@@ -5,7 +5,7 @@ import Link from "next/link";
 export function Menu(props: { className?: string }) {
 	return (
 		<MenuToggle className={props.className}>
-			<nav className="bg-background absolute left-0 top-0 -z-10 flex h-screen w-screen flex-col px-6 pt-12 text-lg">
+			<nav className="absolute left-0 top-0 -z-10 flex h-screen w-screen flex-col bg-background px-6 pt-12 text-lg">
 				<MenuLink href="/">Home</MenuLink>
 				<MenuLink href="/about">About</MenuLink>
 
