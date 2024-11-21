@@ -38,7 +38,7 @@ export default async function AuthorPage(props: Props) {
 	const firstName = author.name?.split(" ")[0] || "this author";
 
 	return (
-		<div className="prose prose-gray mx-auto max-w-3xl dark:prose-invert prose-a:transition-colors hover:prose-a:text-orange-700 prose-img:rounded-sm prose-img:drop-shadow-sm dark:hover:prose-a:text-orange-300">
+		<div className="prose prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-orange-700 prose-img:rounded-xs prose-img:drop-shadow-xs dark:prose-a:hover:text-orange-300 mx-auto max-w-3xl">
 			<div className="flex flex-row items-center gap-4">
 				{author.photo.url && (
 					<Image
@@ -46,14 +46,14 @@ export default async function AuthorPage(props: Props) {
 						width={76}
 						height={76}
 						alt={author.name || "Photo of author"}
-						className="not-prose rounded-full border drop-shadow-sm"
+						className="not-prose rounded-full border drop-shadow-xs"
 						placeholder="blur"
 						blurDataURL={author.photo.lqip || undefined}
 					/>
 				)}
 
 				<div>
-					<h1 className="mb-1 mt-0">{author.name}</h1>
+					<h1 className="mt-0 mb-1">{author.name}</h1>
 					<p className="lead my-0">{author.role}</p>
 				</div>
 			</div>
@@ -65,7 +65,7 @@ export default async function AuthorPage(props: Props) {
 					<h2 className="mb-0 py-3">Articles by {firstName}</h2>
 					<ArticleList
 						articles={author.articles}
-						className="not-prose mx-auto border-t text-foreground"
+						className="not-prose text-foreground mx-auto border-t"
 					/>
 				</>
 			)}

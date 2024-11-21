@@ -63,7 +63,7 @@ function MoreMenu() {
 			</div>
 
 			<div className="pointer-events-none absolute top-0 -ml-10 -mt-4 -translate-y-1 p-10 opacity-0 transition group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 motion-reduce:transition-none">
-				<div className="flex flex-col text-nowrap rounded border bg-background drop-shadow">
+				<div className="flex flex-col text-nowrap rounded-sm border bg-background drop-shadow-sm">
 					<NavbarLink
 						href="/hubble"
 						className="flex items-center gap-2 px-4 py-2"
