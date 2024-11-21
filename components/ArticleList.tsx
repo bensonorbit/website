@@ -23,12 +23,12 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
 		<article>
 			<Link
 				href={article.url}
-				className="group flex flex-col gap-3 text-balance border-b py-3 md:flex-row md:gap-6"
+				className="group flex flex-col gap-3 border-b py-3 text-balance md:flex-row md:gap-6"
 			>
 				<Image
 					src={article.coverImage.url!}
 					alt={article.coverImage.alt!}
-					className="h-full rounded-sm drop-shadow-sm md:max-w-48"
+					className="h-full rounded-xs drop-shadow-xs md:max-w-48"
 					width={400}
 					height={250}
 					sizes="(min-width: 768px) 200px, 100vw"
