@@ -159,6 +159,6 @@ export function getAuthorBySlug(slug: string) {
 	return client.fetch(
 		authorQuery,
 		{ slug },
-		{ next: { tags: [`author:${slug}`], revalidate: false } },
+		{ next: { tags: [`author:${slug}`, "article"], revalidate: false } },
 	);
 }
