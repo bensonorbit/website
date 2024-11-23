@@ -2,6 +2,7 @@ import { ArticleList } from "@/components/ArticleList";
 import { CustomPortableText } from "@/components/CustomPortableText";
 import { mergeMeta } from "@/lib/utils";
 import { getAuthorBySlug } from "@/sanity/fetch";
+import { toPlainText } from "next-sanity";
 import { Image } from "next-sanity/image";
 import { notFound } from "next/navigation";
 
@@ -16,11 +17,17 @@ export async function generateMetadata(props: Props) {
 	const author = await getAuthorBySlug(params.slug);
 	if (!author) notFound();
 
+	const images = author.photo.url
+		? { url: `${author.photo.url}?w=200&auto=format&fit=min` }
+		: undefined;
+
+	const description = author.bio && toPlainText(author.bio).slice(0, 200);
+
 	return mergeMeta({
 		title: author.name,
-		openGraph: {
-			type: "profile",
-		},
+		description,
+		openGraph: { type: "profile", images },
+		twitter: { card: "summary" },
 	});
 }
 
