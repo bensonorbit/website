@@ -138,7 +138,7 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 	const { article } = props;
 
 	return (
-		<article className="h-full max-h-72 border-b py-3 first:pt-0 last:border-b-0 lg:last:pb-0">
+		<article className="h-full border-b py-3 first:pt-0 last:border-b-0 md:max-h-72 lg:last:pb-0">
 			<Link
 				href={article.url}
 				className="group flex h-full min-h-52 flex-col justify-between text-balance"
