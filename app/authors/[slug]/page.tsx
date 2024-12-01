@@ -38,7 +38,7 @@ export default async function AuthorPage(props: Props) {
 	const firstName = author.name?.split(" ")[0] || "this author";
 
 	return (
-		<div className="prose prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-orange-700 prose-img:rounded-xs prose-img:drop-shadow-xs dark:prose-a:hover:text-orange-300 mx-auto max-w-3xl">
+		<div className="mx-auto prose max-w-3xl prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-orange-700 dark:prose-a:hover:text-orange-300 prose-img:rounded-xs prose-img:drop-shadow-xs">
 			<div className="flex flex-row items-center gap-4">
 				{author.photo.url && (
 					<Image
@@ -65,7 +65,7 @@ export default async function AuthorPage(props: Props) {
 					<h2 className="mb-0 py-3">Articles by {firstName}</h2>
 					<ArticleList
 						articles={author.articles}
-						className="not-prose text-foreground mx-auto border-t"
+						className="not-prose mx-auto border-t text-foreground"
 					/>
 				</>
 			)}

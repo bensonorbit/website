@@ -5,7 +5,7 @@ export const metadata = mergeMeta({ title: "Not Found" });
 
 export default function NotFound() {
 	return (
-		<div className="prose prose-gray mx-auto dark:prose-invert prose-a:transition-colors prose-a:hover:text-orange-700 prose-img:rounded-xs prose-img:drop-shadow-xs dark:prose-a:hover:text-orange-300">
+		<div className="mx-auto prose prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-orange-700 dark:prose-a:hover:text-orange-300 prose-img:rounded-xs prose-img:drop-shadow-xs">
 			<h1 className="mb-2 text-balance">That page couldn't be found.</h1>
 			<p>
 				If you manually entered the URL, please check for typos. If you clicked

@@ -4,10 +4,7 @@ import { CloseIcon, MenuIcon } from "@/components/Icons";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export function MenuToggle(props: {
-	children: React.ReactNode;
-	className?: string;
-}) {
+export function MenuToggle(props: { children: React.ReactNode }) {
 	const [open, setOpen] = useState(false);
 	const pathname = usePathname();
 
@@ -41,7 +38,7 @@ export function MenuToggle(props: {
 				type="button"
 				onClick={() => setOpen(!open)}
 				aria-label={open ? "Close menu" : "Open menu"}
-				className={props.className}
+				className="rounded-xs transition hover:bg-slate-200 dark:hover:bg-slate-800"
 			>
 				{open ? <CloseIcon /> : <MenuIcon />}
 			</button>

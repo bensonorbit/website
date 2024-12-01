@@ -1,6 +1,6 @@
 export default function LoadingArticle() {
 	return (
-		<div className="prose mx-auto animate-pulse">
+		<div className="mx-auto prose animate-pulse">
 			{/* Title */}
 			<Skeleton className="mb-1 h-10 w-80" />
 			<Skeleton className="mb-2 h-10 w-80" />
@@ -9,7 +9,7 @@ export default function LoadingArticle() {
 			<Skeleton className="h-6 w-60" />
 
 			{/* Cover image */}
-			<Skeleton className="mb-5 mt-4 h-[387px] w-full" />
+			<Skeleton className="mt-4 mb-5 h-[387px] w-full" />
 
 			{/* Body */}
 			<Skeleton className="mb-2 h-5 w-full" />

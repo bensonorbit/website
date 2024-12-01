@@ -9,7 +9,7 @@ export default async function ArchivePage() {
 	const articles = await getAllArticles();
 
 	return (
-		<div className="prose prose-gray mx-auto dark:prose-invert prose-a:font-normal prose-a:no-underline prose-a:transition-colors prose-a:hover:text-orange-700 dark:prose-a:hover:text-orange-300">
+		<div className="mx-auto prose prose-gray dark:prose-invert prose-a:font-normal prose-a:no-underline prose-a:transition-colors prose-a:hover:text-orange-700 dark:prose-a:hover:text-orange-300">
 			<h1>Archive</h1>
 			<p>Every article that The Benson Orbit has published.</p>
 
