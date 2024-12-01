@@ -4,7 +4,7 @@ export const metadata = mergeMeta({ title: "Contact Us" });
 
 export default function ContactPage() {
 	return (
-		<div className="prose prose-gray mx-auto dark:prose-invert prose-a:transition-colors hover:prose-a:text-orange-700 prose-img:rounded-sm prose-img:drop-shadow-sm dark:hover:prose-a:text-orange-300">
+		<div className="mx-auto prose prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-orange-700 dark:prose-a:hover:text-orange-300 prose-img:rounded-xs prose-img:drop-shadow-xs">
 			<h1 className="mb-2 text-balance">Contact Us</h1>
 			<p>
 				If you need to get in touch with The Benson Orbit, please email us at{" "}

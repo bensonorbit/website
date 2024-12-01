@@ -54,7 +54,7 @@ export default async function HomePage() {
 
 			{latestArticles.length > 0 && (
 				<>
-					<h2 className="max-w-3xl border-b pb-3 pt-8 font-medium">Latest</h2>
+					<h2 className="max-w-3xl border-b pt-8 pb-3 font-medium">Latest</h2>
 					<ArticleList articles={latestArticles} />
 				</>
 			)}
@@ -64,7 +64,7 @@ export default async function HomePage() {
 
 function Left(props: { children?: React.ReactNode }) {
 	return (
-		<section className="col-span-full pb-3 md:col-span-5 md:pb-0 md:pr-3 lg:col-span-4">
+		<section className="col-span-full pb-3 md:col-span-5 md:pr-3 md:pb-0 lg:col-span-4">
 			{props.children}
 		</section>
 	);
@@ -72,7 +72,7 @@ function Left(props: { children?: React.ReactNode }) {
 
 function Middle(props: { children?: React.ReactNode }) {
 	return (
-		<section className="col-span-full flex flex-col justify-between border-t pt-3 md:col-span-3 md:border-l md:border-t-0 md:pl-3 md:pt-0 lg:col-span-2 lg:border-r lg:px-3 lg:last:border-r-0">
+		<section className="col-span-full flex flex-col justify-between border-t pt-3 md:col-span-3 md:border-t-0 md:border-l md:pt-0 md:pl-3 lg:col-span-2 lg:border-r lg:px-3 lg:last:border-r-0">
 			{props.children}
 		</section>
 	);
@@ -80,7 +80,7 @@ function Middle(props: { children?: React.ReactNode }) {
 
 function Right(props: { children?: React.ReactNode }) {
 	return (
-		<section className="col-span-full flex flex-col pt-8 lg:col-span-2 lg:pl-3 lg:pt-0 lg:even:border-l">
+		<section className="col-span-full flex flex-col pt-8 lg:col-span-2 lg:pt-0 lg:pl-3 lg:even:border-l">
 			<h2 className="border-b pb-3 font-medium">Featured</h2>
 
 			<div className="grid grow grid-cols-1 gap-6 pt-3 md:grid-cols-3 lg:grid-cols-1 lg:gap-0">
@@ -104,7 +104,7 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 					src={article.coverImage.url!}
 					width={800}
 					height={550}
-					className="min-h-64 rounded-sm drop-shadow-sm"
+					className="min-h-64 rounded-xs drop-shadow-xs"
 					placeholder="blur"
 					blurDataURL={article.coverImage.lqip!}
 					sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, (min-width: 768px) 65vw, 100vw"
@@ -148,14 +148,14 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 						alt={article.coverImage.alt!}
 						src={article.coverImage.url!}
 						fill
-						className="rounded-sm object-cover drop-shadow-sm"
+						className="rounded-xs object-cover drop-shadow-xs"
 						placeholder="blur"
 						blurDataURL={article.coverImage.lqip!}
 						sizes="(min-width: 1280px) 300px, (min-width: 1024px) 25vw, (min-width: 768px) 35vw, 100vw"
 					/>
 				</div>
 
-				<h3 className="my-3 text-xl font-bold leading-6 group-hover:underline md:my-0">
+				<h3 className="my-3 text-xl leading-6 font-bold group-hover:underline md:my-0">
 					{article.title}
 				</h3>
 
@@ -184,7 +184,7 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 				className="group flex items-start justify-between gap-2 text-balance"
 			>
 				<div>
-					<h3 className="text-lg font-bold leading-6 group-hover:underline">
+					<h3 className="text-lg leading-6 font-bold group-hover:underline">
 						{article.title}
 					</h3>
 					<p className="mt-1 text-sm">
@@ -198,7 +198,7 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 					src={article.coverImage.url!}
 					width={128}
 					height={128}
-					className="size-full w-20 rounded-sm drop-shadow-sm lg:w-32"
+					className="size-full w-20 rounded-xs drop-shadow-xs lg:w-32"
 					placeholder="blur"
 					blurDataURL={article.coverImage.lqip!}
 					sizes="90px"
