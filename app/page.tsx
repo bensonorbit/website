@@ -95,7 +95,10 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 
 	return (
 		<article className="h-full">
-			<Link href={article.url} className="flex h-full flex-col text-balance">
+			<Link
+				href={article.url}
+				className="group flex h-full flex-col text-balance"
+			>
 				<Image
 					alt={article.coverImage.alt!}
 					src={article.coverImage.url!}
@@ -108,7 +111,7 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 					priority
 				/>
 
-				<h2 className="my-3 text-3xl font-bold in-hover:underline md:my-6 md:text-4xl">
+				<h2 className="my-3 text-3xl font-bold group-hover:underline md:my-6 md:text-4xl">
 					{article.title}
 				</h2>
 
@@ -138,7 +141,7 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 		<article className="h-full border-b py-3 first:pt-0 last:border-b-0 md:max-h-72 lg:last:pb-0">
 			<Link
 				href={article.url}
-				className="flex h-full min-h-52 flex-col justify-between text-balance"
+				className="group flex h-full min-h-52 flex-col justify-between text-balance"
 			>
 				<div className="relative h-3/5 min-h-48 md:min-h-0">
 					<Image
@@ -152,7 +155,7 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 					/>
 				</div>
 
-				<h3 className="my-3 text-xl leading-6 font-bold in-hover:underline md:my-0">
+				<h3 className="my-3 text-xl leading-6 font-bold group-hover:underline md:my-0">
 					{article.title}
 				</h3>
 
