@@ -2,17 +2,6 @@
 @plugin "@tailwindcss/typography";
 
 @layer base {
-	input,
-	textarea,
-	select,
-	button {
-		border: 0px solid;
-		border-radius: 0;
-		padding: 0;
-		color: inherit;
-		background-color: transparent;
-	}
-
 	*,
 	::after,
 	::before,
@@ -37,5 +26,4 @@
 @theme {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
-	--border-color: var(--border-color);
 }
