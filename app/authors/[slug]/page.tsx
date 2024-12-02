@@ -54,7 +54,7 @@ export default async function AuthorPage(props: Props) {
 
 				<div>
 					<h1 className="mt-0 mb-1">{author.name}</h1>
-					<p className="lead my-0">{author.role}</p>
+					<p className="lead mt-0 mb-0">{author.role}</p>
 				</div>
 			</div>
 
