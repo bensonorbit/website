@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export function Navbar() {
 	return (
-		<NavbarShadow className="sticky top-0 z-50 border-b bg-background py-3 transition-shadow print:static print:shadow-none">
+		<NavbarShadow className="sticky top-0 z-50 border-b border-border/80 bg-background/80 py-3 backdrop-blur-lg transition-shadow print:static print:shadow-none">
 			<div className="mx-auto flex max-w-7xl items-center justify-between px-6">
 				<div className="h-7 grow basis-0 lg:hidden print:hidden">
 					<Menu />
