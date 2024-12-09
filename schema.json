@@ -1073,6 +1073,13 @@
                     },
                     "optional": true
                   },
+                  "credit": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
                   "_type": {
                     "type": "objectAttribute",
                     "value": {
@@ -1164,6 +1171,13 @@
               "optional": true
             },
             "caption": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "string"
+              },
+              "optional": true
+            },
+            "credit": {
               "type": "objectAttribute",
               "value": {
                 "type": "string"

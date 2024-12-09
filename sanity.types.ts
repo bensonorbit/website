@@ -178,6 +178,7 @@ export type Article = {
 				crop?: SanityImageCrop;
 				alt?: string;
 				caption?: string;
+				credit?: string;
 				_type: "image";
 				_key: string;
 		  }
@@ -194,6 +195,7 @@ export type Article = {
 		crop?: SanityImageCrop;
 		alt?: string;
 		caption?: string;
+		credit?: string;
 		_type: "image";
 	};
 	date?: string;
@@ -361,6 +363,7 @@ export type ArticleQueryResult = {
 				crop?: SanityImageCrop;
 				alt: string | null;
 				caption: string | null;
+				credit?: string;
 				_type: "image";
 				_key: string;
 				url: string | null;

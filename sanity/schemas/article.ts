@@ -65,6 +65,13 @@ export const article = defineType({
 					title: "Caption",
 					description: "Appears below the image.",
 				}),
+				defineField({
+					name: "credit",
+					type: "string",
+					title: "Credit",
+					description:
+						"Name of the photographer or source, including 'Photo by'",
+				}),
 			],
 			validation: (rule) => rule.required(),
 		}),
