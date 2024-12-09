@@ -35,6 +35,7 @@ const articleFields = `// groq
 	"lqip": coverImage.asset->metadata.lqip,
 	"alt": coverImage.alt,
 	"caption": coverImage.caption,
+	"credit": coverImage.credit,
   }
 `;
 

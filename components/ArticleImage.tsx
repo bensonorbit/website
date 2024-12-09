@@ -5,6 +5,7 @@ type Props = {
 	aspectRatio: number | null;
 	url: string | null;
 	caption?: string | null;
+	credit?: string | null;
 	lqip: string | null;
 	isCover?: boolean;
 };
@@ -30,8 +31,12 @@ export function ArticleImage(props: Props) {
 				data-src={lightboxSrc}
 				data-caption={props.caption}
 			/>
-
-			{props.caption && <figcaption>{props.caption}</figcaption>}
+			{(props.caption || props.credit) && (
+				<figcaption>
+					{props.caption}
+					{props.credit && <span className="text-xs"> {props.credit}</span>}
+				</figcaption>
+			)}
 		</figure>
 	);
 }
