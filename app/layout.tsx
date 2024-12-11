@@ -1,4 +1,5 @@
 import "@/app/globals.css";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { Noto_Serif } from "next/font/google";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Footer } from "@/components/Footer";
