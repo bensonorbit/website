@@ -582,6 +582,13 @@ export type AuthorQueryResult = {
 		};
 	}>;
 } | null;
+// Variable: allAuthorsQuery
+// Query: *[_type == "author"] {			slug,			role,			name,		}
+export type AllAuthorsQueryResult = Array<{
+	slug: Slug | null;
+	role: string | null;
+	name: string | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -594,5 +601,6 @@ declare module "@sanity/client" {
 		'\n\t\t*[_type == "settings"] [0] {\n\t\t\t...,\n\t\t\t"featuredArticles": featuredArticles[]-> {\n\t\t\t\t// groq\n  _id,\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  summary,\n  category,\n  "date": coalesce(date, _updatedAt),\n  "url": coalesce("/" + category + "/" + slug.current, "/"),\n  authors[] -> {\n    "name": coalesce(name, "Unknown Author"),\n    "slug": slug.current,\n  },\n  "coverImage": {\n\t"url": coverImage.asset->url,\n\t"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,\n\t"lqip": coverImage.asset->metadata.lqip,\n\t"alt": coverImage.alt,\n\t"caption": coverImage.caption,\n\t"credit": coverImage.credit,\n  }\n\n\t\t\t}\n\t\t}\n\t': SettingsQueryResult;
 		'\n\t\t*[_type == "hubble"] | order(date desc) {\n\t\t\t...,\n\t\t\t"date": coalesce(date, _createdAt),\n\t\t\t"image": {\n\t\t\t\t"url": image.asset->url,\n\t\t\t\t"aspectRatio": image.asset->metadata.dimensions.aspectRatio,\n\t\t\t\t"lqip": image.asset->metadata.lqip,\n\t\t\t}\n\t\t}\n\t': HubbleQueryResult;
 		'\n\t\t*[_type == "author" && slug.current == $slug] [0] {\n\t\t\t...,\n\t\t\t"photo": {\n\t\t\t\t"url": photo.asset->url,\n\t\t\t\t"aspectRatio": photo.asset->metadata.dimensions.aspectRatio,\n\t\t\t\t"lqip": photo.asset->metadata.lqip,\n\t\t\t},\n\t\t\t"articles": *[_type == "article" && references(^._id)] | order(date desc) {\n\t\t\t\t// groq\n  _id,\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  summary,\n  category,\n  "date": coalesce(date, _updatedAt),\n  "url": coalesce("/" + category + "/" + slug.current, "/"),\n  authors[] -> {\n    "name": coalesce(name, "Unknown Author"),\n    "slug": slug.current,\n  },\n  "coverImage": {\n\t"url": coverImage.asset->url,\n\t"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,\n\t"lqip": coverImage.asset->metadata.lqip,\n\t"alt": coverImage.alt,\n\t"caption": coverImage.caption,\n\t"credit": coverImage.credit,\n  }\n\n\t\t\t}\n\t\t}\n\t': AuthorQueryResult;
+		'\n\t\t*[_type == "author"] {\n\t\t\tslug,\n\t\t\trole,\n\t\t\tname,\n\t\t}\n\t': AllAuthorsQueryResult;
 	}
 }

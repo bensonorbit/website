@@ -163,3 +163,19 @@ export function getAuthorBySlug(slug: string) {
 		{ next: { tags: [`author:${slug}`, "article"], revalidate: false } },
 	);
 }
+
+export function getAllAuthors() {
+	const allAuthorsQuery = defineQuery(`
+		*[_type == "author"] {
+			slug,
+			role,
+			name,
+		}
+	`);
+
+	return client.fetch(
+		allAuthorsQuery,
+		{},
+		{ next: { tags: ["author"], revalidate: false } },
+	);
+}
