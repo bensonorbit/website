@@ -12,11 +12,6 @@ type Props = {
 	params: Promise<{ category: string; slug: string }>;
 };
 
-type Author = {
-	name: string;
-	slug: string | null;
-};
-
 export const dynamic = "force-static";
 
 export async function generateMetadata(props: Props) {
@@ -30,14 +25,14 @@ export async function generateMetadata(props: Props) {
 	return mergeMeta({
 		title: article.title,
 		description: article.summary,
-		authors: article.authors?.map((author: Author) => ({
+		authors: article.authors?.map((author) => ({
 			name: author.name,
 			url: `/authors/${author.slug}`,
 		})),
 		openGraph: {
 			type: "article",
 			publishedTime: article.date,
-			authors: article.authors?.map((author: Author) => author.name),
+			authors: article.authors?.map((author) => author.name),
 			images: {
 				url,
 				alt: article.coverImage.alt || undefined,
@@ -82,6 +77,28 @@ export default async function ArticlePage(props: Props) {
 			<CustomPortableText value={article.content} />
 
 			<Fancybox />
+
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify({
+						"@context": "https://schema.org",
+						"@type": "NewsArticle",
+						headline: article.title,
+						image: [
+							`${article.coverImage.url}?w=1920&h=1080&fit=crop`, // 16:9
+							`${article.coverImage.url}?w=800&h=600&fit=crop`, // 4:3
+							`${article.coverImage.url}?w=800&h=800&fit=crop`, // 1:1
+						],
+						datePublished: article.date,
+						author: article.authors?.map((author) => ({
+							"@type": "Person",
+							name: author.name,
+							url: `https://bensonorbit.com/authors/${author.slug}`,
+						})),
+					}),
+				}}
+			/>
 		</article>
 	);
 }
