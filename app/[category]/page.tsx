@@ -31,8 +31,8 @@ export default async function CategoryPage(props: Props) {
 			</h2>
 			{category == "voices" && (
 				<p className="pt-3 italic">
-					These are opinion articles, and the views expressed do not represent
-					The Benson Orbit as a whole.
+					These articles highlight student opinions, and the views expressed do
+					not represent The Benson Orbit as a whole.
 				</p>
 			)}
 			{articles.length ? (
