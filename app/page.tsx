@@ -83,7 +83,7 @@ function Right(props: { children?: React.ReactNode }) {
 		<section className="col-span-full flex flex-col pt-8 lg:col-span-2 lg:pt-0 lg:pl-3 lg:even:border-l">
 			<h2 className="border-b pb-3 font-medium">Featured</h2>
 
-			<div className="grid grow grid-cols-1 gap-6 pt-3 md:grid-cols-3 lg:grid-cols-1 lg:gap-0">
+			<div className="grid grow grid-cols-1 flex-col gap-6 pt-3 md:grid-cols-3 lg:flex lg:gap-0">
 				{props.children}
 			</div>
 		</section>
@@ -178,7 +178,7 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 	const { article } = props;
 
 	return (
-		<article className="h-full first:pt-0 last:pb-0 lg:border-b lg:py-3 lg:last:border-b-0">
+		<article className="first:pt-0 last:pb-0 lg:border-b lg:py-3 lg:last:border-b-0">
 			<Link
 				href={article.url}
 				className="group flex items-start justify-between gap-2 text-balance"
