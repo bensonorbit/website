@@ -28,12 +28,28 @@ export default async function AboutPage() {
 
 			<h2>Orbit Staff</h2>
 			<ul>
-				{authors.map((author) => (
-					<li key={author.slug?.current}>
-						<Link href={`/authors/${author.slug?.current}`}>{author.name}</Link>
-						: {author.role}
-					</li>
-				))}
+				{authors
+					.filter((a) => a.role !== "Contributor")
+					.map((author) => (
+						<li key={author.slug?.current}>
+							<Link href={`/authors/${author.slug?.current}`}>
+								{author.name}
+							</Link>
+							: {author.role}
+						</li>
+					))}
+			</ul>
+			<h3>Contributors</h3>
+			<ul>
+				{authors
+					.filter((a) => a.role === "Contributor")
+					.map((author) => (
+						<li key={author.slug?.current}>
+							<Link href={`/authors/${author.slug?.current}`}>
+								{author.name}
+							</Link>
+						</li>
+					))}
 			</ul>
 		</div>
 	);
