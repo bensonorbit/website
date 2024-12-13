@@ -28,10 +28,10 @@ export function Navbar() {
 				</h1>
 
 				<div className="hidden items-center gap-6 lg:flex print:hidden">
-					<NavbarLink href="/commons">The Commons</NavbarLink>
-					<NavbarLink href="/out">Out & About</NavbarLink>
+					<NavbarLink href="/news">News</NavbarLink>
+					<NavbarLink href="/sports">Sports</NavbarLink>
+					<NavbarLink href="/culture">Culture</NavbarLink>
 					<NavbarLink href="/voices">Student Voices</NavbarLink>
-					<NavbarLink href="/arts">Arts</NavbarLink>
 					{/* <NavbarLink href="/hubble" className="hidden xl:block">
 						The Hubble
 					</NavbarLink>

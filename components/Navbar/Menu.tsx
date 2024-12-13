@@ -11,10 +11,10 @@ export function Menu() {
 
 				<Divider />
 
-				<MenuLink href="/commons">The Commons</MenuLink>
-				<MenuLink href="/out">Out & About</MenuLink>
+				<MenuLink href="/news">News</MenuLink>
+				<MenuLink href="/sports">Sports</MenuLink>
+				<MenuLink href="/culture">Culture</MenuLink>
 				<MenuLink href="/voices">Student Voices</MenuLink>
-				<MenuLink href="/arts">Arts</MenuLink>
 				{/* <MenuLink href="/hubble">The Hubble</MenuLink>
 				<MenuLink href="/star">The Star</MenuLink> */}
 

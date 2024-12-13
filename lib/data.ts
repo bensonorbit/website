@@ -6,11 +6,10 @@ import {
 } from "@/components/Icons";
 
 export const categories = {
-	commons: "The Commons",
-	out: "Out & About",
+	news: "News",
+	sports: "Sports",
+	culture: "Culture",
 	voices: "Student Voices",
-	arts: "Arts",
-	star: "The Star",
 };
 
 export const socials: Array<{

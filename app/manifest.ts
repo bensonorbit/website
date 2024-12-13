@@ -22,20 +22,20 @@ export default function manifest(): MetadataRoute.Manifest {
 		],
 		shortcuts: [
 			{
-				name: "The Commons",
-				url: "/commons",
+				name: "News",
+				url: "/news",
 			},
 			{
-				name: "Out & About",
-				url: "/out",
+				name: "Sports",
+				url: "/sports",
+			},
+			{
+				name: "Culture",
+				url: "/culture",
 			},
 			{
 				name: "Student Voices",
 				url: "/voices",
-			},
-			{
-				name: "Arts",
-				url: "/arts",
 			},
 			{
 				name: "The Hubble",
