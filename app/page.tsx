@@ -155,7 +155,7 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 					/>
 				</div>
 
-				<h3 className="my-3 text-xl leading-6 font-bold group-hover:underline md:my-0">
+				<h3 className="my-3 text-xl leading-6 font-bold group-hover:underline md:my-1">
 					{article.title}
 				</h3>
 
