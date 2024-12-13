@@ -39,7 +39,7 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
 						{article.title}
 					</h3>
 
-					<p className="my-3">{article.summary}</p>
+					<p className="my-1">{article.summary}</p>
 
 					<p className="text-sm">
 						By{" "}
