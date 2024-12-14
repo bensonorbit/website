@@ -139,7 +139,7 @@ export type Article = {
 	_rev: string;
 	title?: string;
 	slug?: Slug;
-	category?: "commons" | "out" | "voices" | "arts" | "star";
+	category?: "news" | "sports" | "culture" | "voices";
 	content?: Array<
 		| {
 				children?: Array<{
@@ -375,7 +375,7 @@ export type ArticleQueryResult = {
 	title: string | "Untitled";
 	slug: string | null;
 	summary: string | null;
-	category: "arts" | "commons" | "out" | "star" | "voices" | null;
+	category: "culture" | "news" | "sports" | "voices" | null;
 	date: string;
 	url: string | "/";
 	authors: Array<{
@@ -398,7 +398,7 @@ export type LatestArticlesQueryResult = Array<{
 	title: string | "Untitled";
 	slug: string | null;
 	summary: string | null;
-	category: "arts" | "commons" | "out" | "star" | "voices" | null;
+	category: "culture" | "news" | "sports" | "voices" | null;
 	date: string;
 	url: string | "/";
 	authors: Array<{
@@ -421,7 +421,7 @@ export type CategoryArticlesQueryResult = Array<{
 	title: string | "Untitled";
 	slug: string | null;
 	summary: string | null;
-	category: "arts" | "commons" | "out" | "star" | "voices" | null;
+	category: "culture" | "news" | "sports" | "voices" | null;
 	date: string;
 	url: string | "/";
 	authors: Array<{
@@ -444,7 +444,7 @@ export type AllArticlesQueryResult = Array<{
 	title: string | "Untitled";
 	slug: string | null;
 	summary: string | null;
-	category: "arts" | "commons" | "out" | "star" | "voices" | null;
+	category: "culture" | "news" | "sports" | "voices" | null;
 	date: string;
 	url: string | "/";
 	authors: Array<{
@@ -491,7 +491,7 @@ export type SettingsQueryResult = {
 		title: string | "Untitled";
 		slug: string | null;
 		summary: string | null;
-		category: "arts" | "commons" | "out" | "star" | "voices" | null;
+		category: "culture" | "news" | "sports" | "voices" | null;
 		date: string;
 		url: string | "/";
 		authors: Array<{
@@ -565,7 +565,7 @@ export type AuthorQueryResult = {
 		title: string | "Untitled";
 		slug: string | null;
 		summary: string | null;
-		category: "arts" | "commons" | "out" | "star" | "voices" | null;
+		category: "culture" | "news" | "sports" | "voices" | null;
 		date: string;
 		url: string | "/";
 		authors: Array<{

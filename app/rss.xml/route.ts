@@ -1,5 +1,6 @@
 import RSS from "rss";
 import { getAllArticles } from "@/sanity/fetch";
+import { categories } from "@/lib/data";
 
 export const dynamic = "force-static";
 
@@ -8,12 +9,12 @@ export async function GET() {
 		? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
 		: "http://localhost:3000";
 
-	// TODO: Add image_url, must be JPG or PNG
 	const feed = new RSS({
 		title: "The Benson Orbit",
 		description: "The student-run newspaper of Benson Polytechnic High School",
 		feed_url: url + "/rss.xml",
 		site_url: url,
+		image_url: url + "/apple-icon.png",
 		language: "en",
 		categories: ["News"],
 	});
@@ -26,7 +27,7 @@ export async function GET() {
 			description: article.summary || "",
 			url: url + article.url,
 			date: article.date,
-			categories: article.category ? [article.category] : undefined,
+			categories: article.category ? [categories[article.category]] : undefined,
 			author: article.authors?.length ? article.authors[0].name : undefined,
 		});
 	}

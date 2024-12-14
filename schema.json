@@ -809,23 +809,19 @@
           "of": [
             {
               "type": "string",
-              "value": "commons"
+              "value": "news"
             },
             {
               "type": "string",
-              "value": "out"
+              "value": "sports"
+            },
+            {
+              "type": "string",
+              "value": "culture"
             },
             {
               "type": "string",
               "value": "voices"
-            },
-            {
-              "type": "string",
-              "value": "arts"
-            },
-            {
-              "type": "string",
-              "value": "star"
             }
           ]
         },
