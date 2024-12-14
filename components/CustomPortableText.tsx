@@ -13,7 +13,12 @@ export function CustomPortableText(props: {
 	const components: PortableTextComponents = {
 		marks: {
 			link: ({ children, value }) => {
-				const isInternal = value?.href?.startsWith("/");
+				if (value?.href?.startsWith("https://bensonorbit.com")) {
+					value.href = value.href.replace("https://bensonorbit.com", "");
+				}
+				const isInternal = ["/", "#"].some((prefix) =>
+					value?.href?.startsWith(prefix),
+				);
 				const LinkComponent = isInternal ? Link : "a";
 				const target = isInternal ? undefined : "_blank";
 
