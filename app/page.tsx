@@ -21,7 +21,7 @@ export default async function HomePage() {
 		description:
 			"The student-run newspaper of Benson Polytechnic High School in Portland, Oregon.",
 		url: "https://bensonorbit.com",
-		logo: "https://bensonorbit.com/logo-1024.png",
+		logo: "https://bensonorbit.com/logo-1024.webp",
 		contactPoint: {
 			"@type": "ContactPoint",
 			email: "contact@bensonorbit.com",
