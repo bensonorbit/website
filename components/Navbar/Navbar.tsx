@@ -17,7 +17,7 @@ export function Navbar() {
 					<Menu />
 				</div>
 
-				<h1 className="lg:grow lg:basis-0">
+				<div className="lg:grow lg:basis-0">
 					<Link
 						href="/"
 						className="flex w-fit items-center gap-2 text-xl font-bold hover:underline"
@@ -25,7 +25,7 @@ export function Navbar() {
 						<BensonAstronautIcon />
 						The Benson Orbit
 					</Link>
-				</h1>
+				</div>
 
 				<div className="hidden items-center gap-6 lg:flex print:hidden">
 					<NavbarLink href="/news">News</NavbarLink>
