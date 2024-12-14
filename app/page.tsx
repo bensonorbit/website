@@ -188,8 +188,13 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 						{article.title}
 					</h3>
 					<p className="mt-1 text-sm">
-						By <Authors authors={article.authors} max={1} /> &mdash;{" "}
-						<DateFormat date={article.date} style="medium" />
+						By{" "}
+						<Authors
+							authors={article.authors}
+							max={2}
+							className="font-medium"
+						/>{" "}
+						&mdash; <DateFormat date={article.date} style="medium" />
 					</p>
 				</div>
 
