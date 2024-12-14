@@ -16,9 +16,21 @@ export default async function HomePage() {
 
 	const jsonLd = {
 		"@context": "https://schema.org",
-		"@type": "WebSite",
+		"@type": "NewsMediaOrganization",
 		name: "The Benson Orbit",
+		description:
+			"The student-run newspaper of Benson Polytechnic High School in Portland, Oregon.",
 		url: "https://bensonorbit.com",
+		logo: "https://bensonorbit.com/logo-1024.png",
+		contactPoint: {
+			"@type": "ContactPoint",
+			email: "contact@bensonorbit.com",
+		},
+		email: "contact@bensonorbit.com",
+		sameAs: [
+			"https://www.instagram.com/bensonorbit",
+			"https://x.com/bensonorbit",
+		],
 	};
 
 	return (
