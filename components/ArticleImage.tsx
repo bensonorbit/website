@@ -8,6 +8,7 @@ type Props = {
 	credit?: string | null;
 	lqip: string | null;
 	isCover?: boolean;
+	style?: React.CSSProperties;
 };
 
 export function ArticleImage(props: Props) {
@@ -30,6 +31,7 @@ export function ArticleImage(props: Props) {
 				data-fancybox
 				data-src={lightboxSrc}
 				data-caption={props.caption}
+				style={props.style}
 			/>
 			{(props.caption || props.credit) && (
 				<figcaption>

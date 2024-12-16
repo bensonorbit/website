@@ -2,7 +2,7 @@ import { Authors } from "@/components/Authors";
 import { DateFormat } from "@/components/DateFormat";
 import { LatestArticlesQueryResult } from "@/sanity.types";
 import { Image } from "next-sanity/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { twMerge } from "tailwind-merge";
 
 export function ArticleList(props: {
@@ -32,6 +32,9 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
 					width={400}
 					height={250}
 					sizes="(min-width: 768px) 200px, 100vw"
+					style={{
+						viewTransitionName: `${article.slug}-cover`,
+					}}
 				/>
 
 				<div>

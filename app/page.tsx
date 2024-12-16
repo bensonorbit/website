@@ -4,7 +4,7 @@ import { DateFormat } from "@/components/DateFormat";
 import { LatestArticlesQueryResult } from "@/sanity.types";
 import { getLatestArticles, getSettings } from "@/sanity/fetch";
 import { Image } from "next-sanity/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 export default async function HomePage() {
 	const settings = await getSettings(); // Featured articles are defined in the studio
@@ -125,6 +125,9 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 					blurDataURL={article.coverImage.lqip!}
 					sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, (min-width: 768px) 65vw, 100vw"
 					priority
+					style={{
+						viewTransitionName: `${article.slug}-cover`,
+					}}
 				/>
 
 				<h2 className="my-3 text-3xl font-bold group-hover:underline md:my-6 md:text-4xl">
@@ -168,6 +171,9 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 						placeholder="blur"
 						blurDataURL={article.coverImage.lqip!}
 						sizes="(min-width: 1280px) 300px, (min-width: 1024px) 25vw, (min-width: 768px) 35vw, 100vw"
+						style={{
+							viewTransitionName: `${article.slug}-cover`,
+						}}
 					/>
 				</div>
 
@@ -223,6 +229,9 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 					placeholder="blur"
 					blurDataURL={article.coverImage.lqip!}
 					sizes="90px"
+					style={{
+						viewTransitionName: `${article.slug}-cover`,
+					}}
 				/>
 			</Link>
 		</article>

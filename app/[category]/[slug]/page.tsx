@@ -73,7 +73,13 @@ export default async function ArticlePage(props: Props) {
 				</strong>
 			</p>
 
-			<ArticleImage isCover {...article.coverImage} />
+			<ArticleImage
+				isCover
+				style={{
+					viewTransitionName: `${article.slug}-cover`,
+				}}
+				{...article.coverImage}
+			/>
 			<CustomPortableText value={article.content} />
 
 			<Fancybox />
