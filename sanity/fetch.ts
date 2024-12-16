@@ -87,7 +87,7 @@ export function getArticlesByCategory(category: keyof typeof categories) {
 	return client.fetch(
 		categoryArticlesQuery,
 		{ category },
-		{ next: { tags: [`category:${category}`], revalidate: false } },
+		{ next: { tags: ["article"], revalidate: false } },
 	);
 }
 
