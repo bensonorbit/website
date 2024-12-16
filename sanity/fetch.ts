@@ -65,7 +65,7 @@ export function getArticleBySlug(slug: string) {
 
 export function getLatestArticles() {
 	const latestArticlesQuery = defineQuery(`
-		*[_type == "article"] | order(date desc) [0...4] {
+		*[_type == "article"] | order(date desc) [0...20] {
 			${articleFields}
 		}
 	`);
