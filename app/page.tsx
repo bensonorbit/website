@@ -116,7 +116,7 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 				className="group flex h-full flex-col text-balance"
 			>
 				<Image
-					alt={article.coverImage.alt!}
+					alt={article.coverImage.alt || ""}
 					src={article.coverImage.url!}
 					width={800}
 					height={550}
@@ -161,7 +161,7 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 			>
 				<div className="relative h-3/5 min-h-48 md:min-h-0">
 					<Image
-						alt={article.coverImage.alt!}
+						alt={article.coverImage.alt || ""}
 						src={article.coverImage.url!}
 						fill
 						className="rounded-xs object-cover drop-shadow-xs"
@@ -215,7 +215,7 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 				</div>
 
 				<Image
-					alt={article.coverImage.alt!}
+					alt={article.coverImage.alt || ""}
 					src={article.coverImage.url!}
 					width={128}
 					height={128}

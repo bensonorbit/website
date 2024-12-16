@@ -38,7 +38,7 @@ export const article = defineType({
 			name: "summary",
 			title: "Summary",
 			type: "text",
-			validation: (rule) => rule.min(3).max(200).required(),
+			validation: (rule) => rule.min(3).max(200),
 		}),
 		defineField({
 			name: "coverImage",
@@ -50,14 +50,6 @@ export const article = defineType({
 					type: "string",
 					title: "Alternative text",
 					description: "Important for SEO and accessiblity.",
-					validation: (rule) => {
-						return rule.custom((alt, context) => {
-							if ((context.document?.coverImage as any)?.asset?._ref && !alt) {
-								return "Required";
-							}
-							return true;
-						});
-					},
 				}),
 				defineField({
 					name: "caption",

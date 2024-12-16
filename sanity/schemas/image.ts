@@ -12,7 +12,6 @@ export const image = defineField({
 			type: "string",
 			title: "Alternative text",
 			description: "Important for SEO and accessiblity.",
-			validation: (rule) => rule.required(),
 		}),
 		defineField({
 			name: "caption",

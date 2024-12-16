@@ -27,7 +27,7 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
 			>
 				<Image
 					src={article.coverImage.url!}
-					alt={article.coverImage.alt!}
+					alt={article.coverImage.alt || ""}
 					className="h-full rounded-xs drop-shadow-xs md:max-w-48"
 					width={400}
 					height={250}
