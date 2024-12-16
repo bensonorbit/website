@@ -7,12 +7,16 @@ import { Image } from "next-sanity/image";
 import Link from "next/link";
 
 export default async function HomePage() {
-	const articles = await getLatestArticles();
-	const heroArticle = articles[0]; // First article is the hero article
-	const topArticles = articles.slice(1, 4); // Next 3 articles are top articles
-	const latestArticles = articles.slice(4); // The rest are latest articles
 	const settings = await getSettings(); // Featured articles are defined in the studio
 	const featuredArticles = settings?.featuredArticles || [];
+	const heroArticle = featuredArticles[0]; // First featured article is the hero article
+	const topArticles = featuredArticles.slice(1, 4); // Next 3 featured articles are top articles
+	const moreFeaturedArticles = featuredArticles.slice(4); // Remaining featured articles are in the right column
+	const articles = await getLatestArticles();
+	const latestArticles = articles.filter(
+		(article) =>
+			!featuredArticles.some((featured) => featured._id === article._id),
+	);
 
 	const jsonLd = {
 		"@context": "https://schema.org",
@@ -55,9 +59,9 @@ export default async function HomePage() {
 					</Middle>
 				)}
 
-				{featuredArticles.length > 0 && (
+				{moreFeaturedArticles.length > 0 && (
 					<Right>
-						{featuredArticles.map((article) => (
+						{moreFeaturedArticles.map((article) => (
 							<FeaturedArticleCard article={article} key={article._id} />
 						))}
 					</Right>

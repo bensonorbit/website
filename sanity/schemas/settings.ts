@@ -21,7 +21,7 @@ export const settings = defineType({
 			title: "Featured Articles",
 			type: "array",
 			of: [{ type: "reference", to: [{ type: article.name }] }],
-			validation: (rule) => rule.max(8),
+			validation: (rule) => rule.max(12),
 		}),
 	],
 	preview: {
