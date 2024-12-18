@@ -1,4 +1,4 @@
-import RSS from "rss";
+import { Feed } from "feed";
 import { getAllArticles } from "@/sanity/fetch";
 import { categories } from "@/lib/data";
 
@@ -9,30 +9,40 @@ export async function GET() {
 		? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
 		: "http://localhost:3000";
 
-	const feed = new RSS({
+	const feed = new Feed({
 		title: "The Benson Orbit",
 		description: "The student-run newspaper of Benson Polytechnic High School",
-		feed_url: url + "/rss.xml",
-		site_url: url,
-		image_url: url + "/apple-icon.png",
+		id: url,
+		link: url,
+		favicon: url + "/favicon.ico",
 		language: "en",
-		categories: ["News"],
+		copyright: "2024 The Benson Orbit. All rights reserved.",
+		feedLinks: {
+			atom: url + "/atom.xml",
+		},
 	});
 
 	const articles = await getAllArticles();
 
 	for (const article of articles) {
-		feed.item({
+		feed.addItem({
 			title: article.title,
 			description: article.summary || "",
-			url: url + article.url,
-			date: article.date,
-			categories: article.category ? [categories[article.category]] : undefined,
-			author: article.authors?.length ? article.authors[0].name : undefined,
+			link: url + article.url,
+			date: new Date(article.date),
+			author: article.authors?.map((author) => ({
+				name: author.name,
+				link: url + `/${author.slug}`,
+			})),
+			category: [
+				{
+					name: categories[article.category || "news"],
+				},
+			],
 		});
 	}
 
-	return new Response(feed.xml({ indent: true }), {
-		headers: { "Content-Type": "application/xml" },
+	return new Response(feed.atom1(), {
+		headers: { "Content-Type": "application/atom+xml" },
 	});
 }

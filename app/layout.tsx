@@ -16,7 +16,7 @@ export const metadata = mergeMeta({
 	description: "The student-run newspaper of Benson Polytechnic High School",
 	alternates: {
 		types: {
-			"application/rss+xml": "/rss.xml",
+			"application/atom+xml": "/atom.xml",
 		},
 	},
 });

@@ -42,7 +42,7 @@ export async function generateMetadata(props: Props) {
 		alternates: {
 			types: {
 				"application/json+oembed": `https://${domain}/${article.category}/${article.slug}/oembed`,
-				"application/rss+xml": "/rss.xml",
+				"application/atom+xml": "/atom.xml",
 			},
 		},
 	});
