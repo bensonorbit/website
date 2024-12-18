@@ -36,6 +36,7 @@ export async function GET() {
 			})),
 			category: [
 				{
+					term: article.category || "news",
 					name: categories[article.category || "news"],
 				},
 			],
