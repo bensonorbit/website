@@ -32,7 +32,7 @@ export async function GET() {
 			date: new Date(article.date),
 			author: article.authors?.map((author) => ({
 				name: author.name,
-				link: url + `/${author.slug}`,
+				link: url + `/authors/${author.slug}`,
 			})),
 			category: [
 				{
