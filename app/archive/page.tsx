@@ -1,3 +1,4 @@
+import { DateFormat } from "@/components/DateFormat";
 import { mergeMeta } from "@/lib/utils";
 import { getAllArticles } from "@/sanity/fetch";
 import Link from "next/link";
@@ -18,9 +19,7 @@ export default async function ArchivePage() {
 					<li key={article._id}>
 						<Link href={`/${article.category}/${article.slug}`}>
 							<strong className="underline">
-								{new Date(article.date).toLocaleDateString("en-US", {
-									dateStyle: "medium",
-								})}
+								<DateFormat date={article.date} style="medium" />
 							</strong>
 							: {article.title}
 						</Link>
