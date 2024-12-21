@@ -11,8 +11,8 @@ import Link from "next/link";
 
 export function Navbar() {
 	return (
-		<NavbarShadow className="sticky top-0 z-50 border-b border-border/80 bg-background/80 py-3 backdrop-blur-lg transition-shadow print:static print:shadow-none">
-			<div className="mx-auto flex max-w-7xl items-center justify-between px-6">
+		<NavbarShadow className="sticky top-0 z-50 border-b border-border/80 bg-background/80 py-3 backdrop-blur-lg transition-shadow print:static print:pt-0 print:shadow-none">
+			<div className="mx-auto flex max-w-7xl items-center justify-between px-6 print:px-0">
 				<div className="h-7 grow basis-0 lg:hidden print:hidden">
 					<Menu />
 				</div>
@@ -56,33 +56,33 @@ export function Navbar() {
 	);
 }
 
-function MoreMenu() {
-	return (
-		<div className="group relative xl:hidden">
-			<div className="flex items-center">
-				More{" "}
-				<DownIcon className="size-5 transition group-focus-within:rotate-180 group-hover:rotate-180 motion-reduce:transition-none" />
-			</div>
+// function MoreMenu() {
+// 	return (
+// 		<div className="group relative xl:hidden">
+// 			<div className="flex items-center">
+// 				More{" "}
+// 				<DownIcon className="size-5 transition group-focus-within:rotate-180 group-hover:rotate-180 motion-reduce:transition-none" />
+// 			</div>
 
-			<div className="pointer-events-none absolute top-0 -mt-4 -ml-10 -translate-y-1 p-10 opacity-0 transition group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 motion-reduce:transition-none">
-				<div className="flex flex-col rounded-sm border bg-background text-nowrap drop-shadow-sm">
-					<NavbarLink
-						href="/hubble"
-						className="flex items-center gap-2 px-4 py-2"
-					>
-						<CameraIcon /> The Hubble
-					</NavbarLink>
+// 			<div className="pointer-events-none absolute top-0 -mt-4 -ml-10 -translate-y-1 p-10 opacity-0 transition group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 motion-reduce:transition-none">
+// 				<div className="flex flex-col rounded-sm border bg-background text-nowrap drop-shadow-sm">
+// 					<NavbarLink
+// 						href="/hubble"
+// 						className="flex items-center gap-2 px-4 py-2"
+// 					>
+// 						<CameraIcon /> The Hubble
+// 					</NavbarLink>
 
-					<hr />
+// 					<hr />
 
-					<NavbarLink
-						href="/star"
-						className="flex items-center gap-2 px-4 py-2"
-					>
-						<StarIcon /> The Star
-					</NavbarLink>
-				</div>
-			</div>
-		</div>
-	);
-}
+// 					<NavbarLink
+// 						href="/star"
+// 						className="flex items-center gap-2 px-4 py-2"
+// 					>
+// 						<StarIcon /> The Star
+// 					</NavbarLink>
+// 				</div>
+// 			</div>
+// 		</div>
+// 	);
+// }
