@@ -20,10 +20,10 @@ export function ArticleList(props: {
 
 function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
 	return (
-		<article>
+		<article className="group">
 			<Link
 				href={article.url}
-				className="group flex flex-col gap-3 border-b py-3 text-balance md:flex-row md:gap-6"
+				className="group flex flex-col gap-3 border-b py-3 text-balance group-last:border-b-0 md:flex-row md:gap-6"
 			>
 				<Image
 					src={article.coverImage.url!}
