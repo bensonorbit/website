@@ -1,6 +1,7 @@
 import { ArticleList } from "@/components/ArticleList";
 import { Authors } from "@/components/Authors";
 import { DateFormat } from "@/components/DateFormat";
+import { socials } from "@/lib/data";
 import { LatestArticlesQueryResult } from "@/sanity.types";
 import { getLatestArticles, getSettings } from "@/sanity/fetch";
 import { Image } from "next-sanity/image";
@@ -18,24 +19,30 @@ export default async function HomePage() {
 			!featuredArticles.some((featured) => featured._id === article._id),
 	);
 
-	const jsonLd = {
-		"@context": "https://schema.org",
-		"@type": "NewsMediaOrganization",
-		name: "The Benson Orbit",
-		description:
-			"The student-run newspaper of Benson Polytechnic High School in Portland, Oregon.",
-		url: "https://bensonorbit.com",
-		logo: "https://bensonorbit.com/logo-1024.webp",
-		contactPoint: {
-			"@type": "ContactPoint",
-			email: "contact@bensonorbit.com",
+	const jsonLd = [
+		{
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			name: "The Benson Orbit",
+			url: "https://bensonorbit.com",
+			alternateName: ["Benson Orbit", "The Orbit", "Orbit"],
 		},
-		email: "contact@bensonorbit.com",
-		sameAs: [
-			"https://www.instagram.com/bensonorbit",
-			"https://x.com/bensonorbit",
-		],
-	};
+		{
+			"@context": "https://schema.org",
+			"@type": "NewsMediaOrganization",
+			name: "The Benson Orbit",
+			description:
+				"The student-run newspaper of Benson Polytechnic High School in Portland, Oregon.",
+			url: "https://bensonorbit.com",
+			logo: "https://bensonorbit.com/logo-1024.webp",
+			contactPoint: {
+				"@type": "ContactPoint",
+				email: "contact@bensonorbit.com",
+			},
+			email: "contact@bensonorbit.com",
+			sameAs: socials.map((social) => social.href),
+		},
+	];
 
 	return (
 		<>
