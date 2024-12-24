@@ -6,6 +6,8 @@ import { LatestArticlesQueryResult } from "@/sanity.types";
 import { getLatestArticles, getSettings } from "@/sanity/fetch";
 import { Image } from "next-sanity/image";
 import Link from "next/link";
+import { JsonLd } from "react-schemaorg";
+import { NewsMediaOrganization, WebSite } from "schema-dts";
 
 export default async function HomePage() {
 	const settings = await getSettings(); // Featured articles are defined in the studio
@@ -19,38 +21,8 @@ export default async function HomePage() {
 			!featuredArticles.some((featured) => featured._id === article._id),
 	);
 
-	const jsonLd = [
-		{
-			"@context": "https://schema.org",
-			"@type": "WebSite",
-			name: "The Benson Orbit",
-			url: "https://bensonorbit.com",
-			alternateName: ["Benson Orbit", "The Orbit", "Orbit"],
-		},
-		{
-			"@context": "https://schema.org",
-			"@type": "NewsMediaOrganization",
-			name: "The Benson Orbit",
-			description:
-				"The student-run newspaper of Benson Polytechnic High School in Portland, Oregon.",
-			url: "https://bensonorbit.com",
-			logo: "https://bensonorbit.com/logo-1024.webp",
-			contactPoint: {
-				"@type": "ContactPoint",
-				email: "contact@bensonorbit.com",
-			},
-			email: "contact@bensonorbit.com",
-			sameAs: socials.map((social) => social.href),
-		},
-	];
-
 	return (
 		<>
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-			/>
-
 			<div className="grid grid-cols-8">
 				{heroArticle && (
 					<Left>
@@ -81,6 +53,34 @@ export default async function HomePage() {
 					<ArticleList articles={latestArticles} />
 				</>
 			)}
+
+			<JsonLd<WebSite>
+				item={{
+					"@context": "https://schema.org",
+					"@type": "WebSite",
+					name: "The Benson Orbit",
+					url: "https://bensonorbit.com",
+					alternateName: ["Benson Orbit", "The Orbit", "Orbit"],
+				}}
+			/>
+
+			<JsonLd<NewsMediaOrganization>
+				item={{
+					"@context": "https://schema.org",
+					"@type": "NewsMediaOrganization",
+					name: "The Benson Orbit",
+					description:
+						"The student-run newspaper of Benson Polytechnic High School in Portland, Oregon.",
+					url: "https://bensonorbit.com",
+					logo: "https://bensonorbit.com/logo-1024.webp",
+					contactPoint: {
+						"@type": "ContactPoint",
+						email: "contact@bensonorbit.com",
+					},
+					email: "contact@bensonorbit.com",
+					sameAs: socials.map((social) => social.href),
+				}}
+			/>
 		</>
 	);
 }

@@ -7,6 +7,8 @@ import { mergeMeta } from "@/lib/utils";
 import { Fancybox } from "@/components/Fancybox";
 import { Authors } from "@/components/Authors";
 import { categories } from "@/lib/data";
+import { JsonLd } from "react-schemaorg";
+import { NewsArticle } from "schema-dts";
 
 type Props = {
 	params: Promise<{ category: string; slug: string }>;
@@ -78,25 +80,22 @@ export default async function ArticlePage(props: Props) {
 
 			<Fancybox />
 
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify({
-						"@context": "https://schema.org",
-						"@type": "NewsArticle",
-						headline: article.title,
-						image: [
-							`${article.coverImage.url}?w=1920&h=1080&fit=crop`, // 16:9
-							`${article.coverImage.url}?w=800&h=600&fit=crop`, // 4:3
-							`${article.coverImage.url}?w=800&h=800&fit=crop`, // 1:1
-						],
-						datePublished: article.date,
-						author: article.authors?.map((author) => ({
-							"@type": "Person",
-							name: author.name,
-							url: `https://bensonorbit.com/authors/${author.slug}`,
-						})),
-					}),
+			<JsonLd<NewsArticle>
+				item={{
+					"@context": "https://schema.org",
+					"@type": "NewsArticle",
+					headline: article.title,
+					image: [
+						`${article.coverImage.url}?w=1920&h=1080&fit=crop`, // 16:9
+						`${article.coverImage.url}?w=800&h=600&fit=crop`, // 4:3
+						`${article.coverImage.url}?w=800&h=800&fit=crop`, // 1:1
+					],
+					datePublished: article.date,
+					author: article.authors?.map((author) => ({
+						"@type": "Person",
+						name: author.name,
+						url: `https://bensonorbit.com/authors/${author.slug}`,
+					})),
 				}}
 			/>
 		</article>
