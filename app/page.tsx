@@ -127,7 +127,7 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 					src={article.coverImage.url!}
 					width={800}
 					height={550}
-					className="min-h-64 rounded-xs drop-shadow-xs"
+					className="rounded-xs drop-shadow-xs"
 					placeholder="blur"
 					blurDataURL={article.coverImage.lqip!}
 					sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, (min-width: 768px) 65vw, 100vw"
