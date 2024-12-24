@@ -102,7 +102,7 @@ export function BensonAstronautIcon(props: {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			fill={props.className ? "currentColor" : "#f97316"}
+			fill="#f97316"
 			viewBox="0 0 1440 1440"
 			width={props.size ?? 28}
 			height={props.size ?? 28}

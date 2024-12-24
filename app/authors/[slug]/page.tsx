@@ -41,7 +41,7 @@ export default async function AuthorPage(props: Props) {
 
 	return (
 		<div className="mx-auto prose max-w-3xl prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-orange-700 dark:prose-a:hover:text-orange-300 prose-img:rounded-xs prose-img:drop-shadow-xs">
-			<div className="flex flex-row items-center gap-4">
+			<div className="flex flex-row items-center gap-4 font-sans">
 				{author.photo.url && (
 					<Image
 						src={author.photo.url}
@@ -55,8 +55,10 @@ export default async function AuthorPage(props: Props) {
 				)}
 
 				<div>
-					<h1 className="mt-0 mb-1">{author.name}</h1>
-					<p className="lead mt-0 mb-0">{author.role}</p>
+					<h1 className="mt-0 mb-0 text-3xl font-bold">{author.name}</h1>
+					<p className="lead mt-0 mb-0 tracking-wide uppercase">
+						{author.role}
+					</p>
 				</div>
 			</div>
 

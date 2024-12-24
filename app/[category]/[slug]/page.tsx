@@ -62,7 +62,7 @@ export default async function ArticlePage(props: Props) {
 			<h1 className="mb-0 text-balance">{article.title}</h1>
 			<p className="lead mt-2 mb-2 text-balance">{article.summary}</p>
 
-			<p className="mt-0 text-lg">
+			<p className="lead mt-0 text-lg">
 				By{" "}
 				<Authors
 					authors={article.authors}

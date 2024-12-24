@@ -1,8 +1,8 @@
 import {
 	BensonAstronautIcon,
-	CameraIcon,
-	DownIcon,
-	StarIcon,
+	// CameraIcon,
+	// DownIcon,
+	// StarIcon,
 } from "@/components/Icons";
 import { Menu } from "@/components/Navbar/Menu";
 import { NavbarLink } from "@/components/Navbar/NavbarLink";
@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export function Navbar() {
 	return (
-		<NavbarShadow className="sticky top-0 z-50 border-b border-border/80 bg-background/80 py-3 backdrop-blur-lg transition-shadow print:static print:pt-0 print:shadow-none">
+		<NavbarShadow className="sticky top-0 z-50 border-b bg-background/80 py-3 backdrop-blur-lg transition print:static print:pt-0 print:shadow-none">
 			<div className="mx-auto flex max-w-7xl items-center justify-between px-6 print:px-0">
 				<div className="h-7 grow basis-0 lg:hidden print:hidden">
 					<Menu />
@@ -20,9 +20,9 @@ export function Navbar() {
 				<div className="lg:grow lg:basis-0">
 					<Link
 						href="/"
-						className="flex w-fit items-center gap-2 text-xl font-bold hover:underline"
+						className="group flex w-fit items-center gap-2 text-xl font-bold"
 					>
-						<BensonAstronautIcon />
+						<BensonAstronautIcon className="transition group-hover:scale-110 group-hover:-rotate-12" />
 						The Benson Orbit
 					</Link>
 				</div>
