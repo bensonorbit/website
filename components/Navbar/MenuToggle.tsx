@@ -38,7 +38,7 @@ export function MenuToggle(props: { children: React.ReactNode }) {
 				type="button"
 				onClick={() => setOpen(!open)}
 				aria-label={open ? "Close menu" : "Open menu"}
-				className="rounded-xs transition hover:bg-slate-200 dark:hover:bg-slate-800"
+				className="rounded-xs transition hover:bg-gray-200 dark:hover:bg-gray-800"
 			>
 				{open ? <CloseIcon /> : <MenuIcon />}
 			</button>
