@@ -224,9 +224,9 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 				<Image
 					alt={article.coverImage.alt || ""}
 					src={article.coverImage.url!}
-					width={128}
-					height={128}
-					className="size-full w-20 rounded-xs drop-shadow-xs lg:w-32"
+					width={90}
+					height={90}
+					className="rounded-xs drop-shadow-xs"
 					placeholder="blur"
 					blurDataURL={article.coverImage.lqip!}
 					sizes="90px"
