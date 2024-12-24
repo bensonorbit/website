@@ -54,7 +54,9 @@ export default async function HomePage() {
 
 			{latestArticles.length > 0 && (
 				<>
-					<h2 className="max-w-3xl border-b pt-8 pb-3 font-medium">Latest</h2>
+					<h2 className="max-w-3xl border-b pt-8 pb-3 font-sans font-medium tracking-wide uppercase">
+						Latest
+					</h2>
 					<ArticleList articles={latestArticles} />
 				</>
 			)}
@@ -109,7 +111,9 @@ function Middle(props: { children?: React.ReactNode }) {
 function Right(props: { children?: React.ReactNode }) {
 	return (
 		<section className="col-span-full flex flex-col pt-8 lg:col-span-2 lg:pt-0 lg:pl-3 lg:even:border-l">
-			<h2 className="border-b pb-3 font-medium">Featured</h2>
+			<h2 className="border-b pb-3 font-sans font-medium tracking-wide uppercase">
+				Featured
+			</h2>
 
 			<div className="grid grid-cols-1 gap-6 pt-3 md:grid-cols-2 lg:grid-cols-1 lg:gap-0 lg:divide-y">
 				{props.children}

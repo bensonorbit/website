@@ -34,7 +34,9 @@ export function ArticleImage(props: Props) {
 			{(props.caption || props.credit) && (
 				<figcaption>
 					{props.caption}
-					{props.credit && <span className="text-xs"> {props.credit}</span>}
+					{props.credit && (
+						<span className="font-sans text-xs"> {props.credit}</span>
+					)}
 				</figcaption>
 			)}
 		</figure>
