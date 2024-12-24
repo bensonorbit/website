@@ -23,9 +23,9 @@ export const metadata = mergeMeta({
 
 export const viewport: Viewport = {
 	themeColor: [
-		{ media: "(prefers-color-scheme: light)", color: "#f9fafb" },
-		{ media: "(prefers-color-scheme: dark)", color: "#030712" },
-		{ color: "#f97316" },
+		{ media: "(prefers-color-scheme: light)", color: "#f9fafb" }, // gray-50
+		{ media: "(prefers-color-scheme: dark)", color: "#030712" }, // gray-950
+		{ color: "#f97316" }, // orange-500, used for Discord embeds
 	],
 };
 
