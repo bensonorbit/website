@@ -2,12 +2,17 @@ import { ArticleList } from "@/components/ArticleList";
 import { Authors } from "@/components/Authors";
 import { DateFormat } from "@/components/DateFormat";
 import { socials } from "@/lib/data";
+import { mergeMeta } from "@/lib/utils";
 import { LatestArticlesQueryResult } from "@/sanity.types";
 import { getLatestArticles, getSettings } from "@/sanity/fetch";
 import { Image } from "next-sanity/image";
 import Link from "next/link";
 import { JsonLd } from "react-schemaorg";
 import { NewsMediaOrganization, WebSite } from "schema-dts";
+
+export const metadata = mergeMeta({
+	description: "The student-run newspaper of Benson Polytechnic High School",
+});
 
 export default async function HomePage() {
 	const settings = await getSettings(); // Featured articles are defined in the studio

@@ -13,7 +13,10 @@ export function generateStaticParams() {
 
 export async function generateMetadata(props: Props) {
 	const { category } = await props.params;
-	return mergeMeta({ title: categories[category] });
+	return mergeMeta({
+		title: categories[category],
+		description: `${categories[category]} articles published by The Benson Orbit.`,
+	});
 }
 
 export const dynamicParams = false;

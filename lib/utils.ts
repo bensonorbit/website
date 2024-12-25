@@ -7,7 +7,6 @@ export function mergeMeta(metadata: Metadata): Metadata {
 			type: "website",
 			siteName: "The Benson Orbit",
 			title: typeof metadata.title === "string" ? metadata.title : undefined,
-			description: metadata.description || undefined,
 			locale: "en_US",
 			...metadata.openGraph,
 		},

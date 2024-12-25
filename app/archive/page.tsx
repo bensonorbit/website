@@ -3,7 +3,10 @@ import { mergeMeta } from "@/lib/utils";
 import { getAllArticles } from "@/sanity/fetch";
 import Link from "next/link";
 
-export const metadata = mergeMeta({ title: "Archive" });
+export const metadata = mergeMeta({
+	title: "Archive",
+	description: "Every article that The Benson Orbit has published.",
+});
 export const dynamic = "force-static";
 
 export default async function ArchivePage() {

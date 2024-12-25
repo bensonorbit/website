@@ -3,7 +3,11 @@ import { mergeMeta } from "@/lib/utils";
 import { getAllAuthors, getSettings } from "@/sanity/fetch";
 import Link from "next/link";
 
-export const metadata = mergeMeta({ title: "About" });
+export const metadata = mergeMeta({
+	title: "About",
+	description:
+		"Learn more about The Benson Orbit, including its staff, and how to contact us.",
+});
 export const dynamic = "force-static";
 
 const roles = ["Editor", "Digital Director", "Contributor"];

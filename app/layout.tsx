@@ -13,7 +13,6 @@ export const metadata = mergeMeta({
 		default: "The Benson Orbit",
 		template: "%s | The Benson Orbit",
 	},
-	description: "The student-run newspaper of Benson Polytechnic High School",
 	alternates: {
 		types: {
 			"application/atom+xml": "/atom.xml",
