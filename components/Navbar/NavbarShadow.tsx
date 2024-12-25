@@ -21,7 +21,9 @@ export function NavbarShadow(props: {
 		<nav
 			className={
 				props.className +
-				(isScrolled ? " border-border/80 shadow" : " border-transparent")
+				(isScrolled
+					? " border-border/80 bg-background/80 shadow"
+					: " border-transparent")
 			}
 		>
 			{props.children}
