@@ -126,11 +126,8 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 	const { article } = props;
 
 	return (
-		<article className="h-full">
-			<Link
-				href={article.url}
-				className="group flex h-full flex-col text-balance"
-			>
+		<article>
+			<Link href={article.url} className="group flex flex-col text-balance">
 				<Image
 					alt={article.coverImage.alt || ""}
 					src={article.coverImage.url!}
@@ -147,19 +144,22 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 					{article.title}
 				</h2>
 
-				<p className="text-xl">{article.summary}</p>
+				<p className="text-xl text-gray-700 dark:text-gray-300">
+					{article.summary}
+				</p>
 
-				<p className="mt-3 text-lg md:mt-6">
+				<p className="mt-3 font-sans text-lg text-gray-600 md:mt-6 dark:text-gray-400">
 					By{" "}
 					<Authors
 						authors={article.authors}
 						max={4}
-						className="font-semibold"
+						className="font-semibold text-gray-700 dark:text-gray-300"
 					/>{" "}
 					&mdash;{" "}
-					<span className="font-semibold">
-						<DateFormat date={article.date} />
-					</span>
+					<DateFormat
+						className="font-semibold text-gray-700 dark:text-gray-300"
+						date={article.date}
+					/>
 				</p>
 			</Link>
 		</article>
@@ -191,15 +191,23 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 					{article.title}
 				</h3>
 
-				<p className="text-lg md:hidden">{article.summary}</p>
+				<p className="text-lg text-gray-700 md:hidden dark:text-gray-300">
+					{article.summary}
+				</p>
 
-				<p className="mt-2 md:my-0">
+				<p className="mt-2 font-sans text-gray-600 md:my-0 dark:text-gray-400">
 					By{" "}
-					<Authors authors={article.authors} max={2} className="font-medium" />{" "}
+					<Authors
+						authors={article.authors}
+						max={2}
+						className="font-medium text-gray-700 dark:text-gray-300"
+					/>{" "}
 					&mdash;{" "}
-					<span className="font-medium">
-						<DateFormat date={article.date} style="medium" />
-					</span>
+					<DateFormat
+						date={article.date}
+						style="medium"
+						className="font-medium text-gray-700 dark:text-gray-300"
+					/>
 				</p>
 			</Link>
 		</article>
@@ -219,14 +227,19 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 					<h3 className="text-lg leading-6 font-bold group-hover:underline">
 						{article.title}
 					</h3>
-					<p className="mt-1 text-sm">
+					<p className="mt-1 font-sans text-sm text-gray-600 dark:text-gray-400">
 						By{" "}
 						<Authors
 							authors={article.authors}
 							max={2}
-							className="font-medium"
+							className="font-medium text-gray-700 dark:text-gray-300"
 						/>{" "}
-						&mdash; <DateFormat date={article.date} style="medium" />
+						&mdash;{" "}
+						<DateFormat
+							date={article.date}
+							style="medium"
+							className="text-gray-700 dark:text-gray-300"
+						/>
 					</p>
 				</div>
 
