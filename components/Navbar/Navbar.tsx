@@ -22,7 +22,7 @@ export function Navbar() {
 						href="/"
 						className="group flex w-fit items-center gap-2 text-xl font-bold transition hover:text-orange-700 dark:hover:text-orange-300"
 					>
-						<BensonAstronautIcon className="transition group-hover:scale-110 group-hover:-rotate-12" />
+						<BensonAstronautIcon className="transition group-hover:scale-110 group-hover:-rotate-12 group-active:rotate-12" />
 						The Benson Orbit
 					</Link>
 				</div>
