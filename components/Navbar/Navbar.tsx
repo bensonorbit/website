@@ -20,7 +20,7 @@ export function Navbar() {
 				<div className="lg:grow lg:basis-0">
 					<Link
 						href="/"
-						className="group flex w-fit items-center gap-2 text-xl font-bold transition hover:text-orange-700 dark:hover:text-orange-300"
+						className="group flex w-fit items-center gap-2 text-xl font-bold transition hover:text-primary"
 					>
 						<BensonAstronautIcon className="transition group-hover:scale-110 group-hover:-rotate-12 group-active:rotate-12" />
 						The Benson Orbit

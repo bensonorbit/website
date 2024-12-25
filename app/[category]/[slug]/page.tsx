@@ -58,7 +58,7 @@ export default async function ArticlePage(props: Props) {
 		redirect(`/${article.category}/${article.slug}`);
 
 	return (
-		<article className="mx-auto prose prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-orange-700 dark:prose-a:hover:text-orange-300 prose-img:rounded-xs prose-img:drop-shadow-xs prose-img:hover:cursor-zoom-in">
+		<article className="mx-auto prose prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-xs prose-img:drop-shadow-xs prose-img:hover:cursor-zoom-in">
 			<h1 className="mb-0 text-balance">{article.title}</h1>
 			<p className="lead mt-2 mb-2 text-balance">{article.summary}</p>
 
