@@ -133,7 +133,7 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 					src={article.coverImage.url!}
 					width={800}
 					height={550}
-					className="rounded-xs drop-shadow-xs"
+					className="rounded-sm drop-shadow-xs"
 					placeholder="blur"
 					blurDataURL={article.coverImage.lqip!}
 					sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, (min-width: 768px) 65vw, 100vw"
@@ -180,7 +180,7 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 						alt={article.coverImage.alt || ""}
 						src={article.coverImage.url!}
 						fill
-						className="rounded-xs object-cover drop-shadow-xs"
+						className="rounded-sm object-cover drop-shadow-xs"
 						placeholder="blur"
 						blurDataURL={article.coverImage.lqip!}
 						sizes="(min-width: 1280px) 300px, (min-width: 1024px) 25vw, (min-width: 768px) 35vw, 100vw"
@@ -248,7 +248,7 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 					src={article.coverImage.url!}
 					width={90}
 					height={90}
-					className="rounded-xs drop-shadow-xs"
+					className="rounded-sm drop-shadow-xs"
 					placeholder="blur"
 					blurDataURL={article.coverImage.lqip!}
 					sizes="90px"

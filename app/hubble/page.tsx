@@ -41,7 +41,7 @@ function HubblePhoto(props: { photo: HubbleQueryResult[0]; index: number }) {
 			data-fancybox
 			data-src={lightboxSrc}
 			data-caption={props.photo.caption}
-			className="rounded-xs drop-shadow-xs"
+			className="rounded-sm drop-shadow-xs"
 		/>
 	);
 }

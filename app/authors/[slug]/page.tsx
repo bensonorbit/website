@@ -40,7 +40,7 @@ export default async function AuthorPage(props: Props) {
 	const firstName = author.name?.split(" ")[0] || "this author";
 
 	return (
-		<div className="mx-auto prose max-w-3xl prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-xs prose-img:drop-shadow-xs">
+		<div className="mx-auto prose max-w-3xl prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-sm prose-img:drop-shadow-xs">
 			<div className="flex flex-row items-center gap-4 font-sans">
 				{author.photo.url && (
 					<Image

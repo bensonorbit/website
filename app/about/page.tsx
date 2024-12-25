@@ -26,7 +26,7 @@ export default async function AboutPage() {
 	});
 
 	return (
-		<div className="mx-auto prose prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-xs prose-img:drop-shadow-xs">
+		<div className="mx-auto prose prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-sm prose-img:drop-shadow-xs">
 			<h1 className="mb-2 text-balance">About Benson Orbit</h1>
 			<CustomPortableText value={settings?.about} />
 
