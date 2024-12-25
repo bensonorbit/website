@@ -66,7 +66,7 @@ export default async function AuthorPage(props: Props) {
 
 			{author.articles.length > 0 && (
 				<>
-					<h2 className="mb-0 py-3">Articles by {firstName}</h2>
+					<h2 className="mt-0 mb-0 py-3">Articles by {firstName}</h2>
 					<ArticleList
 						articles={author.articles}
 						className="not-prose mx-auto border-t text-foreground"
