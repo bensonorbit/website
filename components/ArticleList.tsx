@@ -35,7 +35,7 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
 				/>
 
 				<div>
-					<h3 className="text-lg font-bold group-hover:underline">
+					<h3 className="text-xl font-bold group-hover:underline">
 						{article.title}
 					</h3>
 
