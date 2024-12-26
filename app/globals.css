@@ -5,11 +5,13 @@
 	--background: var(--color-gray-50);
 	--foreground: var(--color-gray-950);
 	--border: var(--color-gray-200);
+	--primary: var(--color-orange-700);
 
 	@media (prefers-color-scheme: dark) {
 		--background: var(--color-gray-950);
 		--foreground: var(--color-gray-50);
 		--border: var(--color-gray-800);
+		--primary: var(--color-orange-300);
 	}
 }
 
@@ -17,6 +19,7 @@
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
 	--color-border: var(--border);
+	--color-primary: var(--primary);
 }
 
 @layer base {

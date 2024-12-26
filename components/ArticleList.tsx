@@ -28,30 +28,33 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
 				<Image
 					src={article.coverImage.url!}
 					alt={article.coverImage.alt || ""}
-					className="h-full rounded-xs drop-shadow-xs md:max-w-48"
+					className="h-full rounded-sm drop-shadow-xs md:max-w-48"
 					width={400}
 					height={250}
 					sizes="(min-width: 768px) 200px, 100vw"
 				/>
 
 				<div>
-					<h3 className="text-lg font-bold group-hover:underline">
+					<h3 className="text-xl font-bold group-hover:underline">
 						{article.title}
 					</h3>
 
-					<p className="my-1">{article.summary}</p>
+					<p className="my-1 text-lg text-gray-700 dark:text-gray-300">
+						{article.summary}
+					</p>
 
-					<p className="text-sm">
+					<p className="font-sans text-gray-600 dark:text-gray-400">
 						By{" "}
 						<Authors
 							authors={article.authors}
 							max={4}
-							className="font-semibold"
+							className="font-semibold text-gray-700 dark:text-gray-300"
 						/>{" "}
 						&mdash;{" "}
-						<span className="font-semibold">
-							<DateFormat date={article.date} />
-						</span>
+						<DateFormat
+							date={article.date}
+							className="font-semibold text-gray-700 dark:text-gray-300"
+						/>
 					</p>
 				</div>
 			</Link>

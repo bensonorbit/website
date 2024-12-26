@@ -1,6 +1,7 @@
 export function DateFormat(props: {
 	date: string;
 	style?: Intl.DateTimeFormatOptions["dateStyle"];
+	className?: string;
 }) {
 	const date = new Date(props.date);
 	const formatted = date.toLocaleDateString("en-US", {
@@ -8,5 +9,9 @@ export function DateFormat(props: {
 		timeZone: "America/Los_Angeles",
 	});
 
-	return <time dateTime={date.toISOString()}>{formatted}</time>;
+	return (
+		<time dateTime={date.toISOString()} className={props.className}>
+			{formatted}
+		</time>
+	);
 }

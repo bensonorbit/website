@@ -15,7 +15,7 @@ export function NavbarLink(props: {
 		<Link
 			href={props.href}
 			className={
-				"hover:underline" +
+				"decoration-primary hover:underline" +
 				(isActive ? " font-semibold" : "") +
 				(props.className ? " " + props.className : "")
 			}
