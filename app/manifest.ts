@@ -1,3 +1,4 @@
+import { categories } from "@/lib/data";
 import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
@@ -20,32 +21,10 @@ export default function manifest(): MetadataRoute.Manifest {
 				type: "image/png",
 			},
 		],
-		shortcuts: [
-			{
-				name: "News",
-				url: "/news",
-			},
-			{
-				name: "Sports",
-				url: "/sports",
-			},
-			{
-				name: "Culture",
-				url: "/culture",
-			},
-			{
-				name: "Student Voices",
-				url: "/voices",
-			},
-			{
-				name: "The Hubble",
-				url: "/hubble",
-			},
-			{
-				name: "The Star",
-				url: "/star",
-			},
-		],
+		shortcuts: Object.entries(categories).map(([category, name]) => ({
+			name,
+			url: `/${category}`,
+		})),
 		categories: ["news", "education", "sports"],
 	};
 }
