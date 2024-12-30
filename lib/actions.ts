@@ -14,7 +14,7 @@ export async function subscribe(
 	formData: FormData,
 ): Promise<ActionState> {
 	const email = formData.get("email")?.toString();
-	if (!email || !email.includes("@") || email.includes("error")) {
+	if (!email || !email.includes("@")) {
 		return { success: false, error: "Please enter a valid email address." };
 	}
 
