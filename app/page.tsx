@@ -1,6 +1,7 @@
 import { ArticleList } from "@/components/ArticleList";
 import { Authors } from "@/components/Authors";
 import { DateFormat } from "@/components/DateFormat";
+import { NewsletterForm } from "@/components/NewsletterForm";
 import { socials } from "@/lib/data";
 import { mergeMeta } from "@/lib/utils";
 import { LatestArticlesQueryResult } from "@/sanity.types";
@@ -52,14 +53,27 @@ export default async function HomePage() {
 				)}
 			</div>
 
-			{latestArticles.length > 0 && (
-				<>
-					<h2 className="max-w-3xl border-b pt-8 pb-3 font-sans font-medium tracking-wide uppercase">
+			<div className="flex flex-col gap-6 pt-8 xl:flex-row">
+				<section>
+					<h2 className="max-w-3xl border-b pb-3 font-sans font-medium tracking-wide uppercase">
 						Latest
 					</h2>
 					<ArticleList articles={latestArticles} />
-				</>
-			)}
+				</section>
+
+				<div className="top-16 mx-auto flex max-w-xl grow basis-0 flex-col gap-4 xl:sticky">
+					<section className="h-min rounded-sm border bg-gray-100 p-4 font-sans text-balance dark:bg-gray-900">
+						<h2 className="text-xl font-bold tracking-tight xl:text-2xl">
+							Stay updated on everything Benson.
+						</h2>
+						<p className="mt-1 text-lg text-gray-700 xl:text-xl dark:text-gray-300">
+							Sign up for our newsletter to get the latest Orbit articles
+							delivered to your inbox.
+						</p>
+						<NewsletterForm />
+					</section>
+				</div>
+			</div>
 
 			<JsonLd<WebSite>
 				item={{
