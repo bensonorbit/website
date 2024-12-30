@@ -33,9 +33,12 @@ export function NewsletterForm() {
 				</button>
 			</form>
 
-			{error && (
-				<p className="mt-2 text-sm text-red-600 dark:text-red-400">{error}</p>
-			)}
+			<p
+				className="mt-2 text-sm text-red-600 dark:text-red-400"
+				aria-live="polite"
+			>
+				{error}
+			</p>
 
 			{success && (
 				<p className="mt-2 text-sm text-green-600 dark:text-green-400">
