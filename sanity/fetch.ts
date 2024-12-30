@@ -1,7 +1,8 @@
 import "server-only";
 import { createClient, defineQuery } from "next-sanity";
-import { apiVersion, dataset, projectId, assert } from "@/sanity/constants";
+import { apiVersion, dataset, projectId } from "@/sanity/constants";
 import { categories } from "@/lib/data";
+import { assert } from "@/lib/utils";
 
 const token = assert(
 	process.env.SANITY_API_READ_TOKEN,

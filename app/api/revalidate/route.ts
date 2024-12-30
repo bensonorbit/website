@@ -25,7 +25,7 @@
 import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
-import { assert } from "@/sanity/constants";
+import { assert } from "@/lib/utils";
 
 export async function POST(req: NextRequest) {
 	try {

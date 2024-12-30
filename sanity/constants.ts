@@ -1,11 +1,4 @@
-export function assert(value: string | undefined, variable: string) {
-	if (value === undefined) {
-		const error = `Missing environment variable: ${variable}. See .env.example for more details.`;
-		throw new Error(error);
-	}
-
-	return value;
-}
+import { assert } from "@/lib/utils";
 
 export const dataset = assert(
 	process.env.SANITY_API_DATASET,

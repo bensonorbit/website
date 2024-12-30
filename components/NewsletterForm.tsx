@@ -18,33 +18,26 @@ export function NewsletterForm() {
 				<input
 					name="email"
 					type="email"
-					className="grow rounded-sm border bg-background px-3 py-2 hover:border-gray-300 focus:border-blue-200 focus:outline-none disabled:animate-pulse disabled:cursor-not-allowed hover:dark:border-gray-700 dark:focus:border-blue-800"
+					className="grow rounded-sm border bg-background px-3 py-2 hover:border-gray-300 focus:border-blue-200 focus:outline-none hover:dark:border-gray-700 dark:focus:border-blue-800"
 					placeholder="Email address"
 					aria-label="Email address"
 					required
-					disabled={isPending}
 				/>
 				<button
 					type="submit"
-					className="flex items-center gap-2 rounded-sm bg-blue-200 px-3 py-2 font-medium transition-colors hover:bg-blue-300 active:bg-blue-200 disabled:animate-pulse disabled:cursor-wait dark:bg-blue-800 dark:hover:bg-blue-700 dark:active:bg-blue-800"
+					className="flex items-center gap-2 rounded-sm bg-blue-200 px-3 py-2 font-medium transition hover:bg-blue-300 active:bg-blue-200 disabled:opacity-80 dark:bg-blue-800 dark:hover:bg-blue-700 dark:active:bg-blue-800"
 					disabled={isPending}
 				>
 					Sign up
 				</button>
 			</form>
 
-			<p
-				className="mt-2 text-sm text-red-600 dark:text-red-400"
-				aria-live="polite"
-			>
-				{error}
-			</p>
-
-			{success && (
-				<p className="mt-2 text-sm text-green-600 dark:text-green-400">
-					Thanks for subscribing!
-				</p>
-			)}
+			<div aria-live="polite" className="text-sm font-medium">
+				{success && <p className="mt-2">Thank you for subscribing! 🎉</p>}
+				{error && (
+					<p className="mt-2 text-red-600 dark:text-red-400">{error}</p>
+				)}
+			</div>
 		</>
 	);
 }

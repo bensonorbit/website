@@ -1,5 +1,6 @@
 "use server";
 
+import { assert } from "@/lib/utils";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -18,16 +19,10 @@ export async function subscribe(
 		return { success: false, error: "Please enter a valid email address." };
 	}
 
-	const audienceId = process.env.RESEND_AUDIENCE_ID;
-	if (!audienceId) {
-		console.error(
-			"Missing environment variable: RESEND_AUDIENCE_ID. See .env.example for more details.",
-		);
-		return {
-			success: false,
-			error: "Something went wrong. Please try again later.",
-		};
-	}
+	const audienceId = assert(
+		process.env.RESEND_AUDIENCE_ID,
+		"RESEND_AUDIENCE_ID",
+	);
 
 	const { error } = await resend.contacts.create({
 		email,
