@@ -11,7 +11,13 @@ import { JsonLd } from "react-schemaorg";
 import { NewsMediaOrganization, WebSite } from "schema-dts";
 
 export const metadata = mergeMeta({
+	title: {
+		absolute: "The Benson Orbit | Benson Polytechnic High School Newspaper",
+	},
 	description: "The student-run newspaper of Benson Polytechnic High School",
+	openGraph: {
+		title: "The Benson Orbit",
+	},
 });
 
 export default async function HomePage() {

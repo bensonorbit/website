@@ -11,13 +11,16 @@ import { twMerge } from "tailwind-merge";
 
 export const metadata = mergeMeta({
 	title: {
-		default: "The Benson Orbit | Benson Polytechnic High School Newspaper",
+		default: "The Benson Orbit",
 		template: "%s | The Benson Orbit",
 	},
 	alternates: {
 		types: {
 			"application/atom+xml": "/atom.xml",
 		},
+	},
+	twitter: {
+		site: "@bensonorbit",
 	},
 });
 
