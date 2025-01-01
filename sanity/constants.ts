@@ -18,4 +18,4 @@ export const projectId = assert(
 );
 
 // See https://www.sanity.io/docs/api-versioning for how versioning works
-export const apiVersion = "2024-10-27";
+export const apiVersion = "2025-01-01";

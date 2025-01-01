@@ -16,7 +16,7 @@ export async function GET() {
 		link: url,
 		favicon: url + "/favicon.ico",
 		language: "en",
-		copyright: "2024 The Benson Orbit. All rights reserved.",
+		copyright: "2025 The Benson Orbit. All rights reserved.",
 		feedLinks: {
 			atom: url + "/atom.xml",
 		},
