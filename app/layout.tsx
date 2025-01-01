@@ -11,7 +11,7 @@ import { twMerge } from "tailwind-merge";
 
 export const metadata = mergeMeta({
 	title: {
-		default: "The Benson Orbit",
+		default: "The Benson Orbit | Benson Polytechnic High School Newspaper",
 		template: "%s | The Benson Orbit",
 	},
 	alternates: {
