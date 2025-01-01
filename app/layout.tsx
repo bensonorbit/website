@@ -21,6 +21,7 @@ export const metadata = mergeMeta({
 	},
 	twitter: {
 		site: "@bensonorbit",
+		card: "summary_large_image",
 	},
 });
 
