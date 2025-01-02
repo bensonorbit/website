@@ -8,6 +8,7 @@ export async function GET() {
 	const url = process.env.VERCEL_PROJECT_PRODUCTION_URL
 		? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
 		: "http://localhost:3000";
+	const year = new Date().getFullYear();
 
 	const feed = new Feed({
 		title: "The Benson Orbit",
@@ -16,7 +17,7 @@ export async function GET() {
 		link: url,
 		favicon: url + "/favicon.ico",
 		language: "en",
-		copyright: "2025 The Benson Orbit. All rights reserved.",
+		copyright: year + " The Benson Orbit. All rights reserved.",
 		feedLinks: {
 			atom: url + "/atom.xml",
 		},

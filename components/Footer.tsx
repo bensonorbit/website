@@ -1,10 +1,11 @@
 import { socials } from "@/lib/data";
 
 export function Footer() {
+	const year = new Date().getFullYear();
 	return (
 		<footer className="border-t py-2 text-sm text-gray-600 md:text-base dark:text-gray-400">
 			<div className="mx-auto flex max-w-7xl items-center justify-between px-6 print:px-0">
-				<p>&copy; 2025 The Benson Orbit</p>
+				<p>&copy; {year} The Benson Orbit</p>
 
 				<div className="flex gap-3 print:hidden">
 					{socials.map((social) => (
