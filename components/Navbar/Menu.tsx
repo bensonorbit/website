@@ -8,6 +8,7 @@ export function Menu() {
 			<nav className="absolute top-0 left-0 -z-10 flex h-screen w-screen flex-col bg-background px-6 pt-12 text-lg">
 				<MenuLink href="/">Home</MenuLink>
 				<MenuLink href="/about">About</MenuLink>
+				<MenuLink href="/archive">Archive</MenuLink>
 
 				<Divider />
 
@@ -20,7 +21,6 @@ export function Menu() {
 
 				<Divider />
 
-				<MenuLink href="/archive">Archive</MenuLink>
 				{socials.map((social) => (
 					<MenuLink key={social.name} href={social.href}>
 						<social.icon className="size-4 text-gray-700 dark:text-gray-300" />

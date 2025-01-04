@@ -1,9 +1,4 @@
-import {
-	BlueskyIcon,
-	InstagramIcon,
-	ThreadsIcon,
-	TwitterIcon,
-} from "@/components/Icons";
+import { InstagramIcon, TwitterIcon, FacebookIcon } from "@/components/Icons";
 
 export const categories = {
 	news: "News",
@@ -23,18 +18,13 @@ export const socials: Array<{
 		icon: InstagramIcon,
 	},
 	{
+		name: "Facebook",
+		href: "https://www.facebook.com/bensonorbit",
+		icon: FacebookIcon,
+	},
+	{
 		name: "Twitter",
 		href: "https://x.com/bensonorbit",
 		icon: TwitterIcon,
-	},
-	{
-		name: "Bluesky",
-		href: "https://bsky.app/profile/bensonorbit.com",
-		icon: BlueskyIcon,
-	},
-	{
-		name: "Threads",
-		href: "https://www.threads.net/@bensonorbit",
-		icon: ThreadsIcon,
 	},
 ];
