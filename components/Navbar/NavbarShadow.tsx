@@ -9,10 +9,8 @@ export function NavbarShadow(props: {
 	const [isScrolled, setIsScrolled] = useState(false);
 
 	useEffect(() => {
-		function handleScroll() {
-			setIsScrolled(window.scrollY > 0);
-		}
-
+		const handleScroll = () => setIsScrolled(window.scrollY > 0);
+		handleScroll();
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
