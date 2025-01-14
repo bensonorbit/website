@@ -58,14 +58,38 @@ export default async function HomePage() {
 				)}
 			</div>
 
-			{latestArticles.length > 0 && (
-				<>
-					<h2 className="max-w-3xl border-b pt-8 pb-3 font-sans font-medium tracking-wide uppercase">
-						Latest
-					</h2>
-					<ArticleList articles={latestArticles} />
-				</>
-			)}
+			<div className="flex flex-col gap-6 pt-8 lg:flex-row">
+				{latestArticles.length > 0 && (
+					<section>
+						<h2 className="max-w-3xl border-b pb-3 font-sans font-medium tracking-wide uppercase">
+							Latest
+						</h2>
+						<ArticleList articles={latestArticles} />
+					</section>
+				)}
+
+				<section className="sticky top-16 mx-auto h-fit max-w-lg grow basis-0 space-y-1 rounded-sm border bg-gray-100 p-3 font-sans text-lg dark:bg-gray-900">
+					<h2 className="text-2xl font-bold tracking-tight">Stay updated.</h2>
+					<p>
+						Follow The Benson Orbit on social media to see the latest news from
+						Benson Polytechnic High School.
+					</p>
+					<ul className="space-y-1">
+						{socials.map((social) => (
+							<li key={social.name}>
+								<a
+									href={social.href}
+									target="_blank"
+									className="group flex items-center gap-2 transition-colors hover:text-primary"
+								>
+									<social.icon className="size-4 text-gray-700 transition-colors group-hover:text-primary dark:text-gray-300" />{" "}
+									{social.name}
+								</a>
+							</li>
+						))}
+					</ul>
+				</section>
+			</div>
 
 			<JsonLd<WebSite>
 				item={{
