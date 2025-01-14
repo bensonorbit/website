@@ -78,7 +78,6 @@ export const article = defineType({
 			title: "Authors",
 			type: "array",
 			of: [{ type: "reference", to: [{ type: author.name }] }],
-			validation: (rule) => rule.required(),
 		}),
 	],
 	preview: {

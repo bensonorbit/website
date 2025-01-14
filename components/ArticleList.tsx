@@ -50,7 +50,7 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
 							max={4}
 							className="font-semibold text-gray-700 dark:text-gray-300"
 						/>{" "}
-						&mdash;{" "}
+						{article.authors && article.authors.length > 0 && "— "}
 						<DateFormat
 							date={article.date}
 							className="font-semibold text-gray-700 dark:text-gray-300"

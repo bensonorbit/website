@@ -161,7 +161,7 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 						max={4}
 						className="font-semibold text-gray-700 dark:text-gray-300"
 					/>{" "}
-					&mdash;{" "}
+					{article.authors && article.authors.length > 0 && "— "}
 					<DateFormat
 						className="font-semibold text-gray-700 dark:text-gray-300"
 						date={article.date}
@@ -208,7 +208,7 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 						max={2}
 						className="font-medium text-gray-700 dark:text-gray-300"
 					/>{" "}
-					&mdash;{" "}
+					{article.authors && article.authors.length > 0 && "— "}
 					<DateFormat
 						date={article.date}
 						style="medium"
@@ -240,7 +240,7 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 							max={2}
 							className="font-medium text-gray-700 dark:text-gray-300"
 						/>{" "}
-						&mdash;{" "}
+						{article.authors && article.authors.length > 0 && "— "}
 						<DateFormat
 							date={article.date}
 							style="medium"

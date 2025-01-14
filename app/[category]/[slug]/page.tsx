@@ -69,7 +69,7 @@ export default async function ArticlePage(props: Props) {
 					link
 					className="font-semibold no-underline"
 				/>{" "}
-				&mdash;{" "}
+				{article.authors && article.authors.length > 0 && "— "}
 				<strong>
 					<DateFormat date={article.date} />
 				</strong>

@@ -7,7 +7,7 @@ export function Authors(props: {
 	className?: string;
 }) {
 	let { authors } = props;
-	if (!authors) return null;
+	if (!authors || !authors.length) return null;
 	if (props.max) authors = authors.slice(0, props.max);
 
 	return authors.map((author, i) => (
