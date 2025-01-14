@@ -155,13 +155,11 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 				</p>
 
 				<p className="mt-3 font-sans text-lg text-gray-600 md:mt-6 dark:text-gray-400">
-					By{" "}
 					<Authors
 						authors={article.authors}
 						max={4}
 						className="font-semibold text-gray-700 dark:text-gray-300"
-					/>{" "}
-					{article.authors && article.authors.length > 0 && "— "}
+					/>
 					<DateFormat
 						className="font-semibold text-gray-700 dark:text-gray-300"
 						date={article.date}
@@ -202,13 +200,11 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 				</p>
 
 				<p className="mt-2 font-sans text-gray-600 md:my-0 dark:text-gray-400">
-					By{" "}
 					<Authors
 						authors={article.authors}
 						max={2}
 						className="font-medium text-gray-700 dark:text-gray-300"
-					/>{" "}
-					{article.authors && article.authors.length > 0 && "— "}
+					/>
 					<DateFormat
 						date={article.date}
 						style="medium"
@@ -234,13 +230,11 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 						{article.title}
 					</h3>
 					<p className="mt-1 font-sans text-sm text-gray-600 dark:text-gray-400">
-						By{" "}
 						<Authors
 							authors={article.authors}
 							max={2}
 							className="font-medium text-gray-700 dark:text-gray-300"
-						/>{" "}
-						{article.authors && article.authors.length > 0 && "— "}
+						/>
 						<DateFormat
 							date={article.date}
 							style="medium"

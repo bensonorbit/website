@@ -21,12 +21,14 @@ export function Authors(props: {
 			) : (
 				<span className={props.className}>{author.name}</span>
 			)}
+
+			{i === authors.length - 1 && " — "}
 		</>
 	));
 }
 
 function seperator(i: number, length: number) {
-	if (i === 0) return "";
+	if (i === 0) return "By ";
 	if (i === length - 1) {
 		if (length > 2) return ", and ";
 		return " & ";

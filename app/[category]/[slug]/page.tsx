@@ -63,13 +63,11 @@ export default async function ArticlePage(props: Props) {
 			<p className="lead mt-2 mb-2 text-balance">{article.summary}</p>
 
 			<p className="lead mt-0 font-sans text-lg">
-				By{" "}
 				<Authors
 					authors={article.authors}
 					link
 					className="font-semibold no-underline"
-				/>{" "}
-				{article.authors && article.authors.length > 0 && "— "}
+				/>
 				<strong>
 					<DateFormat date={article.date} />
 				</strong>
