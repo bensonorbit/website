@@ -30,7 +30,7 @@ export default async function sitemap() {
 
 	for (const author of await getAllAuthors()) {
 		entries.push({
-			url: `https://bensonorbit.com/author/${author.slug?.current}`,
+			url: `https://bensonorbit.com/authors/${author.slug?.current}`,
 		});
 	}
 
