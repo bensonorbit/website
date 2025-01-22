@@ -58,7 +58,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 			>
 				<Navbar />
 
-				<main className="mx-auto w-full max-w-7xl grow px-6 py-6 font-serif">
+				<main className="mx-auto w-full max-w-7xl grow p-6 font-serif xl:border-x">
 					{props.children}
 				</main>
 

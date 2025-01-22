@@ -6,13 +6,12 @@ import {
 } from "@/components/Icons";
 import { Menu } from "@/components/Navbar/Menu";
 import { NavbarLink } from "@/components/Navbar/NavbarLink";
-import { NavbarShadow } from "@/components/Navbar/NavbarShadow";
 import Link from "next/link";
 
 export function Navbar() {
 	return (
-		<NavbarShadow className="sticky top-0 z-50 border-b py-3 backdrop-blur-lg transition print:static print:border-border print:bg-transparent print:pt-0 print:shadow-none">
-			<div className="mx-auto flex max-w-7xl items-center justify-between px-6 print:px-0">
+		<nav className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-lg transition print:static print:bg-transparent print:pt-0">
+			<div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 xl:border-x print:px-0">
 				<div className="h-7 grow basis-0 lg:hidden print:hidden">
 					<Menu />
 				</div>
@@ -52,7 +51,7 @@ export function Navbar() {
 					bensonorbit.com
 				</p>
 			</div>
-		</NavbarShadow>
+		</nav>
 	);
 }
 
