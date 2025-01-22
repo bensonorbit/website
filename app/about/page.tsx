@@ -10,7 +10,7 @@ export const metadata = mergeMeta({
 });
 export const dynamic = "force-static";
 
-const roles = ["Editor", "Digital Director", "Contributor"];
+const roles = ["Adviser", "Editor", "Digital Director", "Contributor"];
 
 export default async function AboutPage() {
 	const [settings, allAuthors] = await Promise.all([
@@ -31,6 +31,7 @@ export default async function AboutPage() {
 			<CustomPortableText value={settings?.about} />
 
 			<h2>Orbit Staff</h2>
+			<h3>Leadership</h3>
 			<ul>
 				{authors
 					.filter((a) => a.role !== "Contributor")
