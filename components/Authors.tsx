@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Fragment } from "react";
 
 export function Authors(props: {
 	authors: Array<{ name: string; slug: string | null }> | null;
@@ -11,7 +12,7 @@ export function Authors(props: {
 	if (props.max) authors = authors.slice(0, props.max);
 
 	return authors.map((author, i) => (
-		<>
+		<Fragment key={author.slug}>
 			{seperator(i, authors.length)}
 
 			{props.link ? (
@@ -23,7 +24,7 @@ export function Authors(props: {
 			)}
 
 			{i === authors.length - 1 && " — "}
-		</>
+		</Fragment>
 	));
 }
 
