@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   logging: {
     fetches: { fullUrl: false },
   },
-  async redirects() {
+  redirects() {
     return [
       {
         destination: "https://benson.sanity.studio",

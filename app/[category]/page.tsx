@@ -32,7 +32,7 @@ export default async function CategoryPage(props: Props) {
       <h2 className="max-w-3xl border-b pb-3 text-3xl font-bold md:text-4xl">
         {title}
       </h2>
-      {category == "voices" && (
+      {category === "voices" && (
         <p className="pt-3 italic">
           These articles highlight student opinions, and do not necessarily
           represent the views of the Orbit as a whole.

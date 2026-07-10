@@ -49,7 +49,7 @@ export const pageStructure =
     // The default root list items (except custom ones)
     const defaultListItems = S.documentTypeListItems().filter(
       (listItem) =>
-        !typeDefArray.find((singleton) => singleton.name === listItem.getId())
+        !typeDefArray.some((singleton) => singleton.name === listItem.getId())
     );
 
     return S.list()
