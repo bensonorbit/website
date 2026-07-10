@@ -1,12 +1,8 @@
 import "@/app/globals.css";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { Noto_Serif, Public_Sans } from "next/font/google";
-import { Navbar } from "@/components/Navbar/Navbar";
-import { Footer } from "@/components/Footer";
 import { mergeMeta } from "@/lib/utils";
 import { Viewport } from "next";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { twMerge } from "tailwind-merge";
 
 export const metadata = mergeMeta({
@@ -51,21 +47,12 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 		>
 			<body
 				className={twMerge(
-					"flex min-h-dvh flex-col justify-between bg-background font-sans text-foreground antialiased selection:bg-orange-500/30",
+					"min-h-dvh bg-background font-sans text-foreground antialiased selection:bg-orange-500/30",
 					publicSans.variable,
 					notoSerif.variable,
 				)}
 			>
-				<Navbar />
-
-				<main className="mx-auto w-full max-w-7xl grow p-6 font-serif xl:border-x">
-					{props.children}
-				</main>
-
-				<Footer />
-
-				<Analytics />
-				<SpeedInsights />
+				{props.children}
 			</body>
 		</html>
 	);

@@ -4,7 +4,6 @@ const projectId = process.env.SANITY_API_PROJECT_ID;
 const dataset = process.env.SANITY_API_DATASET;
 
 export default defineCliConfig({
-	studioHost: "benson",
 	api: { projectId, dataset },
 	vite: {
 		define: {

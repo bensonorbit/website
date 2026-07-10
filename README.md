@@ -2,7 +2,7 @@
 
 Website for The Benson Orbit, the student-run newspaper of Benson Polytechnic High School. Built with [Next.js](https://nextjs.org), [Tailwind CSS](https://tailwindcss.com), and [Sanity](https://sanity.io). Deployed with [Vercel](https://vercel.com).
 
-This repository also contains the Sanity Studio configuration (`sanity.config.ts`) for the project, which is deployed separately to Sanity's own hosting.
+This repository also contains the Sanity Studio configuration (`sanity.config.ts`). The Studio is embedded in the site at `/studio`.
 
 ## Development
 
