@@ -1,6 +1,7 @@
 allowBuilds:
   "@vercel/speed-insights": true
   esbuild: true
+  lefthook: true
   scrollmirror: false
   sharp: true
   unrs-resolver: true
