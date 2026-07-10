@@ -13,8 +13,8 @@ importers:
   .:
     dependencies:
       '@fancyapps/ui':
-        specifier: ^5.0.36
-        version: 5.0.36
+        specifier: ^6.1.14
+        version: 6.1.14
       '@sanity/client':
         specifier: ^7.23.0
         version: 7.23.0
@@ -1226,8 +1226,8 @@ packages:
       '@noble/hashes':
         optional: true
 
-  '@fancyapps/ui@5.0.36':
-    resolution: {integrity: sha512-GMygQzp1MBTFNTT6AzpbL6pXTD6bTxwjmmpI1fe8Ozmmiseu8/g82Sudl1YhcbZmS4bJgaBOF5THDFGpXQ1fDw==}
+  '@fancyapps/ui@6.1.14':
+    resolution: {integrity: sha512-cBV73XXHrc0qMca+PJJ6qay3xweIgsoYse13rGRstgUs0xA5WAv1tgbSzPCIOOjiLs2S2jiVFJxyszgvgyfxMg==}
 
   '@floating-ui/core@1.7.5':
     resolution: {integrity: sha512-1Ih4WTWyw0+lKyFMcBHGbb5U5FtuHJuujoyyr5zTaWS5EYMeT6Jb2AuDeftsCsEuchO+mM2ij5+q9crhydzLhQ==}
@@ -8178,7 +8178,7 @@ snapshots:
     optionalDependencies:
       '@noble/hashes': 2.2.0
 
-  '@fancyapps/ui@5.0.36': {}
+  '@fancyapps/ui@6.1.14': {}
 
   '@floating-ui/core@1.7.5':
     dependencies:
