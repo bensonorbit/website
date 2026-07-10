@@ -1,4 +1,4 @@
-import { ImageIcon } from "@sanity/icons";
+import { ImageIcon } from "@sanity/icons/Image";
 import { defineField } from "sanity";
 
 export const image = defineField({
