@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.36",
-    "@sanity/client": "^6.28.4",
+    "@sanity/client": "^7.23.0",
     "@tailwindcss/postcss": "4.1.3",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.14.0",
@@ -19,7 +19,7 @@
     "@vercel/speed-insights": "^1.2.0",
     "feed": "^4.2.2",
     "next": "16.2.10",
-    "next-sanity": "^9.9.9",
+    "next-sanity": "^13.1.1",
     "postcss": "^8.5.3",
     "react": "19.2.7",
     "react-dom": "19.2.7",
@@ -31,12 +31,12 @@
   },
   "devDependencies": {
     "@sanity/icons": "^3.7.0",
-    "@sanity/vision": "^3.83.0",
+    "@sanity/vision": "^5.11.0",
     "eslint": "^9.39.4",
     "eslint-config-next": "16.2.10",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "sanity": "^3.83.0",
+    "sanity": "^5.31.1",
     "styled-components": "^6.1.17"
   },
   "prettier": {
