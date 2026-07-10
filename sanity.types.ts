@@ -12,60 +12,14 @@
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
 // Source: schema.json
-export type SanityImagePaletteSwatch = {
-	_type: "sanity.imagePaletteSwatch";
-	background?: string;
-	foreground?: string;
-	population?: number;
-	title?: string;
-};
-
-export type SanityImagePalette = {
-	_type: "sanity.imagePalette";
-	darkMuted?: SanityImagePaletteSwatch;
-	lightVibrant?: SanityImagePaletteSwatch;
-	darkVibrant?: SanityImagePaletteSwatch;
-	vibrant?: SanityImagePaletteSwatch;
-	dominant?: SanityImagePaletteSwatch;
-	lightMuted?: SanityImagePaletteSwatch;
-	muted?: SanityImagePaletteSwatch;
-};
-
-export type SanityImageDimensions = {
-	_type: "sanity.imageDimensions";
-	height?: number;
-	width?: number;
-	aspectRatio?: number;
-};
-
-export type SanityFileAsset = {
-	_id: string;
-	_type: "sanity.fileAsset";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	originalFilename?: string;
-	label?: string;
-	title?: string;
-	description?: string;
-	altText?: string;
-	sha1hash?: string;
-	extension?: string;
-	mimeType?: string;
-	size?: number;
-	assetId?: string;
-	uploadId?: string;
-	path?: string;
-	url?: string;
-	source?: SanityAssetSourceData;
-};
-
-export type Geopoint = {
-	_type: "geopoint";
-	lat?: number;
-	lng?: number;
-	alt?: number;
+export type SanityImageAssetReference = {
+	_ref: string;
+	_type: "reference";
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
 export type Hubble = {
@@ -75,12 +29,8 @@ export type Hubble = {
 	_updatedAt: string;
 	_rev: string;
 	image?: {
-		asset?: {
-			_ref: string;
-			_type: "reference";
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-		};
+		asset?: SanityImageAssetReference;
+		media?: unknown;
 		hotspot?: SanityImageHotspot;
 		crop?: SanityImageCrop;
 		_type: "image";
@@ -89,6 +39,22 @@ export type Hubble = {
 	alt?: string;
 	date?: string;
 	photographer?: string;
+};
+
+export type SanityImageCrop = {
+	_type: "sanity.imageCrop";
+	top?: number;
+	bottom?: number;
+	left?: number;
+	right?: number;
+};
+
+export type SanityImageHotspot = {
+	_type: "sanity.imageHotspot";
+	x?: number;
+	y?: number;
+	height?: number;
+	width?: number;
 };
 
 export type Author = {
@@ -101,12 +67,8 @@ export type Author = {
 	slug?: Slug;
 	role?: string;
 	photo?: {
-		asset?: {
-			_ref: string;
-			_type: "reference";
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-		};
+		asset?: SanityImageAssetReference;
+		media?: unknown;
 		hotspot?: SanityImageHotspot;
 		crop?: SanityImageCrop;
 		_type: "image";
@@ -131,6 +93,19 @@ export type Author = {
 	}>;
 };
 
+export type Slug = {
+	_type: "slug";
+	current?: string;
+	source?: string;
+};
+
+export type AuthorReference = {
+	_ref: string;
+	_type: "reference";
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: "author";
+};
+
 export type Article = {
 	_id: string;
 	_type: "article";
@@ -149,14 +124,7 @@ export type Article = {
 					_key: string;
 				}>;
 				style?:
-					| "normal"
-					| "h1"
-					| "h2"
-					| "h3"
-					| "h4"
-					| "h5"
-					| "h6"
-					| "blockquote";
+					"normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
 				listItem?: "bullet" | "number";
 				markDefs?: Array<{
 					href?: string;
@@ -168,12 +136,8 @@ export type Article = {
 				_key: string;
 		  }
 		| {
-				asset?: {
-					_ref: string;
-					_type: "reference";
-					_weak?: boolean;
-					[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-				};
+				asset?: SanityImageAssetReference;
+				media?: unknown;
 				hotspot?: SanityImageHotspot;
 				crop?: SanityImageCrop;
 				alt?: string;
@@ -185,12 +149,8 @@ export type Article = {
 	>;
 	summary?: string;
 	coverImage?: {
-		asset?: {
-			_ref: string;
-			_type: "reference";
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-		};
+		asset?: SanityImageAssetReference;
+		media?: unknown;
 		hotspot?: SanityImageHotspot;
 		crop?: SanityImageCrop;
 		alt?: string;
@@ -199,76 +159,18 @@ export type Article = {
 		_type: "image";
 	};
 	date?: string;
-	authors?: Array<{
-		_ref: string;
-		_type: "reference";
-		_weak?: boolean;
-		_key: string;
-		[internalGroqTypeReferenceTo]?: "author";
-	}>;
+	authors?: Array<
+		{
+			_key: string;
+		} & AuthorReference
+	>;
 };
 
-export type SanityImageCrop = {
-	_type: "sanity.imageCrop";
-	top?: number;
-	bottom?: number;
-	left?: number;
-	right?: number;
-};
-
-export type SanityImageHotspot = {
-	_type: "sanity.imageHotspot";
-	x?: number;
-	y?: number;
-	height?: number;
-	width?: number;
-};
-
-export type SanityImageAsset = {
-	_id: string;
-	_type: "sanity.imageAsset";
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	originalFilename?: string;
-	label?: string;
-	title?: string;
-	description?: string;
-	altText?: string;
-	sha1hash?: string;
-	extension?: string;
-	mimeType?: string;
-	size?: number;
-	assetId?: string;
-	uploadId?: string;
-	path?: string;
-	url?: string;
-	metadata?: SanityImageMetadata;
-	source?: SanityAssetSourceData;
-};
-
-export type SanityAssetSourceData = {
-	_type: "sanity.assetSourceData";
-	name?: string;
-	id?: string;
-	url?: string;
-};
-
-export type SanityImageMetadata = {
-	_type: "sanity.imageMetadata";
-	location?: Geopoint;
-	dimensions?: SanityImageDimensions;
-	palette?: SanityImagePalette;
-	lqip?: string;
-	blurHash?: string;
-	hasAlpha?: boolean;
-	isOpaque?: boolean;
-};
-
-export type Slug = {
-	_type: "slug";
-	current?: string;
-	source?: string;
+export type ArticleReference = {
+	_ref: string;
+	_type: "reference";
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: "article";
 };
 
 export type Settings = {
@@ -295,33 +197,131 @@ export type Settings = {
 		_type: "block";
 		_key: string;
 	}>;
-	featuredArticles?: Array<{
-		_ref: string;
-		_type: "reference";
-		_weak?: boolean;
-		_key: string;
-		[internalGroqTypeReferenceTo]?: "article";
-	}>;
+	featuredArticles?: Array<
+		{
+			_key: string;
+		} & ArticleReference
+	>;
+};
+
+export type SanityImagePaletteSwatch = {
+	_type: "sanity.imagePaletteSwatch";
+	background?: string;
+	foreground?: string;
+	population?: number;
+	title?: string;
+};
+
+export type SanityImagePalette = {
+	_type: "sanity.imagePalette";
+	darkMuted?: SanityImagePaletteSwatch;
+	lightVibrant?: SanityImagePaletteSwatch;
+	darkVibrant?: SanityImagePaletteSwatch;
+	vibrant?: SanityImagePaletteSwatch;
+	dominant?: SanityImagePaletteSwatch;
+	lightMuted?: SanityImagePaletteSwatch;
+	muted?: SanityImagePaletteSwatch;
+};
+
+export type SanityImageDimensions = {
+	_type: "sanity.imageDimensions";
+	height?: number;
+	width?: number;
+	aspectRatio?: number;
+};
+
+export type SanityImageMetadata = {
+	_type: "sanity.imageMetadata";
+	location?: Geopoint;
+	dimensions?: SanityImageDimensions;
+	palette?: SanityImagePalette;
+	lqip?: string;
+	blurHash?: string;
+	thumbHash?: string;
+	hasAlpha?: boolean;
+	isOpaque?: boolean;
+};
+
+export type SanityFileAsset = {
+	_id: string;
+	_type: "sanity.fileAsset";
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	originalFilename?: string;
+	label?: string;
+	title?: string;
+	description?: string;
+	altText?: string;
+	sha1hash?: string;
+	extension?: string;
+	mimeType?: string;
+	size?: number;
+	assetId?: string;
+	uploadId?: string;
+	path?: string;
+	url?: string;
+	source?: SanityAssetSourceData;
+};
+
+export type SanityAssetSourceData = {
+	_type: "sanity.assetSourceData";
+	name?: string;
+	id?: string;
+	url?: string;
+};
+
+export type SanityImageAsset = {
+	_id: string;
+	_type: "sanity.imageAsset";
+	_createdAt: string;
+	_updatedAt: string;
+	_rev: string;
+	originalFilename?: string;
+	label?: string;
+	title?: string;
+	description?: string;
+	altText?: string;
+	sha1hash?: string;
+	extension?: string;
+	mimeType?: string;
+	size?: number;
+	assetId?: string;
+	uploadId?: string;
+	path?: string;
+	url?: string;
+	metadata?: SanityImageMetadata;
+	source?: SanityAssetSourceData;
+};
+
+export type Geopoint = {
+	_type: "geopoint";
+	lat?: number;
+	lng?: number;
+	alt?: number;
 };
 
 export type AllSanitySchemaTypes =
+	| SanityImageAssetReference
+	| Hubble
+	| SanityImageCrop
+	| SanityImageHotspot
+	| Author
+	| Slug
+	| AuthorReference
+	| Article
+	| ArticleReference
+	| Settings
 	| SanityImagePaletteSwatch
 	| SanityImagePalette
 	| SanityImageDimensions
-	| SanityFileAsset
-	| Geopoint
-	| Hubble
-	| Author
-	| Article
-	| SanityImageCrop
-	| SanityImageHotspot
-	| SanityImageAsset
-	| SanityAssetSourceData
 	| SanityImageMetadata
-	| Slug
-	| Settings;
-export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./sanity/fetch.ts
+	| SanityFileAsset
+	| SanityAssetSourceData
+	| SanityImageAsset
+	| Geopoint;
+
+// Source: sanity/fetch.ts
 // Variable: articleQuery
 // Query: *[_type == "article" && slug.current == $slug] [0] {			content[] {				...,				_type == "image" => {					"url": @.asset->url,					"aspectRatio": @.asset->metadata.dimensions.aspectRatio,					"lqip": @.asset->metadata.lqip,					alt,					caption,				}			},			// groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  category,  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + category + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }		}
 export type ArticleQueryResult = {
@@ -334,14 +334,7 @@ export type ArticleQueryResult = {
 					_key: string;
 				}>;
 				style?:
-					| "blockquote"
-					| "h1"
-					| "h2"
-					| "h3"
-					| "h4"
-					| "h5"
-					| "h6"
-					| "normal";
+					"blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
 				listItem?: "bullet" | "number";
 				markDefs?: Array<{
 					href?: string;
@@ -353,12 +346,8 @@ export type ArticleQueryResult = {
 				_key: string;
 		  }
 		| {
-				asset?: {
-					_ref: string;
-					_type: "reference";
-					_weak?: boolean;
-					[internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-				};
+				asset?: SanityImageAssetReference;
+				media?: unknown;
 				hotspot?: SanityImageHotspot;
 				crop?: SanityImageCrop;
 				alt: string | null;
@@ -391,6 +380,8 @@ export type ArticleQueryResult = {
 		credit: string | null;
 	};
 } | null;
+
+// Source: sanity/fetch.ts
 // Variable: latestArticlesQuery
 // Query: *[_type == "article"] | order(date desc) [0...20] {			// groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  category,  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + category + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }		}
 export type LatestArticlesQueryResult = Array<{
@@ -414,6 +405,8 @@ export type LatestArticlesQueryResult = Array<{
 		credit: string | null;
 	};
 }>;
+
+// Source: sanity/fetch.ts
 // Variable: categoryArticlesQuery
 // Query: *[_type == "article" && category == $category] | order(date desc) [0...14] {			// groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  category,  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + category + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }		}
 export type CategoryArticlesQueryResult = Array<{
@@ -437,6 +430,8 @@ export type CategoryArticlesQueryResult = Array<{
 		credit: string | null;
 	};
 }>;
+
+// Source: sanity/fetch.ts
 // Variable: allArticlesQuery
 // Query: *[_type == "article"] | order(date desc) {			// groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  category,  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + category + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }		}
 export type AllArticlesQueryResult = Array<{
@@ -460,6 +455,8 @@ export type AllArticlesQueryResult = Array<{
 		credit: string | null;
 	};
 }>;
+
+// Source: sanity/fetch.ts
 // Variable: settingsQuery
 // Query: *[_type == "settings"] [0] {			...,			"featuredArticles": featuredArticles[]-> {				// groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  category,  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + category + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }			}		}
 export type SettingsQueryResult = {
@@ -508,6 +505,8 @@ export type SettingsQueryResult = {
 		};
 	}> | null;
 } | null;
+
+// Source: sanity/fetch.ts
 // Variable: hubbleQuery
 // Query: *[_type == "hubble"] | order(date desc) {			...,			"date": coalesce(date, _createdAt),			"image": {				"url": image.asset->url,				"aspectRatio": image.asset->metadata.dimensions.aspectRatio,				"lqip": image.asset->metadata.lqip,			}		}
 export type HubbleQueryResult = Array<{
@@ -526,6 +525,8 @@ export type HubbleQueryResult = Array<{
 	date: string;
 	photographer?: string;
 }>;
+
+// Source: sanity/fetch.ts
 // Variable: authorQuery
 // Query: *[_type == "author" && slug.current == $slug] [0] {			...,			"photo": {				"url": photo.asset->url,				"aspectRatio": photo.asset->metadata.dimensions.aspectRatio,				"lqip": photo.asset->metadata.lqip,			},			"articles": *[_type == "article" && references(^._id)] | order(date desc) {				// groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  category,  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + category + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }			}		}
 export type AuthorQueryResult = {
@@ -582,6 +583,8 @@ export type AuthorQueryResult = {
 		};
 	}>;
 } | null;
+
+// Source: sanity/fetch.ts
 // Variable: allAuthorsQuery
 // Query: *[_type == "author"] {			slug,			role,			name,		}
 export type AllAuthorsQueryResult = Array<{
