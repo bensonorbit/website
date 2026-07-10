@@ -13,5 +13,6 @@ export default defineConfig({
   ],
   rules: {
     "eslint/func-style": ["error", "declaration"],
+    "eslint/no-use-before-define": ["error", "nofunc"],
   },
 });
