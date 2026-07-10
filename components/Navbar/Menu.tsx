@@ -17,8 +17,6 @@ export function Menu() {
         <MenuLink href="/sports">Sports</MenuLink>
         <MenuLink href="/culture">Culture</MenuLink>
         <MenuLink href="/voices">Student Voices</MenuLink>
-        {/* <MenuLink href="/hubble">The Hubble</MenuLink>
-				<MenuLink href="/star">The Star</MenuLink> */}
 
         <Divider />
 

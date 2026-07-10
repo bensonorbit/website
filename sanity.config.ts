@@ -7,7 +7,6 @@ import { BensonAstronautIcon } from "@/components/icons";
 import { apiVersion, dataset, projectId } from "@/sanity/constants";
 import { article } from "@/sanity/schemas/article";
 import { author } from "@/sanity/schemas/author";
-import { hubble } from "@/sanity/schemas/hubble";
 import { settings } from "@/sanity/schemas/settings";
 import { pageStructure, singletonPlugin } from "@/sanity/singleton";
 
@@ -28,7 +27,7 @@ export default defineConfig({
   plugins,
   projectId,
   schema: {
-    types: [settings, article, author, hubble],
+    types: [settings, article, author],
   },
   title: "Orbit Studio",
 });

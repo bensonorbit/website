@@ -32,13 +32,6 @@ export function Navbar() {
           <NavbarLink href="/sports">Sports</NavbarLink>
           <NavbarLink href="/culture">Culture</NavbarLink>
           <NavbarLink href="/voices">Student Voices</NavbarLink>
-          {/* <NavbarLink href="/hubble" className="hidden xl:block">
-						The Hubble
-					</NavbarLink>
-					<NavbarLink href="/star" className="hidden xl:block">
-						The Star
-					</NavbarLink> */}
-          {/* <MoreMenu /> */}
         </div>
 
         <div className="hidden grow basis-0 items-center justify-end gap-6 lg:flex print:hidden">

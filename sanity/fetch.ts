@@ -123,26 +123,6 @@ export function getSettings() {
   );
 }
 
-export function getHubblePhotos() {
-  const hubbleQuery = defineQuery(`
-		*[_type == "hubble"] | order(date desc) {
-			...,
-			"date": coalesce(date, _createdAt),
-			"image": {
-				"url": image.asset->url,
-				"aspectRatio": image.asset->metadata.dimensions.aspectRatio,
-				"lqip": image.asset->metadata.lqip,
-			}
-		}
-	`);
-
-  return client.fetch(
-    hubbleQuery,
-    {},
-    { next: { revalidate: false, tags: ["hubble"] } }
-  );
-}
-
 export function getAuthorBySlug(slug: string) {
   const authorQuery = defineQuery(`
 		*[_type == "author" && slug.current == $slug] [0] {

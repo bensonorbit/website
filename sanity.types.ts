@@ -22,41 +22,6 @@ export type SanityImageAssetReference = {
   [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
-export type Hubble = {
-  _id: string;
-  _type: "hubble";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  image: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  caption?: string;
-  alt: string;
-  date?: string;
-  photographer?: string;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x: number;
-  y: number;
-  height: number;
-  width: number;
-};
-
 export type Author = {
   _id: string;
   _type: "author";
@@ -91,6 +56,22 @@ export type Author = {
     _type: "block";
     _key: string;
   }>;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x: number;
+  y: number;
+  height: number;
+  width: number;
 };
 
 export type Slug = {
@@ -303,10 +284,9 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes =
   | SanityImageAssetReference
-  | Hubble
+  | Author
   | SanityImageCrop
   | SanityImageHotspot
-  | Author
   | Slug
   | AuthorReference
   | Article
@@ -507,26 +487,6 @@ export type SettingsQueryResult = {
 } | null;
 
 // Source: sanity/fetch.ts
-// Variable: hubbleQuery
-// Query: *[_type == "hubble"] | order(date desc) {			...,			"date": coalesce(date, _createdAt),			"image": {				"url": image.asset->url,				"aspectRatio": image.asset->metadata.dimensions.aspectRatio,				"lqip": image.asset->metadata.lqip,			}		}
-export type HubbleQueryResult = Array<{
-  _id: string;
-  _type: "hubble";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  image: {
-    url: string | null;
-    aspectRatio: number | null;
-    lqip: string | null;
-  };
-  caption?: string;
-  alt: string;
-  date: string;
-  photographer?: string;
-}>;
-
-// Source: sanity/fetch.ts
 // Variable: authorQuery
 // Query: *[_type == "author" && slug.current == $slug] [0] {			...,			"photo": {				"url": photo.asset->url,				"aspectRatio": photo.asset->metadata.dimensions.aspectRatio,				"lqip": photo.asset->metadata.lqip,			},			"articles": *[_type == "article" && references(^._id)] | order(date desc) {				// groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  category,  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + category + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }			}		}
 export type AuthorQueryResult = {
@@ -602,7 +562,6 @@ declare module "@sanity/client" {
     '\n\t\t*[_type == "article" && category == $category] | order(date desc) [0...14] {\n\t\t\t// groq\n  _id,\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  summary,\n  category,\n  "date": coalesce(date, _updatedAt),\n  "url": coalesce("/" + category + "/" + slug.current, "/"),\n  authors[] -> {\n    "name": coalesce(name, "Unknown Author"),\n    "slug": slug.current,\n  },\n  "coverImage": {\n\t"url": coverImage.asset->url,\n\t"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,\n\t"lqip": coverImage.asset->metadata.lqip,\n\t"alt": coverImage.alt,\n\t"caption": coverImage.caption,\n\t"credit": coverImage.credit,\n  }\n\n\t\t}\n\t': CategoryArticlesQueryResult;
     '\n\t\t*[_type == "article"] | order(date desc) {\n\t\t\t// groq\n  _id,\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  summary,\n  category,\n  "date": coalesce(date, _updatedAt),\n  "url": coalesce("/" + category + "/" + slug.current, "/"),\n  authors[] -> {\n    "name": coalesce(name, "Unknown Author"),\n    "slug": slug.current,\n  },\n  "coverImage": {\n\t"url": coverImage.asset->url,\n\t"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,\n\t"lqip": coverImage.asset->metadata.lqip,\n\t"alt": coverImage.alt,\n\t"caption": coverImage.caption,\n\t"credit": coverImage.credit,\n  }\n\n\t\t}\n\t': AllArticlesQueryResult;
     '\n\t\t*[_type == "settings"] [0] {\n\t\t\t...,\n\t\t\t"featuredArticles": featuredArticles[]-> {\n\t\t\t\t// groq\n  _id,\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  summary,\n  category,\n  "date": coalesce(date, _updatedAt),\n  "url": coalesce("/" + category + "/" + slug.current, "/"),\n  authors[] -> {\n    "name": coalesce(name, "Unknown Author"),\n    "slug": slug.current,\n  },\n  "coverImage": {\n\t"url": coverImage.asset->url,\n\t"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,\n\t"lqip": coverImage.asset->metadata.lqip,\n\t"alt": coverImage.alt,\n\t"caption": coverImage.caption,\n\t"credit": coverImage.credit,\n  }\n\n\t\t\t}\n\t\t}\n\t': SettingsQueryResult;
-    '\n\t\t*[_type == "hubble"] | order(date desc) {\n\t\t\t...,\n\t\t\t"date": coalesce(date, _createdAt),\n\t\t\t"image": {\n\t\t\t\t"url": image.asset->url,\n\t\t\t\t"aspectRatio": image.asset->metadata.dimensions.aspectRatio,\n\t\t\t\t"lqip": image.asset->metadata.lqip,\n\t\t\t}\n\t\t}\n\t': HubbleQueryResult;
     '\n\t\t*[_type == "author" && slug.current == $slug] [0] {\n\t\t\t...,\n\t\t\t"photo": {\n\t\t\t\t"url": photo.asset->url,\n\t\t\t\t"aspectRatio": photo.asset->metadata.dimensions.aspectRatio,\n\t\t\t\t"lqip": photo.asset->metadata.lqip,\n\t\t\t},\n\t\t\t"articles": *[_type == "article" && references(^._id)] | order(date desc) {\n\t\t\t\t// groq\n  _id,\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  summary,\n  category,\n  "date": coalesce(date, _updatedAt),\n  "url": coalesce("/" + category + "/" + slug.current, "/"),\n  authors[] -> {\n    "name": coalesce(name, "Unknown Author"),\n    "slug": slug.current,\n  },\n  "coverImage": {\n\t"url": coverImage.asset->url,\n\t"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,\n\t"lqip": coverImage.asset->metadata.lqip,\n\t"alt": coverImage.alt,\n\t"caption": coverImage.caption,\n\t"credit": coverImage.credit,\n  }\n\n\t\t\t}\n\t\t}\n\t': AuthorQueryResult;
     '\n\t\t*[_type == "author"] {\n\t\t\tslug,\n\t\t\trole,\n\t\t\tname,\n\t\t}\n\t': AllAuthorsQueryResult;
   }
