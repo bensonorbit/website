@@ -12,10 +12,12 @@ const token = assert(
 const client = createClient({
   apiVersion,
   dataset,
-  perspective: "published", // Only published documents should be fetched (not drafts)
+  // Only published documents should be fetched (not drafts)
+  perspective: "published",
   projectId,
   token,
-  useCdn: false, // We always want fresh data during revalidation, and it's cached by Vercel anyway
+  // We always want fresh data during revalidation, and it's cached by Vercel anyway
+  useCdn: false,
 });
 
 const articleFields = `// groq

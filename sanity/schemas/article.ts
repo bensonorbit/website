@@ -92,7 +92,7 @@ export const article = defineType({
       return { media, subtitle, title };
     },
     select: {
-      author: "authors.0.name", // First author
+      author: "authors.0.name",
       date: "date",
       media: "coverImage",
       title: "title",

@@ -96,9 +96,14 @@ export default async function ArticlePage(props: Props) {
           datePublished: article.date,
           headline: article.title,
           image: [
-            `${article.coverImage.url}?w=1920&h=1080&fit=crop`, // 16:9
-            `${article.coverImage.url}?w=800&h=600&fit=crop`, // 4:3
-            `${article.coverImage.url}?w=800&h=800&fit=crop`, // 1:1
+            // 16:9
+            `${article.coverImage.url}?w=1920&h=1080&fit=crop`,
+
+            // 4:3
+            `${article.coverImage.url}?w=800&h=600&fit=crop`,
+
+            // 1:1
+            `${article.coverImage.url}?w=800&h=800&fit=crop`,
           ],
         }}
       />

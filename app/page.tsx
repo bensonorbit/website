@@ -22,11 +22,19 @@ export const metadata = mergeMeta({
 });
 
 export default async function HomePage() {
-  const settings = await getSettings(); // Featured articles are defined in the studio
+  // Featured articles are defined in the studio
+  const settings = await getSettings();
   const featuredArticles = settings?.featuredArticles || [];
-  const heroArticle = featuredArticles[0]; // First featured article is the hero article
-  const topArticles = featuredArticles.slice(1, 4); // Next 3 featured articles are top articles
-  const moreFeaturedArticles = featuredArticles.slice(4); // Remaining featured articles are in the right column
+
+  // First featured article is the hero article
+  const heroArticle = featuredArticles[0];
+
+  // Next 3 featured articles are top articles
+  const topArticles = featuredArticles.slice(1, 4);
+
+  // Remaining featured articles are in the right column
+  const moreFeaturedArticles = featuredArticles.slice(4);
+
   const articles = await getLatestArticles();
   const latestArticles = articles.filter(
     (article) =>
