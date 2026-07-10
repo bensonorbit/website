@@ -3,9 +3,9 @@ import Link from "next/link";
 import { JsonLd } from "react-schemaorg";
 import type { NewsMediaOrganization, WebSite } from "schema-dts";
 
-import { ArticleList } from "@/components/ArticleList";
-import { Authors } from "@/components/Authors";
-import { DateFormat } from "@/components/DateFormat";
+import { ArticleList } from "@/components/article-list";
+import { Authors } from "@/components/authors";
+import { DateFormat } from "@/components/date-format";
 import { socials } from "@/lib/data";
 import { mergeMeta } from "@/lib/utils";
 import type { LatestArticlesQueryResult } from "@/sanity.types";

@@ -3,7 +3,7 @@ import {
   TwitterIcon,
   FacebookIcon,
   BlueskyIcon,
-} from "@/components/Icons";
+} from "@/components/icons";
 
 export const categories = {
   culture: "Culture",

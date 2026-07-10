@@ -4,8 +4,8 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "react-schemaorg";
 import type { ProfilePage } from "schema-dts";
 
-import { ArticleList } from "@/components/ArticleList";
-import { CustomPortableText } from "@/components/CustomPortableText";
+import { ArticleList } from "@/components/article-list";
+import { CustomPortableText } from "@/components/custom-portable-text";
 import { mergeMeta } from "@/lib/utils";
 import { getAuthorBySlug } from "@/sanity/fetch";
 

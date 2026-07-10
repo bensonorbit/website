@@ -2,8 +2,8 @@ import { Image } from "next-sanity/image";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 
-import { Authors } from "@/components/Authors";
-import { DateFormat } from "@/components/DateFormat";
+import { Authors } from "@/components/authors";
+import { DateFormat } from "@/components/date-format";
 import type { LatestArticlesQueryResult } from "@/sanity.types";
 
 export function ArticleList(props: {

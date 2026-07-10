@@ -6,8 +6,8 @@ import type { Viewport } from "next";
 import { Noto_Serif, Public_Sans } from "next/font/google";
 import { twMerge } from "tailwind-merge";
 
-import { Footer } from "@/components/Footer";
-import { Navbar } from "@/components/Navbar/Navbar";
+import { Footer } from "@/components/footer";
+import { Navbar } from "@/components/navbar/navbar";
 import { mergeMeta } from "@/lib/utils";
 
 export const metadata = mergeMeta({

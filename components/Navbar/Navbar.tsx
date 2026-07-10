@@ -5,9 +5,9 @@ import {
   // CameraIcon,
   // DownIcon,
   // StarIcon,
-} from "@/components/Icons";
-import { Menu } from "@/components/Navbar/Menu";
-import { NavbarLink } from "@/components/Navbar/NavbarLink";
+} from "@/components/icons";
+import { Menu } from "@/components/navbar/menu";
+import { NavbarLink } from "@/components/navbar/navbar-link";
 
 export function Navbar() {
   return (

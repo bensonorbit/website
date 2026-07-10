@@ -3,7 +3,7 @@ import type { PluginOptions } from "sanity";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 
-import { BensonAstronautIcon } from "@/components/Icons";
+import { BensonAstronautIcon } from "@/components/icons";
 import { apiVersion, dataset, projectId } from "@/sanity/constants";
 import { article } from "@/sanity/schemas/article";
 import { author } from "@/sanity/schemas/author";

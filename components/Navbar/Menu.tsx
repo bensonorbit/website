@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { MenuToggle } from "@/components/Navbar/MenuToggle";
+import { MenuToggle } from "@/components/navbar/menu-toggle";
 import { socials } from "@/lib/data";
 
 export function Menu() {

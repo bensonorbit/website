@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { CloseIcon, MenuIcon } from "@/components/Icons";
+import { CloseIcon, MenuIcon } from "@/components/icons";
 
 export function MenuToggle(props: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);

@@ -1,4 +1,4 @@
-import { ArticleList } from "@/components/ArticleList";
+import { ArticleList } from "@/components/article-list";
 import { categories } from "@/lib/data";
 import { mergeMeta } from "@/lib/utils";
 import { getArticlesByCategory } from "@/sanity/fetch";

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { CustomPortableText } from "@/components/CustomPortableText";
+import { CustomPortableText } from "@/components/custom-portable-text";
 import { mergeMeta } from "@/lib/utils";
 import { getAllAuthors, getSettings } from "@/sanity/fetch";
 

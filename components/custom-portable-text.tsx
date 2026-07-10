@@ -2,7 +2,7 @@ import { PortableText } from "next-sanity";
 import type { PortableTextComponents, PortableTextProps } from "next-sanity";
 import Link from "next/link";
 
-import { ArticleImage } from "@/components/ArticleImage";
+import { ArticleImage } from "@/components/article-image";
 
 export function CustomPortableText(props: {
   value?: PortableTextProps["value"] | null;

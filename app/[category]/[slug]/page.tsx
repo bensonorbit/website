@@ -2,11 +2,11 @@ import { notFound, redirect } from "next/navigation";
 import { JsonLd } from "react-schemaorg";
 import type { NewsArticle } from "schema-dts";
 
-import { ArticleImage } from "@/components/ArticleImage";
-import { Authors } from "@/components/Authors";
-import { CustomPortableText } from "@/components/CustomPortableText";
-import { DateFormat } from "@/components/DateFormat";
-import { Fancybox } from "@/components/Fancybox";
+import { ArticleImage } from "@/components/article-image";
+import { Authors } from "@/components/authors";
+import { CustomPortableText } from "@/components/custom-portable-text";
+import { DateFormat } from "@/components/date-format";
+import { Fancybox } from "@/components/fancybox";
 import { categories } from "@/lib/data";
 import { mergeMeta } from "@/lib/utils";
 import { getArticleBySlug } from "@/sanity/fetch";

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { DateFormat } from "@/components/DateFormat";
+import { DateFormat } from "@/components/date-format";
 import { mergeMeta } from "@/lib/utils";
 import { getAllArticles } from "@/sanity/fetch";
 
