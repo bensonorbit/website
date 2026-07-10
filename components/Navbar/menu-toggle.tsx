@@ -6,8 +6,13 @@ import { useEffect, useState } from "react";
 import { CloseIcon, MenuIcon } from "@/components/icons";
 
 export function MenuToggle(props: { children: React.ReactNode }) {
-  const [open, setOpen] = useState(false);
   const pathname = usePathname();
+
+  return <MenuToggleContent key={pathname} {...props} />;
+}
+
+function MenuToggleContent(props: { children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
 
   // Prevent scrolling when the menu is open
   useEffect(() => {
@@ -27,11 +32,6 @@ export function MenuToggle(props: { children: React.ReactNode }) {
     }
     return () => window.removeEventListener("resize", onResize);
   }, [open]);
-
-  // Close menu on navigation
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   return (
     <>
