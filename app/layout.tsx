@@ -1,5 +1,4 @@
 import "@/app/globals.css";
-import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Viewport } from "next";
