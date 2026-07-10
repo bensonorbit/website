@@ -40,8 +40,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(next@16.2.10(@babel/core@7.26.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react@19.2.7)
       feed:
-        specifier: ^4.2.2
-        version: 4.2.2
+        specifier: ^6.0.0
+        version: 6.0.0
       next:
         specifier: 16.2.10
         version: 16.2.10(@babel/core@7.26.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -4157,9 +4157,9 @@ packages:
       picomatch:
         optional: true
 
-  feed@4.2.2:
-    resolution: {integrity: sha512-u5/sxGfiMfZNtJ3OvQpXcvotFpYkL0n9u9mM2vkui2nGo8b4wvDkJ8gAkYqbA8QpGyFCv3RK0Z+Iv+9veCS9bQ==}
-    engines: {node: '>=0.4.0'}
+  feed@6.0.0:
+    resolution: {integrity: sha512-rvFOF1POce0ijAKy3tZN5T8PuprgIit/VbMyXJWcoYwcMOTSIJ7NqZb8DTLPJr77yiEO27kidm/fw0kcSIV+ww==}
+    engines: {node: '>=20', pnpm: '>=10'}
 
   figures@6.1.0:
     resolution: {integrity: sha512-d+l3qxjSesT4V7v2fh+QnmFnUWv9lSpjarhShNTgBOfA0ttejbQUAlHLitbjkoRiDulW0OPoQPYIGhIC8ohejg==}
@@ -11189,7 +11189,7 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.5
 
-  feed@4.2.2:
+  feed@6.0.0:
     dependencies:
       xml-js: 1.6.11
 
