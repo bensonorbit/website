@@ -11,4 +11,7 @@ export default defineConfig({
     ...(react.ignorePatterns || []),
     "sanity.types.ts",
   ],
+  rules: {
+    "eslint/func-style": ["error", "declaration"],
+  },
 });
