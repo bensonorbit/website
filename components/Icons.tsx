@@ -1,7 +1,6 @@
 export function InstagramIcon(props: { className?: string }) {
   return (
     <svg
-      role="img"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       className={props.className}
@@ -16,7 +15,6 @@ export function InstagramIcon(props: { className?: string }) {
 export function TwitterIcon(props: { className?: string }) {
   return (
     <svg
-      role="img"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       className={props.className}
@@ -30,7 +28,6 @@ export function TwitterIcon(props: { className?: string }) {
 export function BlueskyIcon(props: { className?: string }) {
   return (
     <svg
-      role="img"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       className={props.className}
@@ -45,7 +42,6 @@ export function BlueskyIcon(props: { className?: string }) {
 export function ThreadsIcon(props: { className?: string }) {
   return (
     <svg
-      role="img"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       className={props.className}
@@ -60,7 +56,6 @@ export function ThreadsIcon(props: { className?: string }) {
 export function FacebookIcon(props: { className?: string }) {
   return (
     <svg
-      role="img"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       className={props.className}
