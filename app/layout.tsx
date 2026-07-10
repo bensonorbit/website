@@ -54,6 +54,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html
       lang="en"
       className="scroll-smooth scheme-light [scrollbar-gutter:stable] dark:scheme-dark"
+      data-scroll-behavior="smooth"
     >
       <body
         className={twMerge(
