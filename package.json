@@ -5,7 +5,7 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "typegen": "sanity schema extract && sanity typegen generate",
+    "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate",
     "format": "prettier --write .",
     "check": "ultracite check",
     "fix": "ultracite fix"
