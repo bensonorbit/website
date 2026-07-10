@@ -1,4 +1,15 @@
 {
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --turbo",
+    "build": "next build",
+    "start": "next start",
+    "typegen": "sanity schema extract && sanity typegen generate",
+    "format": "prettier --write .",
+    "check": "ultracite check",
+    "fix": "ultracite fix"
+  },
   "dependencies": {
     "@fancyapps/ui": "^5.0.36",
     "@sanity/client": "^7.23.0",
@@ -32,16 +43,5 @@
     "sanity": "^5.31.1",
     "styled-components": "^6.1.17",
     "ultracite": "7.9.3"
-  },
-  "scripts": {
-    "dev": "next dev --turbo",
-    "build": "next build",
-    "start": "next start",
-    "typegen": "sanity schema extract && sanity typegen generate",
-    "format": "prettier --write .",
-    "check": "ultracite check",
-    "fix": "ultracite fix"
-  },
-  "type": "module",
-  "private": true
+  }
 }

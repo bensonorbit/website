@@ -1,20 +1,20 @@
 export function assert(value: string | undefined, variable: string) {
-	if (value === undefined) {
-		const error = `Missing environment variable: ${variable}. See .env.example for more details.`;
-		throw new Error(error);
-	}
+  if (value === undefined) {
+    const error = `Missing environment variable: ${variable}. See .env.example for more details.`;
+    throw new Error(error);
+  }
 
-	return value;
+  return value;
 }
 
 export const dataset = assert(
-	process.env.SANITY_API_DATASET,
-	"SANITY_API_DATASET",
+  process.env.SANITY_API_DATASET,
+  "SANITY_API_DATASET"
 );
 
 export const projectId = assert(
-	process.env.SANITY_API_PROJECT_ID,
-	"SANITY_API_PROJECT_ID",
+  process.env.SANITY_API_PROJECT_ID,
+  "SANITY_API_PROJECT_ID"
 );
 
 // See https://www.sanity.io/docs/api-versioning for how versioning works

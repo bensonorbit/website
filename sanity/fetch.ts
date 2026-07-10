@@ -1,20 +1,21 @@
 import "server-only";
 import { createClient, defineQuery } from "next-sanity";
+
+import type { categories } from "@/lib/data";
 import { apiVersion, dataset, projectId, assert } from "@/sanity/constants";
-import { categories } from "@/lib/data";
 
 const token = assert(
-	process.env.SANITY_API_READ_TOKEN,
-	"SANITY_API_READ_TOKEN",
+  process.env.SANITY_API_READ_TOKEN,
+  "SANITY_API_READ_TOKEN"
 );
 
 const client = createClient({
-	projectId,
-	dataset,
-	apiVersion,
-	token,
-	useCdn: false, // We always want fresh data during revalidation, and it's cached by Vercel anyway
-	perspective: "published", // Only published documents should be fetched (not drafts)
+  apiVersion,
+  dataset,
+  perspective: "published", // Only published documents should be fetched (not drafts)
+  projectId,
+  token,
+  useCdn: false, // We always want fresh data during revalidation, and it's cached by Vercel anyway
 });
 
 const articleFields = `// groq
@@ -40,7 +41,7 @@ const articleFields = `// groq
 `;
 
 export function getArticleBySlug(slug: string) {
-	const articleQuery = defineQuery(`
+  const articleQuery = defineQuery(`
 		*[_type == "article" && slug.current == $slug] [0] {
 			content[] {
 				...,
@@ -56,57 +57,57 @@ export function getArticleBySlug(slug: string) {
 		}
 	`);
 
-	return client.fetch(
-		articleQuery,
-		{ slug },
-		{ next: { tags: [`article:${slug}`], revalidate: false } },
-	);
+  return client.fetch(
+    articleQuery,
+    { slug },
+    { next: { revalidate: false, tags: [`article:${slug}`] } }
+  );
 }
 
 export function getLatestArticles() {
-	const latestArticlesQuery = defineQuery(`
+  const latestArticlesQuery = defineQuery(`
 		*[_type == "article"] | order(date desc) [0...20] {
 			${articleFields}
 		}
 	`);
 
-	return client.fetch(
-		latestArticlesQuery,
-		{},
-		{ next: { tags: ["article"], revalidate: false } },
-	);
+  return client.fetch(
+    latestArticlesQuery,
+    {},
+    { next: { revalidate: false, tags: ["article"] } }
+  );
 }
 
 export function getArticlesByCategory(category: keyof typeof categories) {
-	const categoryArticlesQuery = defineQuery(`
+  const categoryArticlesQuery = defineQuery(`
 		*[_type == "article" && category == $category] | order(date desc) [0...14] {
 			${articleFields}
 		}
 	`);
 
-	return client.fetch(
-		categoryArticlesQuery,
-		{ category },
-		{ next: { tags: ["article"], revalidate: false } },
-	);
+  return client.fetch(
+    categoryArticlesQuery,
+    { category },
+    { next: { revalidate: false, tags: ["article"] } }
+  );
 }
 
 export function getAllArticles() {
-	const allArticlesQuery = defineQuery(`
+  const allArticlesQuery = defineQuery(`
 		*[_type == "article"] | order(date desc) {
 			${articleFields}
 		}
 	`);
 
-	return client.fetch(
-		allArticlesQuery,
-		{},
-		{ next: { tags: ["article"], revalidate: false } },
-	);
+  return client.fetch(
+    allArticlesQuery,
+    {},
+    { next: { revalidate: false, tags: ["article"] } }
+  );
 }
 
 export function getSettings() {
-	const settingsQuery = defineQuery(`
+  const settingsQuery = defineQuery(`
 		*[_type == "settings"] [0] {
 			...,
 			"featuredArticles": featuredArticles[]-> {
@@ -115,15 +116,15 @@ export function getSettings() {
 		}
 	`);
 
-	return client.fetch(
-		settingsQuery,
-		{},
-		{ next: { tags: ["settings"], revalidate: false } },
-	);
+  return client.fetch(
+    settingsQuery,
+    {},
+    { next: { revalidate: false, tags: ["settings"] } }
+  );
 }
 
 export function getHubblePhotos() {
-	const hubbleQuery = defineQuery(`
+  const hubbleQuery = defineQuery(`
 		*[_type == "hubble"] | order(date desc) {
 			...,
 			"date": coalesce(date, _createdAt),
@@ -135,15 +136,15 @@ export function getHubblePhotos() {
 		}
 	`);
 
-	return client.fetch(
-		hubbleQuery,
-		{},
-		{ next: { tags: ["hubble"], revalidate: false } },
-	);
+  return client.fetch(
+    hubbleQuery,
+    {},
+    { next: { revalidate: false, tags: ["hubble"] } }
+  );
 }
 
 export function getAuthorBySlug(slug: string) {
-	const authorQuery = defineQuery(`
+  const authorQuery = defineQuery(`
 		*[_type == "author" && slug.current == $slug] [0] {
 			...,
 			"photo": {
@@ -157,15 +158,15 @@ export function getAuthorBySlug(slug: string) {
 		}
 	`);
 
-	return client.fetch(
-		authorQuery,
-		{ slug },
-		{ next: { tags: [`author:${slug}`, "article"], revalidate: false } },
-	);
+  return client.fetch(
+    authorQuery,
+    { slug },
+    { next: { revalidate: false, tags: [`author:${slug}`, "article"] } }
+  );
 }
 
 export function getAllAuthors() {
-	const allAuthorsQuery = defineQuery(`
+  const allAuthorsQuery = defineQuery(`
 		*[_type == "author"] {
 			slug,
 			role,
@@ -173,9 +174,9 @@ export function getAllAuthors() {
 		}
 	`);
 
-	return client.fetch(
-		allAuthorsQuery,
-		{},
-		{ next: { tags: ["author"], revalidate: false } },
-	);
+  return client.fetch(
+    allAuthorsQuery,
+    {},
+    { next: { revalidate: false, tags: ["author"] } }
+  );
 }

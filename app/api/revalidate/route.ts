@@ -22,41 +22,50 @@
  * 16. Redeploy with `npx vercel --prod` to apply the new environment variable
  */
 
-import { revalidateTag } from "next/cache";
-import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
+import { revalidateTag } from "next/cache";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
 import { assert } from "@/sanity/constants";
 
 export async function POST(req: NextRequest) {
-	try {
-		const secret = assert(
-			process.env.SANITY_REVALIDATE_SECRET,
-			"SANITY_REVALIDATE_SECRET",
-		);
+  try {
+    const secret = assert(
+      process.env.SANITY_REVALIDATE_SECRET,
+      "SANITY_REVALIDATE_SECRET"
+    );
 
-		const { body, isValidSignature } = await parseBody<{
-			_type: string;
-			slug?: string | undefined;
-			category?: string | undefined;
-		}>(req, secret);
+    const { body, isValidSignature } = await parseBody<{
+      _type: string;
+      slug?: string | undefined;
+      category?: string | undefined;
+    }>(req, secret);
 
-		if (!isValidSignature)
-			return new Response("Invalid signature", { status: 401 });
+    if (!isValidSignature) {
+      return new Response("Invalid signature", { status: 401 });
+    }
 
-		if (!body?._type) return new Response("Bad Request", { status: 400 });
+    if (!body?._type) {
+      return new Response("Bad Request", { status: 400 });
+    }
 
-		revalidateTag(body._type, "max");
-		if (body.slug) revalidateTag(`${body._type}:${body.slug}`, "max");
-		if (body.category) revalidateTag(`category:${body.category}`, "max");
+    revalidateTag(body._type, "max");
+    if (body.slug) {
+      revalidateTag(`${body._type}:${body.slug}`, "max");
+    }
+    if (body.category) {
+      revalidateTag(`category:${body.category}`, "max");
+    }
 
-		return NextResponse.json({
-			status: 200,
-			revalidated: true,
-			now: Date.now(),
-			body,
-		});
-	} catch (err: any) {
-		console.error(err);
-		return new Response(err.message, { status: 500 });
-	}
+    return NextResponse.json({
+      body,
+      now: Date.now(),
+      revalidated: true,
+      status: 200,
+    });
+  } catch (error: any) {
+    console.error(error);
+    return new Response(error.message, { status: 500 });
+  }
 }

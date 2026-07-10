@@ -1,40 +1,40 @@
 import {
-	InstagramIcon,
-	TwitterIcon,
-	FacebookIcon,
-	BlueskyIcon,
+  InstagramIcon,
+  TwitterIcon,
+  FacebookIcon,
+  BlueskyIcon,
 } from "@/components/Icons";
 
 export const categories = {
-	news: "News",
-	sports: "Sports",
-	culture: "Culture",
-	voices: "Student Voices",
+  culture: "Culture",
+  news: "News",
+  sports: "Sports",
+  voices: "Student Voices",
 };
 
-export const socials: Array<{
-	name: string;
-	href: string;
-	icon: React.ComponentType<{ className?: string }>;
-}> = [
-	{
-		name: "Instagram",
-		href: "https://www.instagram.com/bensonorbit",
-		icon: InstagramIcon,
-	},
-	{
-		name: "Facebook",
-		href: "https://www.facebook.com/bensonorbit",
-		icon: FacebookIcon,
-	},
-	{
-		name: "Twitter",
-		href: "https://x.com/bensonorbit",
-		icon: TwitterIcon,
-	},
-	{
-		name: "Bluesky",
-		href: "https://bsky.app/profile/bensonorbit.com",
-		icon: BlueskyIcon,
-	},
+export const socials: {
+  name: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+}[] = [
+  {
+    href: "https://www.instagram.com/bensonorbit",
+    icon: InstagramIcon,
+    name: "Instagram",
+  },
+  {
+    href: "https://www.facebook.com/bensonorbit",
+    icon: FacebookIcon,
+    name: "Facebook",
+  },
+  {
+    href: "https://x.com/bensonorbit",
+    icon: TwitterIcon,
+    name: "Twitter",
+  },
+  {
+    href: "https://bsky.app/profile/bensonorbit.com",
+    icon: BlueskyIcon,
+    name: "Bluesky",
+  },
 ];
