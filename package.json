@@ -1,11 +1,14 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "typegen": "sanity schema extract && sanity typegen generate",
-    "format": "prettier --write ."
+    "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate",
+    "format": "prettier --write .",
+    "check": "ultracite check",
+    "fix": "ultracite fix"
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.36",
@@ -32,18 +35,13 @@
   "devDependencies": {
     "@sanity/icons": "^3.7.0",
     "@sanity/vision": "^5.11.0",
-    "eslint": "^9.39.4",
     "eslint-config-next": "16.2.10",
-    "prettier": "^3.5.3",
-    "prettier-plugin-tailwindcss": "^0.6.11",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
+    "oxfmt": "^0.58.0",
+    "oxlint": "^1.73.0",
     "sanity": "^5.31.1",
-    "styled-components": "^6.1.17"
-  },
-  "prettier": {
-    "useTabs": true,
-    "plugins": [
-      "prettier-plugin-tailwindcss"
-    ],
-    "tailwindStylesheet": "./app/globals.css"
+    "styled-components": "^6.1.17",
+    "ultracite": "7.9.3"
   }
 }

@@ -1,91 +1,96 @@
-import { ArticleList } from "@/components/ArticleList";
-import { CustomPortableText } from "@/components/CustomPortableText";
-import { mergeMeta } from "@/lib/utils";
-import { getAuthorBySlug } from "@/sanity/fetch";
 import { toPlainText } from "next-sanity";
 import { Image } from "next-sanity/image";
 import { notFound } from "next/navigation";
-import { ProfilePage } from "schema-dts";
 import { JsonLd } from "react-schemaorg";
+import type { ProfilePage } from "schema-dts";
 
-type Props = {
-	params: Promise<{ slug: string }>;
-};
+import { ArticleList } from "@/components/article-list";
+import { CustomPortableText } from "@/components/custom-portable-text";
+import { mergeMeta } from "@/lib/utils";
+import { getAuthorBySlug } from "@/sanity/fetch";
+
+interface Props {
+  params: Promise<{ slug: string }>;
+}
 
 export const dynamic = "force-static";
 
 export async function generateMetadata(props: Props) {
-	const params = await props.params;
-	const author = await getAuthorBySlug(params.slug);
-	if (!author) notFound();
+  const params = await props.params;
+  const author = await getAuthorBySlug(params.slug);
+  if (!author) {
+    notFound();
+  }
 
-	const images = author.photo.url
-		? { url: `${author.photo.url}?w=200&auto=format&fit=min` }
-		: undefined;
+  const images = author.photo.url
+    ? { url: `${author.photo.url}?w=200&auto=format&fit=min` }
+    : undefined;
 
-	const description = author.bio && toPlainText(author.bio).slice(0, 200);
+  const description = author.bio && toPlainText(author.bio).slice(0, 200);
 
-	return mergeMeta({
-		title: author.name,
-		description,
-		openGraph: { type: "profile", images },
-		twitter: { card: "summary" },
-	});
+  return mergeMeta({
+    description,
+    openGraph: { images, type: "profile" },
+    title: author.name,
+    twitter: { card: "summary" },
+  });
 }
 
 export default async function AuthorPage(props: Props) {
-	const params = await props.params;
-	const author = await getAuthorBySlug(params.slug);
-	if (!author) notFound();
-	const firstName = author.name?.split(" ")[0] || "this author";
+  const params = await props.params;
+  const author = await getAuthorBySlug(params.slug);
+  if (!author) {
+    notFound();
+  }
+  const firstName = author.name?.split(" ")[0] || "this author";
 
-	return (
-		<div className="mx-auto prose max-w-3xl prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-sm prose-img:drop-shadow-xs">
-			<div className="flex flex-row items-center gap-4 font-sans">
-				{author.photo.url && (
-					<Image
-						src={author.photo.url}
-						width={76}
-						height={76}
-						alt={author.name || "Photo of author"}
-						className="not-prose rounded-full outline-1 -outline-offset-1 outline-white/15 drop-shadow"
-						placeholder="blur"
-						blurDataURL={author.photo.lqip || undefined}
-					/>
-				)}
+  return (
+    <div className="mx-auto prose max-w-3xl prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-sm prose-img:drop-shadow-xs">
+      <div className="flex flex-row items-center gap-4 font-sans">
+        {author.photo.url && (
+          <Image
+            src={author.photo.url}
+            width={76}
+            height={76}
+            alt={author.name || "Photo of author"}
+            className="not-prose rounded-full outline-1 -outline-offset-1 outline-white/15 drop-shadow"
+            placeholder="blur"
+            blurDataURL={author.photo.lqip || undefined}
+          />
+        )}
 
-				<div>
-					<h1 className="mt-0 mb-0 text-3xl font-bold">{author.name}</h1>
-					<p className="lead mt-0 mb-0 tracking-wide uppercase">
-						{author.role}
-					</p>
-				</div>
-			</div>
+        <div>
+          <h1 className="mt-0 mb-0 text-3xl font-bold">{author.name}</h1>
+          <p className="lead mt-0 mb-0 tracking-wide uppercase">
+            {author.role}
+          </p>
+        </div>
+      </div>
 
-			<CustomPortableText value={author.bio} />
+      <CustomPortableText value={author.bio} />
 
-			{author.articles.length > 0 && (
-				<>
-					<h2 className="mt-0 mb-0 py-3">Articles by {firstName}</h2>
-					<ArticleList
-						articles={author.articles}
-						className="not-prose mx-auto border-t text-foreground"
-					/>
-				</>
-			)}
+      {author.articles.length > 0 && (
+        <>
+          <h2 className="mt-0 mb-0 py-3">Articles by {firstName}</h2>
+          <ArticleList
+            articles={author.articles}
+            className="not-prose mx-auto border-t text-foreground"
+          />
+        </>
+      )}
 
-			<JsonLd<ProfilePage>
-				item={{
-					"@context": "https://schema.org",
-					"@type": "ProfilePage",
-					mainEntity: {
-						"@type": "Person",
-						name: author.name,
-						description: author.bio && toPlainText(author.bio).slice(0, 200),
-						image: `${author.photo.url}?w=800&auto=format&fit=min`,
-					},
-				}}
-			/>
-		</div>
-	);
+      <JsonLd<ProfilePage>
+        item={{
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          mainEntity: {
+            "@type": "Person",
+            description: author.bio && toPlainText(author.bio).slice(0, 200),
+            image: `${author.photo.url}?w=800&auto=format&fit=min`,
+            name: author.name,
+          },
+        }}
+      />
+    </div>
+  );
 }

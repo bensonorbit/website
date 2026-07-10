@@ -1,34 +1,35 @@
 import { CogIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+
 import { article } from "@/sanity/schemas/article";
 
 export const settings = defineType({
-	name: "settings",
-	title: "Settings",
-	type: "document",
-	icon: CogIcon,
-	fields: [
-		defineField({
-			name: "about",
-			description: "Used on the about page",
-			title: "About",
-			type: "array",
-			of: [{ type: "block" }],
-		}),
-		defineField({
-			name: "featuredArticles",
-			description: "Featured articles on the home page",
-			title: "Featured Articles",
-			type: "array",
-			of: [{ type: "reference", to: [{ type: article.name }] }],
-			validation: (rule) => rule.max(12),
-		}),
-	],
-	preview: {
-		prepare() {
-			return {
-				title: "Settings",
-			};
-		},
-	},
+  fields: [
+    defineField({
+      description: "Used on the about page",
+      name: "about",
+      of: [{ type: "block" }],
+      title: "About",
+      type: "array",
+    }),
+    defineField({
+      description: "Featured articles on the home page",
+      name: "featuredArticles",
+      of: [{ to: [{ type: article.name }], type: "reference" }],
+      title: "Featured Articles",
+      type: "array",
+      validation: (rule) => rule.max(12),
+    }),
+  ],
+  icon: CogIcon,
+  name: "settings",
+  preview: {
+    prepare() {
+      return {
+        title: "Settings",
+      };
+    },
+  },
+  title: "Settings",
+  type: "document",
 });

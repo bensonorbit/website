@@ -1,10 +1,10 @@
 allowBuilds:
-  '@vercel/speed-insights': true
+  "@vercel/speed-insights": true
   esbuild: true
   scrollmirror: false
   sharp: true
   unrs-resolver: true
   yarn: true
 overrides:
-  '@types/react': 19.2.17
-  '@types/react-dom': 19.2.3
+  "@types/react": 19.2.17
+  "@types/react-dom": 19.2.3
