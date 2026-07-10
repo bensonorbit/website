@@ -22,8 +22,12 @@ export const metadata = mergeMeta({
 });
 
 export default async function HomePage() {
+  const [settings, articles] = await Promise.all([
+    getSettings(),
+    getLatestArticles(),
+  ]);
+
   // Featured articles are defined in the studio
-  const settings = await getSettings();
   const featuredArticles = settings?.featuredArticles || [];
 
   // First featured article is the hero article
@@ -35,7 +39,6 @@ export default async function HomePage() {
   // Remaining featured articles are in the right column
   const moreFeaturedArticles = featuredArticles.slice(4);
 
-  const articles = await getLatestArticles();
   const latestArticles = articles.filter(
     (article) =>
       !featuredArticles.some((featured) => featured._id === article._id)
