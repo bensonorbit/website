@@ -23,7 +23,7 @@
     "feed": "^4.2.2",
     "next": "16.2.10",
     "next-sanity": "^13.1.1",
-    "postcss": "^8.5.3",
+    "postcss": "^8.5.10",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "react-schemaorg": "^2.0.0",
