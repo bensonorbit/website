@@ -20,6 +20,13 @@ export function ArticleList(props: {
 }
 
 function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
+  const { coverImage } = article;
+  const imageUrl = coverImage.url;
+
+  if (!imageUrl) {
+    return null;
+  }
+
   return (
     <article className="group">
       <Link
@@ -27,8 +34,8 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
         className="group flex flex-col gap-3 border-b py-3 text-balance group-last:border-b-0 md:flex-row md:gap-6"
       >
         <Image
-          src={article.coverImage.url!}
-          alt={article.coverImage.alt || ""}
+          src={imageUrl}
+          alt={coverImage.alt || ""}
           className="h-full rounded-sm drop-shadow-xs md:max-w-48"
           width={400}
           height={250}

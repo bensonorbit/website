@@ -155,18 +155,24 @@ function Right(props: { children?: React.ReactNode }) {
 
 function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
   const { article } = props;
+  const { coverImage } = article;
+  const imageUrl = coverImage.url;
+
+  if (!imageUrl) {
+    return null;
+  }
 
   return (
     <article>
       <Link href={article.url} className="group flex flex-col text-balance">
         <Image
-          alt={article.coverImage.alt || ""}
-          src={article.coverImage.url!}
+          alt={coverImage.alt || ""}
+          src={imageUrl}
           width={800}
           height={550}
           className="rounded-sm drop-shadow-xs"
           placeholder="blur"
-          blurDataURL={article.coverImage.lqip!}
+          blurDataURL={coverImage.lqip || undefined}
           sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, (min-width: 768px) 65vw, 100vw"
           priority
         />
@@ -197,6 +203,12 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 
 function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
   const { article } = props;
+  const { coverImage } = article;
+  const imageUrl = coverImage.url;
+
+  if (!imageUrl) {
+    return null;
+  }
 
   return (
     <article className="h-full border-b py-3 first:pt-0 last:border-b-0 md:max-h-72 lg:last:pb-0">
@@ -206,12 +218,12 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
       >
         <div className="relative h-3/5 min-h-48 md:min-h-0">
           <Image
-            alt={article.coverImage.alt || ""}
-            src={article.coverImage.url!}
+            alt={coverImage.alt || ""}
+            src={imageUrl}
             fill
             className="rounded-sm object-cover drop-shadow-xs"
             placeholder="blur"
-            blurDataURL={article.coverImage.lqip!}
+            blurDataURL={coverImage.lqip || undefined}
             sizes="(min-width: 1280px) 300px, (min-width: 1024px) 25vw, (min-width: 768px) 35vw, 100vw"
           />
         </div>
@@ -243,6 +255,12 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
 
 function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
   const { article } = props;
+  const { coverImage } = article;
+  const imageUrl = coverImage.url;
+
+  if (!imageUrl) {
+    return null;
+  }
 
   return (
     <article className="first:pt-0 last:pb-0 lg:py-3">
@@ -269,13 +287,13 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
         </div>
 
         <Image
-          alt={article.coverImage.alt || ""}
-          src={article.coverImage.url!}
+          alt={coverImage.alt || ""}
+          src={imageUrl}
           width={90}
           height={90}
           className="rounded-sm drop-shadow-xs"
           placeholder="blur"
-          blurDataURL={article.coverImage.lqip!}
+          blurDataURL={coverImage.lqip || undefined}
           sizes="90px"
         />
       </Link>
