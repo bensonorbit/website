@@ -23,7 +23,7 @@ export default async function ArchivePage() {
           <li key={article._id}>
             <Link href={`/${article.category}/${article.slug}`}>
               <strong className="underline">
-                <DateFormat date={article.date} style="medium" />
+                <DateFormat date={article.date} dateStyle="medium" />
               </strong>
               : {article.title}
             </Link>

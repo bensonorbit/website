@@ -244,7 +244,7 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
           />
           <DateFormat
             date={article.date}
-            style="medium"
+            dateStyle="medium"
             className="font-medium text-gray-700 dark:text-gray-300"
           />
         </p>
@@ -280,7 +280,7 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
             />
             <DateFormat
               date={article.date}
-              style="medium"
+              dateStyle="medium"
               className="text-gray-700 dark:text-gray-300"
             />
           </p>
