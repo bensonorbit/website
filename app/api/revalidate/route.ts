@@ -64,8 +64,8 @@ export async function POST(req: NextRequest) {
       revalidated: true,
       status: 200,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(error);
-    return new Response(error.message, { status: 500 });
+    return new Response("Internal Server Error", { status: 500 });
   }
 }
