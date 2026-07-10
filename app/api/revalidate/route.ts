@@ -45,9 +45,9 @@ export async function POST(req: NextRequest) {
 
 		if (!body?._type) return new Response("Bad Request", { status: 400 });
 
-		revalidateTag(body._type);
-		if (body.slug) revalidateTag(`${body._type}:${body.slug}`);
-		if (body.category) revalidateTag(`category:${body.category}`);
+		revalidateTag(body._type, "max");
+		if (body.slug) revalidateTag(`${body._type}:${body.slug}`, "max");
+		if (body.category) revalidateTag(`category:${body.category}`, "max");
 
 		return NextResponse.json({
 			status: 200,
