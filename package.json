@@ -33,7 +33,7 @@
     "typescript": "5.8.3"
   },
   "devDependencies": {
-    "@sanity/icons": "^3.7.0",
+    "@sanity/icons": "^5.0.0",
     "@sanity/vision": "^5.11.0",
     "eslint-config-next": "16.2.10",
     "husky": "^9.1.7",
