@@ -11,11 +11,7 @@ export function MenuToggle(props: { children: React.ReactNode }) {
 
   // Prevent scrolling when the menu is open
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = open ? "hidden" : "";
   }, [open]);
 
   // Close menu when the window is resized to desktop

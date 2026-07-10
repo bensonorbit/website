@@ -16,6 +16,7 @@ export function Footer() {
               target="_blank"
             >
               <social.icon className="size-5 md:size-6" />
+              <span className="sr-only">{social.name}</span>
             </a>
           ))}
         </div>

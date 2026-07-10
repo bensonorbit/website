@@ -80,9 +80,9 @@ export const article = defineType({
   icon: DocumentTextIcon,
   name: "article",
   preview: {
-    prepare({ title, media, author, date }) {
+    prepare({ title, media, firstAuthor, date }) {
       const subtitle = [
-        author && `by ${author}`,
+        firstAuthor && `by ${firstAuthor}`,
         date &&
           `on ${new Date(date).toLocaleDateString(undefined, { dateStyle: "medium" })}`,
       ]
@@ -92,8 +92,8 @@ export const article = defineType({
       return { media, subtitle, title };
     },
     select: {
-      author: "authors.0.name",
       date: "date",
+      firstAuthor: "authors.0.name",
       media: "coverImage",
       title: "title",
     },

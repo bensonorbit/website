@@ -14,7 +14,7 @@ export default defineCliConfig({
     publicDir: "sanity/public",
     resolve: {
       alias: {
-        "@": __dirname,
+        "@": import.meta.dirname,
       },
     },
   },

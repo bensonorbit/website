@@ -42,7 +42,7 @@ export default async function CategoryPage(props: Props) {
         <ArticleList articles={articles} />
       ) : (
         <p className="pt-3">
-          We haven't published anything in that category yet.
+          We haven&apos;t published anything in that category yet.
         </p>
       )}
     </>

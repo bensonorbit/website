@@ -27,7 +27,7 @@ export default async function HomePage() {
   const featuredArticles = settings?.featuredArticles || [];
 
   // First featured article is the hero article
-  const heroArticle = featuredArticles[0];
+  const heroArticle = featuredArticles.at(0);
 
   // Next 3 featured articles are top articles
   const topArticles = featuredArticles.slice(1, 4);
