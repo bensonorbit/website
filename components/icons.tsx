@@ -67,7 +67,7 @@ export function FacebookIcon(props: { className?: string }) {
   );
 }
 
-export function MenuIcon() {
+export function MenuIcon(props: { open: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -79,28 +79,24 @@ export function MenuIcon() {
       strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-hidden="true"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M4 8l16 0" />
-      <path d="M4 16l16 0" />
-    </svg>
-  );
-}
-
-export function CloseIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={1.5}
-      stroke="currentColor"
-      className="size-7"
-    >
       <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M6 18 18 6M6 6l12 12"
+        d="M4 8h16"
+        vectorEffect="non-scaling-stroke"
+        className={`origin-center transition-transform duration-200 ease-out motion-reduce:transition-none${
+          props.open ? " translate-y-1 scale-125 rotate-45" : ""
+        }`}
+        style={{ transformBox: "fill-box" }}
+      />
+      <path
+        d="M4 16h16"
+        vectorEffect="non-scaling-stroke"
+        className={`origin-center transition-transform duration-200 ease-out motion-reduce:transition-none${
+          props.open ? " -translate-y-1 scale-125 -rotate-45" : ""
+        }`}
+        style={{ transformBox: "fill-box" }}
       />
     </svg>
   );

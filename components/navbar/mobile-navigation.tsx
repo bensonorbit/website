@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { CloseIcon, MenuIcon } from "@/components/icons";
+import { MenuIcon } from "@/components/icons";
 import { mobileLinkGroups } from "@/components/navbar/navigation";
 import { SubscribeButton } from "@/components/navbar/subscribe-button";
 import { socials } from "@/lib/data";
@@ -60,7 +60,7 @@ function MobileNavigationContent(props: { className?: string }) {
         aria-label={open ? "Close menu" : "Open menu"}
         className="grid size-9 place-items-center rounded-full hover:bg-primary/15 hover:text-primary active:bg-primary/20"
       >
-        {open ? <CloseIcon /> : <MenuIcon />}
+        <MenuIcon open={open} />
       </button>
 
       {open ? <MobileMenu id={menuId} /> : null}
