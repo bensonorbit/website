@@ -58,7 +58,7 @@ function MobileNavigationContent(props: { className?: string }) {
         aria-controls={menuId}
         aria-expanded={open}
         aria-label={open ? "Close menu" : "Open menu"}
-        className="grid size-9 place-items-center rounded-full transition-colors hover:bg-primary/15 hover:text-primary"
+        className="grid size-9 place-items-center rounded-full hover:bg-primary/15 hover:text-primary active:bg-primary/20"
       >
         {open ? <CloseIcon /> : <MenuIcon />}
       </button>

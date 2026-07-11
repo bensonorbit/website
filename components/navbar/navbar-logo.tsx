@@ -7,7 +7,7 @@ export function NavbarLogo(props: { className?: string }) {
     <Link
       href="/"
       className={twMerge(
-        "block w-fit transition-transform hover:scale-[1.015] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary",
+        "block w-fit transition-transform hover:scale-[1.015] active:scale-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary",
         props.className
       )}
     >

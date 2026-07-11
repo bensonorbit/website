@@ -11,7 +11,7 @@ export function NavbarLink(props: { href: string; children: React.ReactNode }) {
     <Link
       href={props.href}
       aria-current={isActive ? "page" : undefined}
-      className={`flex h-full items-center text-[0.95rem] transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary${
+      className={`flex h-full items-center text-[0.95rem] hover:text-primary active:text-primary${
         isActive ? " font-semibold text-primary" : ""
       }`}
     >
