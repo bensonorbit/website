@@ -25,3 +25,20 @@ export function Button({ className, color = "orange", ...props }: ButtonProps) {
     />
   );
 }
+
+export function GlowingButton(props: ButtonProps) {
+  const colorClass = colorClasses[props.color ?? "orange"];
+
+  return (
+    <div className="relative group">
+      <div
+        className={twMerge(
+          "absolute -inset-1 rounded-sm blur opacity-0 group-hover:opacity-35 transition-opacity pointer-events-none bg-linear-to-b",
+          colorClass
+        )}
+      />
+
+      <Button {...props} />
+    </div>
+  );
+}
