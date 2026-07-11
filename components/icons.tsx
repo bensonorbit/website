@@ -71,17 +71,18 @@ export function MenuIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      width={24}
+      height={24}
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
+      fill="none"
       stroke="currentColor"
-      className="size-7"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-      />
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M4 8l16 0" />
+      <path d="M4 16l16 0" />
     </svg>
   );
 }
@@ -101,6 +102,25 @@ export function CloseIcon() {
         strokeLinejoin="round"
         d="M6 18 18 6M6 6l12 12"
       />
+    </svg>
+  );
+}
+
+export function SearchIcon(props: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={props.className}
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+      <path d="M21 21l-6 -6" />
     </svg>
   );
 }

@@ -29,7 +29,7 @@ export default async function CategoryPage(props: Props) {
 
   return (
     <>
-      <h2 className="max-w-3xl border-b pb-3 text-3xl font-bold md:text-4xl">
+      <h2 className="max-w-3xl border-b pb-3 text-3xl font-bold md:text-4xl font-sans tracking-tight">
         {title}
       </h2>
       {category === "voices" && (

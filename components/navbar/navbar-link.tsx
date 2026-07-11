@@ -3,20 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export function NavbarLink(props: {
-  href: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
+export function NavbarLink(props: { href: string; children: React.ReactNode }) {
   const pathname = usePathname();
   const isActive = pathname === props.href;
 
   return (
     <Link
       href={props.href}
-      className={`decoration-primary hover:underline${
-        isActive ? " font-semibold" : ""
-      }${props.className ? ` ${props.className}` : ""}`}
+      aria-current={isActive ? "page" : undefined}
+      className={`flex h-full items-center text-[0.95rem] transition hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary${
+        isActive ? " font-semibold text-primary" : ""
+      }`}
     >
       {props.children}
     </Link>

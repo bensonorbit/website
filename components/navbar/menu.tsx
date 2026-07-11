@@ -20,6 +20,14 @@ export function Menu() {
 
         <Divider />
 
+        <button
+          type="button"
+          className="w-fit py-2 text-left font-medium text-primary hover:underline"
+        >
+          Subscribe{" "}
+          <span className="text-sm text-foreground">(coming soon)</span>
+        </button>
+
         {socials.map((social) => (
           <MenuLink key={social.name} href={social.href}>
             <social.icon className="size-4 text-gray-700 dark:text-gray-300" />
