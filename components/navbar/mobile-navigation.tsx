@@ -63,12 +63,14 @@ function MobileNavigationContent(props: { className?: string }) {
         <MenuIcon open={open} />
       </button>
 
-      {open ? <MobileMenu id={menuId} /> : null}
+      {open ? (
+        <MobileMenu id={menuId} handleClose={() => setOpen(false)} />
+      ) : null}
     </div>
   );
 }
 
-function MobileMenu(props: { id: string }) {
+function MobileMenu(props: { id: string; handleClose: () => void }) {
   return (
     <div
       id={props.id}
@@ -80,7 +82,11 @@ function MobileMenu(props: { id: string }) {
           className={index === 0 ? undefined : "mt-2 border-t pt-2"}
         >
           {group.map((link) => (
-            <MobileMenuLink key={link.href} href={link.href}>
+            <MobileMenuLink
+              key={link.href}
+              href={link.href}
+              onNavToCurrentPage={props.handleClose}
+            >
               {link.label}
             </MobileMenuLink>
           ))}
@@ -103,7 +109,12 @@ function MobileMenu(props: { id: string }) {
   );
 }
 
-function MobileMenuLink(props: { href: string; children: React.ReactNode }) {
+function MobileMenuLink(props: {
+  href: string;
+  children: React.ReactNode;
+  onNavToCurrentPage?: () => void;
+}) {
+  const pathname = usePathname();
   const className =
     "flex items-center gap-2 py-2 font-medium decoration-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
 
@@ -116,7 +127,13 @@ function MobileMenuLink(props: { href: string; children: React.ReactNode }) {
   }
 
   return (
-    <Link href={props.href} className={className}>
+    <Link
+      href={props.href}
+      onNavigate={
+        pathname === props.href ? props.onNavToCurrentPage : undefined
+      }
+      className={className}
+    >
       {props.children}
     </Link>
   );
