@@ -17,11 +17,6 @@ const contentSecurityPolicy = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
-  experimental: {
-    sri: {
-      algorithm: "sha256",
-    },
-  },
   headers() {
     return [
       {
