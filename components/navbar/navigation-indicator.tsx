@@ -107,9 +107,9 @@ export function NavigationIndicator() {
     <span
       ref={indicatorRef}
       aria-hidden="true"
-      className="pointer-events-none absolute -bottom-px hidden h-0.5 origin-center bg-blue-400 duration-200 ease-out motion-reduce:transition-none lg:block print:hidden"
+      className="pointer-events-none absolute -bottom-px h-0.5 origin-center bg-blue-400 duration-200 ease-out motion-reduce:transition-none"
       style={{
-        // opacity: indicator.visible ? 1 : 0,
+        opacity: indicator.visible ? 1 : 0,
         scale: indicator.visible ? "1 1" : "1 0",
         transform: `translateX(${indicator.left}px)`,
         transitionProperty: indicator.animatePosition

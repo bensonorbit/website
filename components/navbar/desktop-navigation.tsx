@@ -1,34 +1,24 @@
+import { twMerge } from "tailwind-merge";
+
 import { NavbarLink } from "@/components/navbar/navbar-link";
+import { sectionLinks, utilityLinks } from "@/components/navbar/navigation";
 import { NavigationIndicator } from "@/components/navbar/navigation-indicator";
-import { Button } from "@/components/ui/button";
+import { SearchButton } from "@/components/navbar/search-button";
+import { SubscribeButton } from "@/components/navbar/subscribe-button";
 
-import { SearchButton } from "./search-button";
-
-const primaryLinks = [
-  { href: "/news", label: "News" },
-  { href: "/sports", label: "Sports" },
-  { href: "/culture", label: "Culture" },
-  { href: "/voices", label: "Student Voices" },
-];
-
-const secondaryLinks = [
-  { href: "/archive", label: "Archive" },
-  { href: "/about", label: "About" },
-];
-
-export function DesktopNavigation() {
+export function DesktopNavigation(props: { className?: string }) {
   return (
-    <>
-      <div className="hidden h-full items-center gap-7 self-stretch lg:flex print:hidden">
-        {primaryLinks.map((link) => (
+    <div className={twMerge("relative items-center", props.className)}>
+      <div className="flex h-full items-center gap-7">
+        {sectionLinks.map((link) => (
           <NavbarLink key={link.href} href={link.href}>
             {link.label}
           </NavbarLink>
         ))}
       </div>
 
-      <div className="hidden h-full items-center justify-self-end gap-5 self-stretch lg:flex print:hidden">
-        {secondaryLinks.map((link) => (
+      <div className="flex h-full items-center justify-self-end gap-5">
+        {utilityLinks.map((link) => (
           <NavbarLink key={link.href} href={link.href}>
             {link.label}
           </NavbarLink>
@@ -38,10 +28,6 @@ export function DesktopNavigation() {
       </div>
 
       <NavigationIndicator />
-    </>
+    </div>
   );
-}
-
-function SubscribeButton() {
-  return <Button color="orange">Subscribe</Button>;
 }

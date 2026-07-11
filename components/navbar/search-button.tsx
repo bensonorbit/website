@@ -4,7 +4,9 @@ export function SearchButton() {
   return (
     <button
       type="button"
-      className="grid size-9 place-items-center rounded-full text-foreground transition hover:bg-orange-500/15 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      aria-label="Search (coming soon)"
+      title="Search coming soon"
+      className="grid size-9 place-items-center rounded-full text-foreground transition-colors hover:bg-primary/15 hover:text-primary"
     >
       <SearchIcon className="size-5" />
     </button>
