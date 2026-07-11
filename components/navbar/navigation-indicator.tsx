@@ -35,17 +35,17 @@ export function NavigationIndicator() {
     let revealFrame = 0;
 
     function updateIndicator() {
-      const activeLink = navigationContainer.querySelector<HTMLElement>(
-        '[aria-current="page"]'
+      const activeLinkLabel = navigationContainer.querySelector<HTMLElement>(
+        '[aria-current="page"] [data-navigation-indicator-target]'
       );
 
-      if (!activeLink) {
+      if (!activeLinkLabel) {
         wasVisible.current = false;
         setIndicator((current) => ({ ...current, visible: false }));
         return;
       }
 
-      const linkRect = activeLink.getBoundingClientRect();
+      const linkRect = activeLinkLabel.getBoundingClientRect();
       const containerRect = navigationContainer.getBoundingClientRect();
       const position = {
         left: linkRect.left - containerRect.left,
@@ -83,13 +83,13 @@ export function NavigationIndicator() {
     }
 
     const observer = new ResizeObserver(updateIndicator);
-    const activeLink = navigationContainer.querySelector<HTMLElement>(
-      '[aria-current="page"]'
+    const activeLinkLabel = navigationContainer.querySelector<HTMLElement>(
+      '[aria-current="page"] [data-navigation-indicator-target]'
     );
 
     observer.observe(navigationContainer);
-    if (activeLink) {
-      observer.observe(activeLink);
+    if (activeLinkLabel) {
+      observer.observe(activeLinkLabel);
     }
 
     updateIndicator();

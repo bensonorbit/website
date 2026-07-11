@@ -9,20 +9,22 @@ import { SubscribeButton } from "@/components/navbar/subscribe-button";
 export function DesktopNavigation(props: { className?: string }) {
   return (
     <div className={twMerge("relative items-center", props.className)}>
-      <div className="flex h-full items-center gap-7">
+      <div className="-mx-3.5 flex h-full items-center">
         {sectionLinks.map((link) => (
-          <NavbarLink key={link.href} href={link.href}>
+          <NavbarLink key={link.href} href={link.href} className="px-3.5">
             {link.label}
           </NavbarLink>
         ))}
       </div>
 
       <div className="flex h-full items-center justify-self-end gap-5">
-        {utilityLinks.map((link) => (
-          <NavbarLink key={link.href} href={link.href}>
-            {link.label}
-          </NavbarLink>
-        ))}
+        <div className="-mx-2.5 flex h-full items-center">
+          {utilityLinks.map((link) => (
+            <NavbarLink key={link.href} href={link.href} className="px-2.5">
+              {link.label}
+            </NavbarLink>
+          ))}
+        </div>
         <SearchButton />
         <SubscribeButton />
       </div>
