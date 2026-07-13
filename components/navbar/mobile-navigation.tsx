@@ -1,9 +1,9 @@
 "use client";
 
+import { cx } from "css-variants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
-import { twMerge } from "tailwind-merge";
 
 import { MenuIcon } from "@/components/icons";
 import { mobileLinkGroups } from "@/components/navbar/navigation";
@@ -51,7 +51,7 @@ function MobileNavigationContent(props: { className?: string }) {
   }, [open]);
 
   return (
-    <div className={twMerge("justify-self-start", props.className)}>
+    <div className={cx("justify-self-start", props.className)}>
       <button
         type="button"
         onClick={() => setOpen((current) => !current)}

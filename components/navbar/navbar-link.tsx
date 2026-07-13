@@ -1,8 +1,8 @@
 "use client";
 
+import { cx } from "css-variants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { twMerge } from "tailwind-merge";
 
 export function NavbarLink(props: {
   href: string;
@@ -16,7 +16,7 @@ export function NavbarLink(props: {
     <Link
       href={props.href}
       aria-current={isActive ? "page" : undefined}
-      className={twMerge(
+      className={cx(
         "flex h-full items-center text-[0.95rem] hover:text-primary active:text-primary",
         isActive && "font-semibold text-primary",
         props.className

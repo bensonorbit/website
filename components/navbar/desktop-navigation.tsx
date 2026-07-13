@@ -1,4 +1,4 @@
-import { twMerge } from "tailwind-merge";
+import { cx } from "css-variants";
 
 import { NavbarLink } from "@/components/navbar/navbar-link";
 import { sectionLinks, utilityLinks } from "@/components/navbar/navigation";
@@ -8,7 +8,7 @@ import { SubscribeButton } from "@/components/navbar/subscribe-button";
 
 export function DesktopNavigation(props: { className?: string }) {
   return (
-    <div className={twMerge("relative items-center", props.className)}>
+    <div className={cx("relative items-center", props.className)}>
       <div className="-mx-3.5 flex h-full items-center">
         {sectionLinks.map((link) => (
           <NavbarLink key={link.href} href={link.href} className="px-3.5">

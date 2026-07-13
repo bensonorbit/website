@@ -1,9 +1,9 @@
 import "@/app/globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { cx } from "css-variants";
 import type { Viewport } from "next";
 import { Noto_Serif, Public_Sans } from "next/font/google";
-import { twMerge } from "tailwind-merge";
 
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar/navbar";
@@ -56,7 +56,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
       data-scroll-behavior="smooth"
     >
       <body
-        className={twMerge(
+        className={cx(
           "flex min-h-dvh flex-col justify-between bg-background font-sans text-foreground antialiased selection:bg-orange-500/30",
           publicSans.variable,
           notoSerif.variable
