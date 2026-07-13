@@ -39,6 +39,9 @@ importers:
       '@vercel/speed-insights':
         specifier: ^2.0.0
         version: 2.0.0(next@16.2.10(@babel/core@7.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react@19.2.7)
+      css-variants:
+        specifier: ^2.3.5
+        version: 2.3.5
       feed:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3376,6 +3379,9 @@ packages:
   css-tree@3.2.1:
     resolution: {integrity: sha512-X7sjQzceUhu1u7Y/ylrRZFU2FS6LRiFVp6rKLPg23y3x3c3DOKAwuXGDp+PAGjh6CSnCjYeAul8pcT8bAl+lSA==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
+
+  css-variants@2.3.5:
+    resolution: {integrity: sha512-ow3GINTXvpNML1RwJBXas1FwRSCkUxtGLUns4el4/Twtrt4BfkusEsADCYAjohX2Sg4Z+0BqNYE3kQwawMnmXw==}
 
   css-what@6.2.2:
     resolution: {integrity: sha512-u/O3vwbptzhMs3L1fQE82ZSLHQQfto5gyZzwteVIEyeaY5Fc7R4dapF/BvRoSYFeqfBk4m0V1Vafq5Pjv25wvA==}
@@ -9395,6 +9401,8 @@ snapshots:
     dependencies:
       mdn-data: 2.27.1
       source-map-js: 1.2.1
+
+  css-variants@2.3.5: {}
 
   css-what@6.2.2: {}
 

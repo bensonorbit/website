@@ -1,9 +1,7 @@
-import { GlowingButton } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 export function SubscribeButton() {
   return (
-    <GlowingButton color="orange" title="Subscribe coming soon">
-      Subscribe
-    </GlowingButton>
+    <Button appearance={{ color: "orange", glowing: true }}>Subscribe</Button>
   );
 }

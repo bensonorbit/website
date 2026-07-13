@@ -20,6 +20,7 @@
     "@types/react-dom": "19.2.3",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
+    "css-variants": "^2.3.5",
     "feed": "^6.0.0",
     "next": "16.2.10",
     "next-sanity": "^13.1.1",
