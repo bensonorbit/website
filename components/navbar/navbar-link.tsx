@@ -22,7 +22,20 @@ export function NavbarLink(props: {
         props.className
       )}
     >
-      <span data-navigation-indicator-target>{props.children}</span>
+      <span
+        data-navigation-indicator-target
+        className="inline-grid place-items-center"
+      >
+        <span className="col-start-1 row-start-1">{props.children}</span>
+
+        {/* Render invisible bold text so that width is consistent between non-active and active state */}
+        <span
+          aria-hidden="true"
+          className="invisible col-start-1 row-start-1 font-semibold"
+        >
+          {props.children}
+        </span>
+      </span>
     </Link>
   );
 }
