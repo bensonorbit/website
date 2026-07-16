@@ -15,8 +15,18 @@ export async function generateStaticParams() {
   return categories.map((category) => ({ category: category.slug }));
 }
 
+// Check if category exists using cache to avoid unnecessary Sanity requests
+async function assertCategorySlug(slug: string) {
+  const categories = await getAllCategories();
+  const categoryExists = categories.some((category) => category.slug === slug);
+  if (!categoryExists) {
+    notFound();
+  }
+}
+
 export async function generateMetadata(props: Props) {
   const { category: slug } = await props.params;
+  await assertCategorySlug(slug);
   const category = await getCategoryBySlug(slug);
   if (!category) {
     notFound();
@@ -36,6 +46,7 @@ export const dynamic = "force-static";
 
 export default async function CategoryPage(props: Props) {
   const { category: slug } = await props.params;
+  await assertCategorySlug(slug);
   const category = await getCategoryBySlug(slug);
   if (!category) {
     notFound();
