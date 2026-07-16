@@ -26,7 +26,7 @@ export function ArticleImage(props: Props) {
         height={height}
         alt={props.alt || ""}
         sizes="(max-width: 581px) 100vw, 581px"
-        priority={props.isCover}
+        preload={props.isCover}
         placeholder={props.lqip ? "blur" : undefined}
         blurDataURL={props.lqip || undefined}
         data-fancybox
