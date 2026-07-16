@@ -27,7 +27,7 @@ export function Footer() {
             { href: "/news", label: "News" },
             { href: "/sports", label: "Sports" },
             { href: "/culture", label: "Culture" },
-            { href: "/voices", label: "Student Voices" },
+            { href: "/opinion", label: "Opinion" },
           ]}
         />
 
