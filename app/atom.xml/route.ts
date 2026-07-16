@@ -1,6 +1,5 @@
 import { Feed } from "feed";
 
-import { categories } from "@/lib/data";
 import { getAllArticles } from "@/sanity/fetch";
 
 export const dynamic = "force-static";
@@ -27,6 +26,10 @@ export async function GET() {
   const articles = await getAllArticles();
 
   for (const article of articles) {
+    if (!article.primaryCategory) {
+      continue;
+    }
+
     feed.addItem({
       author: article.authors?.map((author) => ({
         link: `${url}/authors/${author.slug}`,
@@ -34,8 +37,8 @@ export async function GET() {
       })),
       category: [
         {
-          name: categories[article.category || "news"],
-          term: article.category || "news",
+          name: article.primaryCategory.title,
+          term: article.primaryCategory.slug,
         },
       ],
       date: new Date(article.date),

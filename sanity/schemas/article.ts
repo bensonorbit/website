@@ -1,5 +1,5 @@
 import { DocumentTextIcon } from "@sanity/icons/DocumentText";
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 import { author } from "@/sanity/schemas/author";
 import { category } from "@/sanity/schemas/category";
@@ -24,7 +24,21 @@ export const article = defineType({
       type: "slug",
       validation: (rule) => rule.required(),
     }),
-    category,
+    defineField({
+      description:
+        "The first category is the primary category used in the article URL. Drag categories to reorder them.",
+      name: "categories",
+      of: [
+        defineArrayMember({
+          to: [{ type: category.name }],
+          type: "reference",
+        }),
+      ],
+      options: { sortable: true },
+      title: "Categories",
+      type: "array",
+      validation: (rule) => rule.required().min(1).unique(),
+    }),
     defineField({
       name: "content",
       of: [{ type: "block" }, image],

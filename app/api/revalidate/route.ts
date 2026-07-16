@@ -10,7 +10,7 @@
  * 4. Dataset: Choose desired dataset or leave at default "all datasets"
  * 5. Trigger on: "Create", "Update", and "Delete"
  * 6. Filter: Leave empty
- * 7. Projection: {_type, category, "slug": slug.current}
+ * 7. Projection: {_type, "slug": slug.current}
  * 8. Status: Enable webhook
  * 9. HTTP method: POST
  * 10. HTTP Headers: Leave empty
@@ -39,7 +39,6 @@ export async function POST(req: NextRequest) {
     const { body, isValidSignature } = await parseBody<{
       _type: string;
       slug?: string | undefined;
-      category?: string | undefined;
     }>(req, secret);
 
     if (!isValidSignature) {
@@ -54,8 +53,8 @@ export async function POST(req: NextRequest) {
     if (body.slug) {
       revalidateTag(`${body._type}:${body.slug}`, "max");
     }
-    if (body.category) {
-      revalidateTag(`category:${body.category}`, "max");
+    if (body._type === "category") {
+      revalidateTag("article", "max");
     }
 
     return NextResponse.json({

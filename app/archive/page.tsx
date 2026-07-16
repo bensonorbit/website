@@ -21,7 +21,7 @@ export default async function ArchivePage() {
       <ul>
         {articles.map((article) => (
           <li key={article._id}>
-            <Link href={`/${article.category}/${article.slug}`}>
+            <Link href={article.url}>
               <strong className="underline">
                 <DateFormat date={article.date} dateStyle="medium" />
               </strong>

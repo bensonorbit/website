@@ -7,7 +7,6 @@ import { Authors } from "@/components/authors";
 import { CustomPortableText } from "@/components/custom-portable-text";
 import { DateFormat } from "@/components/date-format";
 import { Fancybox } from "@/components/fancybox";
-import { categories } from "@/lib/data";
 import { mergeMeta } from "@/lib/utils";
 import { getArticleBySlug } from "@/sanity/fetch";
 
@@ -23,15 +22,17 @@ export async function generateMetadata(props: Props) {
   if (!article) {
     notFound();
   }
+  if (!article.primaryCategory) {
+    notFound();
+  }
   const url = `${article.coverImage.url}?w=1200&h=630&fit=crop`;
   const domain = process.env.VERCEL_PROJECT_PRODUCTION_URL;
-  const category = (article.category as keyof typeof categories) || "commons";
 
   return mergeMeta({
     alternates: {
       types: {
         "application/atom+xml": "/atom.xml",
-        "application/json+oembed": `https://${domain}/${article.category}/${article.slug}/oembed`,
+        "application/json+oembed": `https://${domain}${article.url}/oembed`,
       },
     },
     authors: article.authors?.map((author) => ({
@@ -46,7 +47,7 @@ export async function generateMetadata(props: Props) {
         url,
       },
       publishedTime: article.date,
-      section: categories[category],
+      section: article.primaryCategory.title,
       type: "article",
     },
     title: article.title,
@@ -59,8 +60,11 @@ export default async function ArticlePage(props: Props) {
   if (!article) {
     notFound();
   }
-  if (article.category !== params.category) {
-    redirect(`/${article.category}/${article.slug}`);
+  if (!article.primaryCategory) {
+    notFound();
+  }
+  if (article.primaryCategory.slug !== params.category) {
+    redirect(article.url);
   }
 
   return (

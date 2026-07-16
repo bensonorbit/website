@@ -1,45 +1,58 @@
+import { toPlainText } from "next-sanity";
+import { notFound } from "next/navigation";
+
 import { ArticleList } from "@/components/article-list";
-import { categories } from "@/lib/data";
+import { CustomPortableText } from "@/components/custom-portable-text";
 import { mergeMeta } from "@/lib/utils";
-import { getArticlesByCategory } from "@/sanity/fetch";
+import { getAllCategories, getCategoryBySlug } from "@/sanity/fetch";
 
 interface Props {
-  params: Promise<{ category: keyof typeof categories }>;
+  params: Promise<{ category: string }>;
 }
 
-export function generateStaticParams() {
-  return Object.keys(categories).map((category) => ({ category }));
+export async function generateStaticParams() {
+  const categories = await getAllCategories();
+  return categories.map((category) => ({ category: category.slug }));
 }
 
 export async function generateMetadata(props: Props) {
-  const { category } = await props.params;
+  const { category: slug } = await props.params;
+  const category = await getCategoryBySlug(slug);
+  if (!category) {
+    notFound();
+  }
+
+  const description = category.description
+    ? toPlainText(category.description).slice(0, 200)
+    : `${category.title} articles published by The Benson Orbit.`;
+
   return mergeMeta({
-    description: `${categories[category]} articles published by The Benson Orbit.`,
-    title: categories[category],
+    description,
+    title: category.title,
   });
 }
 
-export const dynamicParams = false;
 export const dynamic = "force-static";
 
 export default async function CategoryPage(props: Props) {
-  const { category } = await props.params;
-  const title = categories[category];
-  const articles = await getArticlesByCategory(category);
+  const { category: slug } = await props.params;
+  const category = await getCategoryBySlug(slug);
+  if (!category) {
+    notFound();
+  }
 
   return (
     <>
       <h2 className="max-w-3xl border-b pb-3 text-3xl font-bold md:text-4xl font-sans tracking-tight">
-        {title}
+        {category.title}
       </h2>
-      {category === "voices" && (
-        <p className="pt-3 italic">
-          These articles highlight student opinions, and do not necessarily
-          represent the views of the Orbit as a whole.
-        </p>
+      {category.description && (
+        <div className="pt-3 italic">
+          <CustomPortableText value={category.description} />
+        </div>
       )}
-      {articles.length ? (
-        <ArticleList articles={articles} />
+      {category.articles.length ? (
+        <ArticleList articles={category.articles} />
       ) : (
         <p className="pt-3">
           We haven&apos;t published anything in that category yet.

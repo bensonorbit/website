@@ -1,7 +1,6 @@
 import "server-only";
 import { createClient, defineQuery } from "next-sanity";
 
-import type { categories } from "@/lib/data";
 import { apiVersion, dataset, projectId, assert } from "@/sanity/constants";
 
 const token = assert(
@@ -25,9 +24,13 @@ const articleFields = `// groq
   "title": coalesce(title, "Untitled"),
   "slug": slug.current,
   summary,
-  category,
+  "primaryCategory": categories[0]-> {
+    _id,
+    "title": coalesce(title, "Untitled Category"),
+    "slug": slug.current,
+  },
   "date": coalesce(date, _updatedAt),
-  "url": coalesce("/" + category + "/" + slug.current, "/"),
+  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),
   authors[] -> {
     "name": coalesce(name, "Unknown Author"),
     "slug": slug.current,
@@ -62,7 +65,7 @@ export function getArticleBySlug(slug: string) {
   return client.fetch(
     articleQuery,
     { slug },
-    { next: { revalidate: false, tags: [`article:${slug}`] } }
+    { next: { revalidate: false, tags: ["article", `article:${slug}`] } }
   );
 }
 
@@ -80,17 +83,44 @@ export function getLatestArticles() {
   );
 }
 
-export function getArticlesByCategory(category: keyof typeof categories) {
-  const categoryArticlesQuery = defineQuery(`
-		*[_type == "article" && category == $category] | order(date desc) [0...14] {
-			${articleFields}
-		}
+export function getCategoryBySlug(slug: string) {
+  const categoryQuery = defineQuery(`
+		*[_type == "category" && slug.current == $slug] [0] {
+      _id,
+      "title": coalesce(title, "Untitled Category"),
+      "slug": slug.current,
+      description,
+      "articles": *[_type == "article" && references(^._id)] | order(date desc) [0...14] {
+        ${articleFields}
+      }
+    }
 	`);
 
   return client.fetch(
-    categoryArticlesQuery,
-    { category },
-    { next: { revalidate: false, tags: ["article"] } }
+    categoryQuery,
+    { slug },
+    {
+      next: {
+        revalidate: false,
+        tags: ["article", "category", `category:${slug}`],
+      },
+    }
+  );
+}
+
+export function getAllCategories() {
+  const allCategoriesQuery = defineQuery(`
+    *[_type == "category"] | order(title asc) {
+      _id,
+      "title": coalesce(title, "Untitled Category"),
+      "slug": slug.current,
+    }
+  `);
+
+  return client.fetch(
+    allCategoriesQuery,
+    {},
+    { next: { revalidate: false, tags: ["category"] } }
   );
 }
 
