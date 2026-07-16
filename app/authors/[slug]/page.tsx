@@ -13,6 +13,10 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export function generateStaticParams() {
+  return [{ slug: "nick" }];
+}
+
 export async function generateMetadata(props: Props) {
   const params = await props.params;
   const author = await getAuthorBySlug(params.slug);

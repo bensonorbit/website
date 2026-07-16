@@ -14,6 +14,15 @@ interface Props {
   params: Promise<{ category: string; slug: string }>;
 }
 
+export function generateStaticParams() {
+  return [
+    {
+      category: "news",
+      slug: "new-benson-gym-opens-after-delays",
+    },
+  ];
+}
+
 export async function generateMetadata(props: Props) {
   const params = await props.params;
   const article = await getArticleBySlug(params.slug);

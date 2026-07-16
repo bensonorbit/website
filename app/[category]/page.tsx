@@ -10,6 +10,10 @@ interface Props {
   params: Promise<{ category: string }>;
 }
 
+export function generateStaticParams() {
+  return [{ category: "news" }];
+}
+
 // Check if category exists using cache to avoid unnecessary Sanity requests
 async function assertCategorySlug(slug: string) {
   const categories = await getAllCategories();
