@@ -8,8 +8,6 @@ export const metadata = mergeMeta({
   description: "Every article that The Benson Orbit has published.",
   title: "Archive",
 });
-export const dynamic = "force-static";
-
 export default async function ArchivePage() {
   const articles = await getAllArticles();
 

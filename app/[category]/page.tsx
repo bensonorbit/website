@@ -10,11 +10,6 @@ interface Props {
   params: Promise<{ category: string }>;
 }
 
-export async function generateStaticParams() {
-  const categories = await getAllCategories();
-  return categories.map((category) => ({ category: category.slug }));
-}
-
 // Check if category exists using cache to avoid unnecessary Sanity requests
 async function assertCategorySlug(slug: string) {
   const categories = await getAllCategories();
@@ -41,8 +36,6 @@ export async function generateMetadata(props: Props) {
     title: category.title,
   });
 }
-
-export const dynamic = "force-static";
 
 export default async function CategoryPage(props: Props) {
   const { category: slug } = await props.params;

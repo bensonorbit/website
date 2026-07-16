@@ -3,22 +3,41 @@
 import { cx } from "css-variants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Suspense } from "react";
 
-export function NavbarLink(props: {
+interface NavbarLinkProps {
   href: string;
   children: React.ReactNode;
   className?: string;
-}) {
+}
+
+export function NavbarLink(props: NavbarLinkProps) {
+  return (
+    <Suspense fallback={<NavbarLinkContent {...props} isActive={false} />}>
+      <PathnameNavbarLink {...props} />
+    </Suspense>
+  );
+}
+
+function PathnameNavbarLink(props: NavbarLinkProps) {
   const pathname = usePathname();
   const isActive = pathname === props.href;
 
+  return <NavbarLinkContent {...props} isActive={isActive} />;
+}
+
+function NavbarLinkContent(
+  props: NavbarLinkProps & {
+    isActive: boolean;
+  }
+) {
   return (
     <Link
       href={props.href}
-      aria-current={isActive ? "page" : undefined}
+      aria-current={props.isActive ? "page" : undefined}
       className={cx(
         "flex h-full items-center text-[0.95rem] hover:text-primary active:text-primary",
-        isActive && "font-semibold text-primary",
+        props.isActive && "font-semibold text-primary",
         props.className
       )}
     >

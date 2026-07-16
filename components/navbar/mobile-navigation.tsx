@@ -3,7 +3,7 @@
 import { cx } from "css-variants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useState } from "react";
+import { Suspense, useEffect, useId, useState } from "react";
 
 import { MenuIcon } from "@/components/icons";
 import { mobileLinkGroups } from "@/components/navbar/navigation";
@@ -11,6 +11,14 @@ import { SubscribeButton } from "@/components/navbar/subscribe-button";
 import { socials } from "@/lib/data";
 
 export function MobileNavigation(props: { className?: string }) {
+  return (
+    <Suspense fallback={<MobileNavigationContent {...props} />}>
+      <PathnameMobileNavigation {...props} />
+    </Suspense>
+  );
+}
+
+function PathnameMobileNavigation(props: { className?: string }) {
   const pathname = usePathname();
 
   return <MobileNavigationContent key={pathname} {...props} />;

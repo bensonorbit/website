@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { socials } from "@/lib/data";
+import { getCurrentYear } from "@/lib/time";
 
-export function Footer() {
-  const year = new Date().getFullYear();
+export async function Footer() {
+  const year = await getCurrentYear();
   return (
     <footer className="border-t bg-gray-100 text-sm text-gray-600 md:text-base dark:bg-black dark:text-gray-400">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-x-10 lg:py-12 xl:border-x print:px-0">

@@ -13,8 +13,6 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export const dynamic = "force-static";
-
 export async function generateMetadata(props: Props) {
   const params = await props.params;
   const author = await getAuthorBySlug(params.slug);

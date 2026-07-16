@@ -1,14 +1,17 @@
 import { Feed } from "feed";
 
+import { getCurrentYear } from "@/lib/time";
 import { getAllArticles } from "@/sanity/fetch";
-
-export const dynamic = "force-static";
 
 export async function GET() {
   const url = process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : "http://localhost:3000";
-  const year = new Date().getFullYear();
+  const [year, articles] = await Promise.all([
+    getCurrentYear(),
+    getAllArticles(),
+  ]);
+  const updated = new Date(articles[0]?.date ?? "2024-01-01T00:00:00.000Z");
 
   const feed = new Feed({
     copyright: `${year} The Benson Orbit. All rights reserved.`,
@@ -21,9 +24,8 @@ export async function GET() {
     language: "en",
     link: url,
     title: "The Benson Orbit",
+    updated,
   });
-
-  const articles = await getAllArticles();
 
   for (const article of articles) {
     if (!article.primaryCategory) {

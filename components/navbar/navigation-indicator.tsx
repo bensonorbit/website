@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useLayoutEffect, useRef, useState } from "react";
+import { Suspense, useLayoutEffect, useRef, useState } from "react";
 
 interface IndicatorState {
   animatePosition: boolean;
@@ -18,6 +18,14 @@ const hiddenIndicator: IndicatorState = {
 };
 
 export function NavigationIndicator() {
+  return (
+    <Suspense fallback={null}>
+      <PathnameNavigationIndicator />
+    </Suspense>
+  );
+}
+
+function PathnameNavigationIndicator() {
   const indicatorRef = useRef<HTMLSpanElement>(null);
   // Remember whether position changes should animate without causing a render.
   const wasVisible = useRef(false);
