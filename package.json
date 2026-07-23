@@ -22,7 +22,7 @@
     "@vercel/speed-insights": "^2.0.0",
     "css-variants": "^2.3.5",
     "feed": "^6.0.0",
-    "next": "16.3.0-preview.6",
+    "next": "16.3.0-preview.9",
     "next-sanity": "^13.1.1",
     "postcss": "^8.5.16",
     "react": "19.2.7",

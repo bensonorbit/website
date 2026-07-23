@@ -46,6 +46,7 @@ const nextConfig: NextConfig = {
   logging: {
     fetches: { fullUrl: false },
   },
+  partialPrefetching: true,
   poweredByHeader: false,
   redirects() {
     return [
