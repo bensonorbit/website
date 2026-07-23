@@ -67,40 +67,56 @@ export function FacebookIcon(props: { className?: string }) {
   );
 }
 
-export function MenuIcon() {
+export function MenuIcon(props: { open: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      width={24}
+      height={24}
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
+      fill="none"
       stroke="currentColor"
-      className="size-7"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
     >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+        d="M4 8h16"
+        vectorEffect="non-scaling-stroke"
+        className={`origin-center transition-transform duration-200 ease-out motion-reduce:transition-none${
+          props.open ? " translate-y-1 scale-125 rotate-45" : ""
+        }`}
+        style={{ transformBox: "fill-box" }}
+      />
+      <path
+        d="M4 16h16"
+        vectorEffect="non-scaling-stroke"
+        className={`origin-center transition-transform duration-200 ease-out motion-reduce:transition-none${
+          props.open ? " -translate-y-1 scale-125 -rotate-45" : ""
+        }`}
+        style={{ transformBox: "fill-box" }}
       />
     </svg>
   );
 }
 
-export function CloseIcon() {
+export function SearchIcon(props: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
+      fill="none"
       stroke="currentColor"
-      className="size-7"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={props.className}
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M6 18 18 6M6 6l12 12"
-      />
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+      <path d="M21 21l-6 -6" />
     </svg>
   );
 }

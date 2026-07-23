@@ -1,7 +1,10 @@
 import type { MetadataRoute } from "next";
 
-import { categories } from "@/lib/data";
-import { getAllArticles, getAllAuthors } from "@/sanity/fetch";
+import {
+  getAllArticles,
+  getAllAuthors,
+  getAllCategories,
+} from "@/sanity/fetch";
 
 export default async function sitemap() {
   const entries: MetadataRoute.Sitemap = [
@@ -16,9 +19,9 @@ export default async function sitemap() {
     },
   ];
 
-  for (const category of Object.keys(categories)) {
+  for (const category of await getAllCategories()) {
     entries.push({
-      url: `https://bensonorbit.com/${category}`,
+      url: `https://bensonorbit.com/${category.slug}`,
     });
   }
 

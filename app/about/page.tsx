@@ -9,8 +9,6 @@ export const metadata = mergeMeta({
     "Learn more about The Benson Orbit, including its staff, and how to contact us.",
   title: "About",
 });
-export const dynamic = "force-static";
-
 const roles = ["Adviser", "Editor", "Digital Director", "Contributor"];
 
 export default async function AboutPage() {

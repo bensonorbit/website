@@ -5,13 +5,6 @@ import {
   BlueskyIcon,
 } from "@/components/icons";
 
-export const categories = {
-  culture: "Culture",
-  news: "News",
-  sports: "Sports",
-  voices: "Student Voices",
-};
-
 export const socials: {
   name: string;
   href: string;

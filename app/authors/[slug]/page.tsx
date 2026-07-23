@@ -13,7 +13,9 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export const dynamic = "force-static";
+export function generateStaticParams() {
+  return [{ slug: "nick" }];
+}
 
 export async function generateMetadata(props: Props) {
   const params = await props.params;
