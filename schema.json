@@ -258,6 +258,13 @@
         },
         "optional": true
       },
+      "showArticleEyebrow": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": true
+      },
       "parent": {
         "type": "objectAttribute",
         "value": {

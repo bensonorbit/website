@@ -28,6 +28,14 @@ export const category = defineType({
       type: "array",
     }),
     defineField({
+      description:
+        "Display this category's name above the title on its article pages.",
+      initialValue: false,
+      name: "showArticleEyebrow",
+      title: "Show Article Eyebrow",
+      type: "boolean",
+    }),
+    defineField({
       description: "Reserved for future category hierarchy features.",
       name: "parent",
       title: "Parent Category",

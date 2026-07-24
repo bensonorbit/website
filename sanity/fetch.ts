@@ -29,6 +29,7 @@ const articleFields = `// groq
     _id,
     "title": coalesce(title, "Untitled Category"),
     "slug": slug.current,
+    "showArticleEyebrow": coalesce(showArticleEyebrow, false),
   },
   "date": coalesce(date, _updatedAt),
   "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),

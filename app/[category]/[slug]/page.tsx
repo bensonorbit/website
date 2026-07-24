@@ -76,6 +76,11 @@ export default async function ArticlePage(props: Props) {
 
   return (
     <article className="mx-auto prose prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-sm prose-img:drop-shadow-xs prose-img:hover:cursor-zoom-in">
+      {article.primaryCategory.showArticleEyebrow && (
+        <p className="mt-0 mb-2 font-sans font-medium tracking-wider uppercase">
+          {article.primaryCategory.title}
+        </p>
+      )}
       <h1 className="mb-0 text-balance">{article.title}</h1>
       <p className="lead mt-2 mb-2 text-balance">{article.summary}</p>
 
