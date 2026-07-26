@@ -1,10 +1,13 @@
 import Link from "next/link";
 
 import { DateFormat } from "@/components/date-format";
-import { mergeMeta } from "@/lib/utils";
+import { fullUrl, mergeMeta } from "@/lib/utils";
 import { getAllArticles } from "@/sanity/fetch";
 
 export const metadata = mergeMeta({
+  alternates: {
+    canonical: fullUrl("/archive"),
+  },
   description: "Every article that The Benson Orbit has published.",
   title: "Archive",
 });

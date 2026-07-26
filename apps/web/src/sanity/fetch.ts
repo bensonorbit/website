@@ -26,6 +26,12 @@ const articleFields = `// groq
     "slug": slug.current,
     "showArticleEyebrow": coalesce(showArticleEyebrow, false),
   },
+  categories[] -> {
+    _id,
+    "title": coalesce(title, "Untitled Category"),
+    "slug": slug.current,
+    "showArticleEyebrow": coalesce(showArticleEyebrow, false),
+  },
   "date": coalesce(date, _updatedAt),
   "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),
   authors[] -> {
@@ -58,6 +64,7 @@ export async function getArticleBySlug(slug: string) {
 					caption,
 				}
 			},
+			"dateModified": _updatedAt,
 			${articleFields}
 		}
 	`);

@@ -1,10 +1,13 @@
 import Link from "next/link";
 
 import { CustomPortableText } from "@/components/custom-portable-text";
-import { mergeMeta } from "@/lib/utils";
+import { fullUrl, mergeMeta } from "@/lib/utils";
 import { getAllAuthors, getSettings } from "@/sanity/fetch";
 
 export const metadata = mergeMeta({
+  alternates: {
+    canonical: fullUrl("/about"),
+  },
   description:
     "Learn more about The Benson Orbit, including its staff, and how to contact us.",
   title: "About",

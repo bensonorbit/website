@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import { ArticleList } from "@/components/article-list";
 import { CustomPortableText } from "@/components/custom-portable-text";
-import { mergeMeta } from "@/lib/utils";
+import { fullUrl, mergeMeta } from "@/lib/utils";
 import { getCategoryBySlug } from "@/sanity/fetch";
 
 interface Props {
@@ -26,6 +26,9 @@ export async function generateMetadata(props: Props) {
     : `${category.title} articles published by The Benson Orbit.`;
 
   return mergeMeta({
+    alternates: {
+      canonical: fullUrl(`/${slug}`),
+    },
     description,
     title: category.title,
   });
