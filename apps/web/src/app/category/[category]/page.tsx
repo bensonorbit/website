@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArticleList } from "@/components/article-list";
 import { CustomPortableText } from "@/components/custom-portable-text";
 import { mergeMeta } from "@/lib/utils";
-import { getAllCategories, getCategoryBySlug } from "@/sanity/fetch";
+import { getCategoryBySlug } from "@/sanity/fetch";
 
 interface Props {
   params: Promise<{ category: string }>;
@@ -14,18 +14,8 @@ export function generateStaticParams() {
   return [{ category: "news" }];
 }
 
-// Check if category exists using cache to avoid unnecessary Sanity requests
-async function assertCategorySlug(slug: string) {
-  const categories = await getAllCategories();
-  const categoryExists = categories.some((category) => category.slug === slug);
-  if (!categoryExists) {
-    notFound();
-  }
-}
-
 export async function generateMetadata(props: Props) {
   const { category: slug } = await props.params;
-  await assertCategorySlug(slug);
   const category = await getCategoryBySlug(slug);
   if (!category) {
     notFound();
@@ -43,7 +33,6 @@ export async function generateMetadata(props: Props) {
 
 export default async function CategoryPage(props: Props) {
   const { category: slug } = await props.params;
-  await assertCategorySlug(slug);
   const category = await getCategoryBySlug(slug);
   if (!category) {
     notFound();
