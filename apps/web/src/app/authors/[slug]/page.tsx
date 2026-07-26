@@ -6,7 +6,7 @@ import type { ProfilePage } from "schema-dts";
 
 import { ArticleList } from "@/components/article-list";
 import { CustomPortableText } from "@/components/custom-portable-text";
-import { mergeMeta } from "@/lib/utils";
+import { fullUrl, mergeMeta } from "@/lib/utils";
 import { getAuthorBySlug } from "@/sanity/fetch";
 
 interface Props {
@@ -31,6 +31,9 @@ export async function generateMetadata(props: Props) {
   const description = author.bio && toPlainText(author.bio).slice(0, 200);
 
   return mergeMeta({
+    alternates: {
+      canonical: fullUrl(`/authors/${params.slug}`),
+    },
     description,
     openGraph: { images, type: "profile" },
     title: author.name,

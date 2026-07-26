@@ -37,6 +37,7 @@ export async function generateMetadata(props: Props) {
 
   return mergeMeta({
     alternates: {
+      canonical: fullUrl(article.url),
       types: {
         "application/atom+xml": "/atom.xml",
         "application/json+oembed": `https://${domain}${article.url}/oembed`,

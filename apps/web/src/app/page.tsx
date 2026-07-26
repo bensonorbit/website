@@ -14,6 +14,9 @@ import { getLatestArticles, getSettings } from "@/sanity/fetch";
 import type { LatestArticlesQueryResult } from "@/sanity/types";
 
 export const metadata = mergeMeta({
+  alternates: {
+    canonical: fullUrl(),
+  },
   description: "The student-run newspaper of Benson Polytechnic High School",
   openGraph: {
     title: "The Benson Orbit",
