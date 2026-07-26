@@ -6,6 +6,7 @@ import type { ProfilePage } from "schema-dts";
 
 import { ArticleList } from "@/components/article-list";
 import { CustomPortableText } from "@/components/custom-portable-text";
+import { newsMediaOrganization, webSite } from "@/lib/structured-data";
 import { fullUrl, mergeMeta } from "@/lib/utils";
 import { getAuthorBySlug } from "@/sanity/fetch";
 
@@ -48,6 +49,13 @@ export default async function AuthorPage(props: Props) {
     notFound();
   }
   const firstName = author.name?.split(" ")[0] || "this author";
+  const authorUrl = fullUrl(`/authors/${params.slug}`);
+  const personId = `${authorUrl}#person`;
+  const profilePageId = `${authorUrl}#profile`;
+  const description = author.bio ? toPlainText(author.bio) : undefined;
+  const image = author.photo.url
+    ? `${author.photo.url}?w=800&auto=format&fit=min`
+    : undefined;
 
   return (
     <div className="mx-auto prose max-w-3xl prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-sm prose-img:drop-shadow-xs">
@@ -87,13 +95,39 @@ export default async function AuthorPage(props: Props) {
       <JsonLd<ProfilePage>
         item={{
           "@context": "https://schema.org",
+          "@id": profilePageId,
           "@type": "ProfilePage",
+          dateCreated: author._createdAt,
+          dateModified: author._updatedAt,
+          hasPart: author.articles.map((article) => ({
+            "@id": `${fullUrl(article.url)}#article`,
+            "@type": "NewsArticle",
+            author: {
+              "@id": personId,
+            },
+            datePublished: article.date,
+            headline: article.title,
+            url: fullUrl(article.url),
+          })),
+          inLanguage: "en-US",
+          isPartOf: webSite,
           mainEntity: {
+            "@id": personId,
             "@type": "Person",
-            description: author.bio && toPlainText(author.bio).slice(0, 200),
-            image: `${author.photo.url}?w=800&auto=format&fit=min`,
+            affiliation: {
+              "@id": newsMediaOrganization["@id"],
+            },
+            description,
+            image,
+            jobTitle: author.role,
+            mainEntityOfPage: {
+              "@id": profilePageId,
+            },
             name: author.name,
+            url: authorUrl,
           },
+          publisher: newsMediaOrganization,
+          url: authorUrl,
         }}
       />
     </div>
