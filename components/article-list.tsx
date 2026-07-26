@@ -1,6 +1,6 @@
+import { cx } from "css-variants";
 import { Image } from "next-sanity/image";
 import Link from "next/link";
-import { twMerge } from "tailwind-merge";
 
 import { Authors } from "@/components/authors";
 import { DateFormat } from "@/components/date-format";
@@ -11,7 +11,7 @@ export function ArticleList(props: {
   className?: string;
 }) {
   return (
-    <div className={twMerge("flex max-w-3xl flex-col", props.className)}>
+    <div className={cx("flex max-w-3xl flex-col", props.className)}>
       {props.articles.map((article) => (
         <Article key={article._id} article={article} />
       ))}

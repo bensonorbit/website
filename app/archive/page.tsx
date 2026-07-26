@@ -8,8 +8,6 @@ export const metadata = mergeMeta({
   description: "Every article that The Benson Orbit has published.",
   title: "Archive",
 });
-export const dynamic = "force-static";
-
 export default async function ArchivePage() {
   const articles = await getAllArticles();
 
@@ -21,7 +19,7 @@ export default async function ArchivePage() {
       <ul>
         {articles.map((article) => (
           <li key={article._id}>
-            <Link href={`/${article.category}/${article.slug}`}>
+            <Link href={article.url}>
               <strong className="underline">
                 <DateFormat date={article.date} dateStyle="medium" />
               </strong>

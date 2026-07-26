@@ -7,7 +7,6 @@ import { Authors } from "@/components/authors";
 import { CustomPortableText } from "@/components/custom-portable-text";
 import { DateFormat } from "@/components/date-format";
 import { Fancybox } from "@/components/fancybox";
-import { categories } from "@/lib/data";
 import { mergeMeta } from "@/lib/utils";
 import { getArticleBySlug } from "@/sanity/fetch";
 
@@ -15,7 +14,14 @@ interface Props {
   params: Promise<{ category: string; slug: string }>;
 }
 
-export const dynamic = "force-static";
+export function generateStaticParams() {
+  return [
+    {
+      category: "news",
+      slug: "new-benson-gym-opens-after-delays",
+    },
+  ];
+}
 
 export async function generateMetadata(props: Props) {
   const params = await props.params;
@@ -23,15 +29,17 @@ export async function generateMetadata(props: Props) {
   if (!article) {
     notFound();
   }
+  if (!article.primaryCategory) {
+    notFound();
+  }
   const url = `${article.coverImage.url}?w=1200&h=630&fit=crop`;
   const domain = process.env.VERCEL_PROJECT_PRODUCTION_URL;
-  const category = (article.category as keyof typeof categories) || "commons";
 
   return mergeMeta({
     alternates: {
       types: {
         "application/atom+xml": "/atom.xml",
-        "application/json+oembed": `https://${domain}/${article.category}/${article.slug}/oembed`,
+        "application/json+oembed": `https://${domain}${article.url}/oembed`,
       },
     },
     authors: article.authors?.map((author) => ({
@@ -46,7 +54,7 @@ export async function generateMetadata(props: Props) {
         url,
       },
       publishedTime: article.date,
-      section: categories[category],
+      section: article.primaryCategory.title,
       type: "article",
     },
     title: article.title,
@@ -59,12 +67,20 @@ export default async function ArticlePage(props: Props) {
   if (!article) {
     notFound();
   }
-  if (article.category !== params.category) {
-    redirect(`/${article.category}/${article.slug}`);
+  if (!article.primaryCategory) {
+    notFound();
+  }
+  if (article.primaryCategory.slug !== params.category) {
+    redirect(article.url);
   }
 
   return (
     <article className="mx-auto prose prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-sm prose-img:drop-shadow-xs prose-img:hover:cursor-zoom-in">
+      {article.primaryCategory.showArticleEyebrow && (
+        <p className="mt-0 mb-2 font-sans font-medium tracking-wider uppercase">
+          {article.primaryCategory.title}
+        </p>
+      )}
       <h1 className="mb-0 text-balance">{article.title}</h1>
       <p className="lead mt-2 mb-2 text-balance">{article.summary}</p>
 

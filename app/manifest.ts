@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { categories } from "@/lib/data";
+import { sectionLinks } from "@/components/navbar/navigation";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -22,9 +22,9 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
     name: "The Benson Orbit",
     short_name: "Benson Orbit",
-    shortcuts: Object.entries(categories).map(([category, name]) => ({
-      name,
-      url: `/${category}`,
+    shortcuts: sectionLinks.map((link) => ({
+      name: link.label,
+      url: link.href,
     })),
     start_url: "/",
   };

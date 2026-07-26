@@ -1,16 +1,4 @@
-import {
-  InstagramIcon,
-  TwitterIcon,
-  FacebookIcon,
-  BlueskyIcon,
-} from "@/components/icons";
-
-export const categories = {
-  culture: "Culture",
-  news: "News",
-  sports: "Sports",
-  voices: "Student Voices",
-};
+import { InstagramIcon, FacebookIcon, YouTubeIcon } from "@/components/icons";
 
 export const socials: {
   name: string;
@@ -28,13 +16,8 @@ export const socials: {
     name: "Facebook",
   },
   {
-    href: "https://x.com/bensonorbit",
-    icon: TwitterIcon,
-    name: "Twitter",
-  },
-  {
-    href: "https://bsky.app/profile/bensonorbit.com",
-    icon: BlueskyIcon,
-    name: "Bluesky",
+    href: "https://www.youtube.com/@bensonorbit",
+    icon: YouTubeIcon,
+    name: "YouTube",
   },
 ];

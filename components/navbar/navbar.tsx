@@ -1,81 +1,26 @@
-import Link from "next/link";
-
-import {
-  BensonAstronautIcon,
-  // CameraIcon,
-  // DownIcon,
-  // StarIcon,
-} from "@/components/icons";
-import { Menu } from "@/components/navbar/menu";
-import { NavbarLink } from "@/components/navbar/navbar-link";
+import { DesktopNavigation } from "@/components/navbar/desktop-navigation";
+import { MobileNavigation } from "@/components/navbar/mobile-navigation";
+import { NavbarLogo } from "@/components/navbar/navbar-logo";
+import { SearchButton } from "@/components/navbar/search-button";
 
 export function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-lg transition print:static print:bg-transparent print:pt-0">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 xl:border-x print:px-0">
-        <div className="h-7 grow basis-0 lg:hidden print:hidden">
-          <Menu />
+    <nav className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-xl print:static print:bg-transparent print:pt-0">
+      <div className="relative mx-auto grid h-13 max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-6 xl:border-x lg:h-17 lg:grid-cols-[1fr_auto_1fr] lg:gap-8 print:px-0">
+        <MobileNavigation className="lg:hidden print:hidden" />
+
+        <NavbarLogo className="justify-self-center lg:justify-self-start" />
+
+        <DesktopNavigation className="col-span-2 hidden h-full grid-cols-subgrid lg:grid print:hidden" />
+
+        <div className="justify-self-end lg:hidden print:hidden">
+          <SearchButton />
         </div>
 
-        <div className="lg:grow lg:basis-0">
-          <Link
-            href="/"
-            className="group flex w-fit items-center gap-2 text-xl font-bold transition hover:text-primary"
-          >
-            <BensonAstronautIcon className="transition group-hover:scale-110 group-hover:-rotate-12 group-active:rotate-12" />
-            The Benson Orbit
-          </Link>
-        </div>
-
-        <div className="hidden items-center gap-6 lg:flex print:hidden">
-          <NavbarLink href="/news">News</NavbarLink>
-          <NavbarLink href="/sports">Sports</NavbarLink>
-          <NavbarLink href="/culture">Culture</NavbarLink>
-          <NavbarLink href="/voices">Student Voices</NavbarLink>
-        </div>
-
-        <div className="hidden grow basis-0 items-center justify-end gap-6 lg:flex print:hidden">
-          <NavbarLink href="/archive">Archive</NavbarLink>
-          <NavbarLink href="/about">About</NavbarLink>
-        </div>
-
-        <div className="grow basis-0 lg:hidden print:hidden" />
-
-        <p className="hidden grow basis-0 justify-end print:flex">
+        <p className="col-start-3 hidden justify-end print:flex">
           bensonorbit.com
         </p>
       </div>
     </nav>
   );
 }
-
-// function MoreMenu() {
-// 	return (
-// 		<div className="group relative xl:hidden">
-// 			<div className="flex items-center">
-// 				More{" "}
-// 				<DownIcon className="size-5 transition group-focus-within:rotate-180 group-hover:rotate-180 motion-reduce:transition-none" />
-// 			</div>
-
-// 			<div className="pointer-events-none absolute top-0 -mt-4 -ml-10 -translate-y-1 p-10 opacity-0 transition group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 motion-reduce:transition-none">
-// 				<div className="flex flex-col rounded-sm border bg-background text-nowrap drop-shadow-sm">
-// 					<NavbarLink
-// 						href="/hubble"
-// 						className="flex items-center gap-2 px-4 py-2"
-// 					>
-// 						<CameraIcon /> The Hubble
-// 					</NavbarLink>
-
-// 					<hr />
-
-// 					<NavbarLink
-// 						href="/star"
-// 						className="flex items-center gap-2 px-4 py-2"
-// 					>
-// 						<StarIcon /> The Star
-// 					</NavbarLink>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	);
-// }

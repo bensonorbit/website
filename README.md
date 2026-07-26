@@ -17,3 +17,22 @@ You'll need [Node.js](https://nodejs.org/en/download/) and [`pnpm`](https://pnpm
 If you make changes to the Sanity schema or GROQ queries, run `pnpm run typegen` to generate TypeScript types.
 
 Before committing, run `pnpm run format` to format your code using [Prettier](https://prettier.io/).
+
+## Sanity webhook projection
+
+```json
+{
+  "before": before() {
+    _type,
+    "slug": slug.current,
+    "categorySlugs": categories[]->slug.current,
+    "authorSlugs": authors[]->slug.current
+  },
+  "after": after() {
+    _type,
+    "slug": slug.current,
+    "categorySlugs": categories[]->slug.current,
+    "authorSlugs": authors[]->slug.current
+  }
+}
+```

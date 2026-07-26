@@ -6,6 +6,8 @@ import type { NewsMediaOrganization, WebSite } from "schema-dts";
 import { ArticleList } from "@/components/article-list";
 import { Authors } from "@/components/authors";
 import { DateFormat } from "@/components/date-format";
+import { ExternalLinkIcon } from "@/components/icons";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { socials } from "@/lib/data";
 import { mergeMeta } from "@/lib/utils";
 import type { LatestArticlesQueryResult } from "@/sanity.types";
@@ -49,14 +51,14 @@ export default async function HomePage() {
       <div className="grid grid-cols-8">
         {heroArticle && (
           <Left>
-            <HeroArticleCard article={heroArticle} />
+            <HeroArticle article={heroArticle} />
           </Left>
         )}
 
         {topArticles.length > 0 && (
           <Middle>
             {topArticles.map((article) => (
-              <TopArticleCard article={article} key={article._id} />
+              <TopArticle article={article} key={article._id} />
             ))}
           </Middle>
         )}
@@ -64,7 +66,7 @@ export default async function HomePage() {
         {moreFeaturedArticles.length > 0 && (
           <Right>
             {moreFeaturedArticles.map((article) => (
-              <FeaturedArticleCard article={article} key={article._id} />
+              <FeaturedArticle article={article} key={article._id} />
             ))}
           </Right>
         )}
@@ -80,27 +82,9 @@ export default async function HomePage() {
           </section>
         )}
 
-        <section className="sticky top-16 mx-auto h-fit max-w-lg grow basis-0 space-y-1 rounded-sm border bg-gray-100 p-3 font-sans text-lg dark:bg-gray-900">
-          <h2 className="text-2xl font-bold tracking-tight">Stay updated.</h2>
-          <p>
-            Follow The Benson Orbit on social media to see the latest news from
-            Benson Polytechnic High School.
-          </p>
-          <ul className="space-y-1">
-            {socials.map((social) => (
-              <li key={social.name}>
-                <a
-                  href={social.href}
-                  target="_blank"
-                  className="group flex items-center gap-2 transition-colors hover:text-primary"
-                >
-                  <social.icon className="size-4 text-gray-700 transition-colors group-hover:text-primary dark:text-gray-300" />{" "}
-                  {social.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <aside className="sticky top-23 mx-auto h-fit w-full max-w-lg grow basis-0">
+          <SocialMediaFollowCard />
+        </aside>
       </div>
 
       <JsonLd<WebSite>
@@ -164,7 +148,7 @@ function Right(props: { children?: React.ReactNode }) {
   );
 }
 
-function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
+function HeroArticle(props: { article: LatestArticlesQueryResult[0] }) {
   const { article } = props;
   const { coverImage } = article;
   const imageUrl = coverImage.url;
@@ -185,7 +169,8 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
           placeholder="blur"
           blurDataURL={coverImage.lqip || undefined}
           sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, (min-width: 768px) 65vw, 100vw"
-          priority
+          preload
+          fetchPriority="high"
         />
 
         <h2 className="my-3 text-3xl font-bold group-hover:underline md:my-6 md:text-4xl">
@@ -212,7 +197,7 @@ function HeroArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
   );
 }
 
-function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
+function TopArticle(props: { article: LatestArticlesQueryResult[0] }) {
   const { article } = props;
   const { coverImage } = article;
   const imageUrl = coverImage.url;
@@ -264,7 +249,7 @@ function TopArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
   );
 }
 
-function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
+function FeaturedArticle(props: { article: LatestArticlesQueryResult[0] }) {
   const { article } = props;
   const { coverImage } = article;
   const imageUrl = coverImage.url;
@@ -309,5 +294,44 @@ function FeaturedArticleCard(props: { article: LatestArticlesQueryResult[0] }) {
         />
       </Link>
     </article>
+  );
+}
+
+function SocialMediaFollowCard() {
+  return (
+    <Card>
+      <CardTitle>Follow the stories shaping Benson.</CardTitle>
+
+      <CardDescription>
+        Get the latest stories, photos, and videos from Benson&apos;s student
+        journalists on social media.
+      </CardDescription>
+
+      <ul className="grid gap-3">
+        {socials.map((social) => (
+          <li key={social.name}>
+            <a
+              href={social.href}
+              target="_blank"
+              rel="me"
+              className="bg-background rounded-sm border px-3 py-2 font-sans font-semibold flex items-center gap-2 hover:border-primary group justify-between"
+            >
+              <div className="flex items-center gap-2">
+                <div className="rounded-full bg-gray-100 text-gray-700 dark:text-gray-300 dark:bg-gray-900 p-2 border group-hover:text-primary">
+                  <social.icon className="size-4" />
+                </div>
+
+                {social.name}
+              </div>
+
+              <ExternalLinkIcon
+                className="size-4 mr-2 text-gray-600 dark:text-gray-400"
+                aria-hidden="true"
+              />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </Card>
   );
 }

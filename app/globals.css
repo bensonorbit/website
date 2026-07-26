@@ -5,13 +5,15 @@
   --background: var(--color-gray-50);
   --foreground: var(--color-gray-950);
   --border: var(--color-gray-200);
-  --primary: var(--color-orange-700);
+  --primary: var(--color-orange-600);
+  --primary-hover: var(--color-orange-500);
 
   @media (prefers-color-scheme: dark) {
     --background: var(--color-gray-950);
     --foreground: var(--color-gray-50);
     --border: var(--color-gray-800);
-    --primary: var(--color-orange-300);
+    --primary: var(--color-orange-400);
+    --primary-hover: var(--color-orange-300);
   }
 }
 
@@ -20,6 +22,7 @@
   --color-foreground: var(--foreground);
   --color-border: var(--border);
   --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
 }
 
 @layer base {

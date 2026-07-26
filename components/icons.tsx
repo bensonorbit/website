@@ -67,40 +67,70 @@ export function FacebookIcon(props: { className?: string }) {
   );
 }
 
-export function MenuIcon() {
+export function YouTubeIcon(props: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={props.className}
+      fill="currentColor"
+    >
+      <title>YouTube</title>
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+    </svg>
+  );
+}
+
+export function MenuIcon(props: { open: boolean }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      width={24}
+      height={24}
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
+      fill="none"
       stroke="currentColor"
-      className="size-7"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
     >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+        d="M4 8h16"
+        vectorEffect="non-scaling-stroke"
+        className={`origin-center transition-transform duration-200 ease-out motion-reduce:transition-none${
+          props.open ? " translate-y-1 scale-125 rotate-45" : ""
+        }`}
+        style={{ transformBox: "fill-box" }}
+      />
+      <path
+        d="M4 16h16"
+        vectorEffect="non-scaling-stroke"
+        className={`origin-center transition-transform duration-200 ease-out motion-reduce:transition-none${
+          props.open ? " -translate-y-1 scale-125 -rotate-45" : ""
+        }`}
+        style={{ transformBox: "fill-box" }}
       />
     </svg>
   );
 }
 
-export function CloseIcon() {
+export function SearchIcon(props: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
+      fill="none"
       stroke="currentColor"
-      className="size-7"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={props.className}
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M6 18 18 6M6 6l12 12"
-      />
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+      <path d="M21 21l-6 -6" />
     </svg>
   );
 }
@@ -171,6 +201,26 @@ export function CameraIcon() {
         d="M1 8a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 8.07 3h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 16.07 6H17a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8Zm13.5 3a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM10 14a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
         clipRule="evenodd"
       />
+    </svg>
+  );
+}
+
+export function ExternalLinkIcon(props: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={props.className}
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
+      <path d="M11 13l9 -9" />
+      <path d="M15 4h5v5" />
     </svg>
   );
 }

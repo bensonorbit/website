@@ -17,6 +17,7 @@ const contentSecurityPolicy = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  cacheComponents: true,
   headers() {
     return [
       {
@@ -45,6 +46,7 @@ const nextConfig: NextConfig = {
   logging: {
     fetches: { fullUrl: false },
   },
+  partialPrefetching: true,
   poweredByHeader: false,
   redirects() {
     return [
