@@ -12,3 +12,12 @@ export function mergeMeta(metadata: Metadata): Metadata {
     },
   };
 }
+
+export function assert(value: string | undefined, variable: string) {
+  if (value === undefined) {
+    const error = `Missing environment variable: ${variable}. See .env.example for more details.`;
+    throw new Error(error);
+  }
+
+  return value;
+}
