@@ -23,6 +23,10 @@ export function assert(value: string | undefined, variable: string) {
 }
 
 function getSiteUrl() {
+  if (process.env.VERCEL_ENV === "preview" && process.env.VERCEL_URL) {
+    return new URL(`https://${process.env.VERCEL_URL}`);
+  }
+
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
     return new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`);
   }
