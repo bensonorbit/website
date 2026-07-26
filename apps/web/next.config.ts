@@ -51,7 +51,7 @@ const nextConfig: NextConfig = {
   redirects() {
     return [
       {
-        destination: "https://benson.sanity.studio",
+        destination: "https://studio.bensonorbit.com",
         permanent: true,
         source: "/studio",
       },
