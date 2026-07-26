@@ -1,17 +1,37 @@
 "use client";
 
-import { Fancybox as NativeFancybox } from "@fancyapps/ui";
+import type { Fancybox as FancyboxType } from "@fancyapps/ui";
 import { useEffect } from "react";
 
 export function Fancybox() {
   useEffect(() => {
-    // lazy load fancybox css
-    import("@fancyapps/ui/dist/fancybox/fancybox.css");
+    let disposed = false;
+    let fancybox: typeof FancyboxType | undefined;
 
-    NativeFancybox.bind("[data-fancybox]");
+    // lazy load fancybox code and css
+    async function init() {
+      const [module] = await Promise.all([
+        import("@fancyapps/ui"),
+        import("@fancyapps/ui/dist/fancybox/fancybox.css"),
+      ]);
+
+      // `disposed` prevents a race condition where
+      // the component is unmounted between init()
+      // being called and the module load completing
+      if (disposed) {
+        return;
+      }
+
+      fancybox = module.Fancybox;
+      fancybox.bind("[data-fancybox]");
+    }
+
+    init();
+
     return () => {
-      NativeFancybox.unbind("[data-fancybox]");
-      NativeFancybox.close();
+      disposed = true;
+      fancybox?.unbind("[data-fancybox]");
+      fancybox?.close();
     };
   }, []);
 
