@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { fullUrl } from "@/lib/utils";
 import {
   getAllArticles,
   getAllAuthors,
@@ -9,32 +10,32 @@ import {
 export default async function sitemap() {
   const entries: MetadataRoute.Sitemap = [
     {
-      url: "https://bensonorbit.com",
+      url: fullUrl(),
     },
     {
-      url: "https://bensonorbit.com/about",
+      url: fullUrl("/about"),
     },
     {
-      url: "https://bensonorbit.com/archive",
+      url: fullUrl("/archive"),
     },
   ];
 
   for (const category of await getAllCategories()) {
     entries.push({
-      url: `https://bensonorbit.com/${category.slug}`,
+      url: fullUrl(`/${category.slug}`),
     });
   }
 
   for (const article of await getAllArticles()) {
     entries.push({
       lastModified: article.date,
-      url: `https://bensonorbit.com${article.url}`,
+      url: fullUrl(article.url),
     });
   }
 
   for (const author of await getAllAuthors()) {
     entries.push({
-      url: `https://bensonorbit.com/authors/${author.slug?.current}`,
+      url: fullUrl(`/authors/${author.slug?.current}`),
     });
   }
 

@@ -7,7 +7,7 @@ import { Authors } from "@/components/authors";
 import { CustomPortableText } from "@/components/custom-portable-text";
 import { DateFormat } from "@/components/date-format";
 import { Fancybox } from "@/components/fancybox";
-import { mergeMeta } from "@/lib/utils";
+import { fullUrl, mergeMeta } from "@/lib/utils";
 import { getArticleBySlug } from "@/sanity/fetch";
 
 interface Props {
@@ -107,7 +107,7 @@ export default async function ArticlePage(props: Props) {
           author: article.authors?.map((author) => ({
             "@type": "Person",
             name: author.name,
-            url: `https://bensonorbit.com/authors/${author.slug}`,
+            url: fullUrl(`/authors/${author.slug}`),
           })),
           datePublished: article.date,
           headline: article.title,

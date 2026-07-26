@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
 
+import { fullUrl } from "@/lib/utils";
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       allow: "/",
       userAgent: "*",
     },
-    sitemap: "https://bensonorbit.com/sitemap.xml",
+    sitemap: fullUrl("/sitemap.xml"),
   };
 }

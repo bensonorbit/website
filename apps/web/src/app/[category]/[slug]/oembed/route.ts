@@ -1,3 +1,4 @@
+import { fullUrl } from "@/lib/utils";
 import { getArticleBySlug } from "@/sanity/fetch";
 
 export async function GET(
@@ -13,10 +14,10 @@ export async function GET(
   return Response.json({
     author_name: article.authors?.[0].name,
     author_url: article.authors?.[0]
-      ? `https://bensonorbit.com/authors/${article.authors[0].slug}`
+      ? fullUrl(`/authors/${article.authors[0].slug}`)
       : undefined,
     provider_name: "The Benson Orbit",
-    provider_url: "https://bensonorbit.com",
+    provider_url: fullUrl(),
     title: article.title,
     type: "link",
     version: "1.0",

@@ -9,7 +9,7 @@ import { DateFormat } from "@/components/date-format";
 import { ExternalLinkIcon } from "@/components/icons";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { socials } from "@/lib/data";
-import { mergeMeta } from "@/lib/utils";
+import { fullUrl, mergeMeta } from "@/lib/utils";
 import { getLatestArticles, getSettings } from "@/sanity/fetch";
 import type { LatestArticlesQueryResult } from "@/sanity/types";
 
@@ -95,7 +95,7 @@ export default async function HomePage() {
           "@type": "WebSite",
           alternateName: ["Benson Orbit", "The Orbit", "Orbit"],
           name: "The Benson Orbit",
-          url: "https://bensonorbit.com",
+          url: fullUrl(),
         }}
       />
 
@@ -110,10 +110,10 @@ export default async function HomePage() {
           description:
             "The student-run newspaper of Benson Polytechnic High School in Portland, Oregon.",
           email: "contact@bensonorbit.com",
-          logo: "https://bensonorbit.com/logo-1024.webp",
+          logo: fullUrl("/logo-1024.webp"),
           name: "The Benson Orbit",
           sameAs: socials.map((social) => social.href),
-          url: "https://bensonorbit.com",
+          url: fullUrl(),
         }}
       />
     </>

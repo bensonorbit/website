@@ -7,7 +7,7 @@ import { Noto_Serif, Public_Sans } from "next/font/google";
 
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar/navbar";
-import { mergeMeta } from "@/lib/utils";
+import { mergeMeta, siteUrl } from "@/lib/utils";
 
 export const metadata = mergeMeta({
   alternates: {
@@ -15,6 +15,7 @@ export const metadata = mergeMeta({
       "application/atom+xml": "/atom.xml",
     },
   },
+  metadataBase: siteUrl,
   title: {
     default: "The Benson Orbit",
     template: "%s | The Benson Orbit",
