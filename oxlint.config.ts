@@ -9,7 +9,7 @@ export default defineConfig({
     ...(core.ignorePatterns || []),
     ...(next.ignorePatterns || []),
     ...(react.ignorePatterns || []),
-    "sanity.types.ts",
+    "apps/web/src/sanity/types.ts",
   ],
   rules: {
     "eslint/func-style": ["error", "declaration"],

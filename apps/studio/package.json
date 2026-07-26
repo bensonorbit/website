@@ -1,0 +1,24 @@
+{
+  "name": "@bensonorbit/studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate"
+  },
+  "dependencies": {
+    "@sanity/icons": "^5.0.0",
+    "@sanity/vision": "^6.4.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "sanity": "^6.4.0",
+    "styled-components": "^6.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "typescript": "5.8.3"
+  }
+}

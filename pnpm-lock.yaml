@@ -11,6 +11,61 @@ overrides:
 importers:
 
   .:
+    devDependencies:
+      lefthook:
+        specifier: ^2.1.10
+        version: 2.1.10
+      lint-staged:
+        specifier: ^17.0.8
+        version: 17.0.8
+      oxfmt:
+        specifier: ^0.58.0
+        version: 0.58.0
+      oxlint:
+        specifier: ^1.73.0
+        version: 1.73.0
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+      ultracite:
+        specifier: 7.9.3
+        version: 7.9.3(eslint@9.39.4(jiti@2.7.0))(oxfmt@0.58.0)(oxlint@1.73.0)(typescript@5.8.3)
+
+  apps/studio:
+    dependencies:
+      '@sanity/icons':
+        specifier: ^5.0.0
+        version: 5.0.0(react@19.2.7)
+      '@sanity/vision':
+        specifier: ^6.4.0
+        version: 6.4.0(6ca94cfdf1192441dba337aff727df2c)
+      react:
+        specifier: 19.2.7
+        version: 19.2.7
+      react-dom:
+        specifier: 19.2.7
+        version: 19.2.7(react@19.2.7)
+      sanity:
+        specifier: ^6.4.0
+        version: 6.4.0(@babel/core@7.29.7)(@babel/runtime@7.29.7)(@emotion/is-prop-valid@1.4.0)(@noble/hashes@2.2.0)(@oclif/core@4.11.14)(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/runtime@7.29.7)(rolldown@1.1.5)(vite@8.1.4(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.37.0)(tsx@4.23.0)(yaml@2.9.0)))(@sanity/cli-core@2.2.1(@noble/hashes@2.2.0)(@types/node@24.13.3)(esbuild@0.28.1)(terser@5.37.0)(yaml@2.9.0))(@types/node@24.13.3)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(esbuild@0.28.1)(immer@10.1.1)(jiti@2.7.0)(oxfmt@0.58.0)(prismjs@1.27.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rolldown@1.1.5)(styled-components@6.4.3(css-to-react-native@3.2.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(terser@5.37.0)(typescript@5.8.3)
+      styled-components:
+        specifier: ^6.4.3
+        version: 6.4.3(css-to-react-native@3.2.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+    devDependencies:
+      '@types/node':
+        specifier: ^24.13.3
+        version: 24.13.3
+      '@types/react':
+        specifier: 19.2.17
+        version: 19.2.17
+      '@types/react-dom':
+        specifier: 19.2.3
+        version: 19.2.3(@types/react@19.2.17)
+      typescript:
+        specifier: 5.8.3
+        version: 5.8.3
+
+  apps/web:
     dependencies:
       '@fancyapps/ui':
         specifier: ^6.1.14
@@ -24,15 +79,6 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.20
         version: 0.5.20(tailwindcss@4.3.2)
-      '@types/node':
-        specifier: ^24.13.3
-        version: 24.13.3
-      '@types/react':
-        specifier: 19.2.17
-        version: 19.2.17
-      '@types/react-dom':
-        specifier: 19.2.3
-        version: 19.2.3(@types/react@19.2.17)
       '@vercel/analytics':
         specifier: ^2.0.1
         version: 2.0.1(next@16.3.0-preview.9(@babel/core@7.29.7)(@types/node@24.13.3)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(react@19.2.7)
@@ -69,37 +115,19 @@ importers:
       tailwindcss:
         specifier: 4.3.2
         version: 4.3.2
+    devDependencies:
+      '@types/node':
+        specifier: ^24.13.3
+        version: 24.13.3
+      '@types/react':
+        specifier: 19.2.17
+        version: 19.2.17
+      '@types/react-dom':
+        specifier: 19.2.3
+        version: 19.2.3(@types/react@19.2.17)
       typescript:
         specifier: 5.8.3
         version: 5.8.3
-    devDependencies:
-      '@sanity/icons':
-        specifier: ^5.0.0
-        version: 5.0.0(react@19.2.7)
-      '@sanity/vision':
-        specifier: ^6.4.0
-        version: 6.4.0(6ca94cfdf1192441dba337aff727df2c)
-      lefthook:
-        specifier: ^2.1.10
-        version: 2.1.10
-      lint-staged:
-        specifier: ^17.0.8
-        version: 17.0.8
-      oxfmt:
-        specifier: ^0.58.0
-        version: 0.58.0
-      oxlint:
-        specifier: ^1.73.0
-        version: 1.73.0
-      sanity:
-        specifier: ^6.4.0
-        version: 6.4.0(@babel/core@7.29.7)(@babel/runtime@7.29.7)(@emotion/is-prop-valid@1.4.0)(@noble/hashes@2.2.0)(@oclif/core@4.11.14)(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/runtime@7.29.7)(rolldown@1.1.5)(vite@8.1.4(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.37.0)(tsx@4.23.0)(yaml@2.9.0)))(@sanity/cli-core@2.2.1(@noble/hashes@2.2.0)(@types/node@24.13.3)(esbuild@0.28.1)(terser@5.37.0)(yaml@2.9.0))(@types/node@24.13.3)(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(esbuild@0.28.1)(immer@10.1.1)(jiti@2.7.0)(oxfmt@0.58.0)(prismjs@1.27.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rolldown@1.1.5)(styled-components@6.4.3(css-to-react-native@3.2.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(terser@5.37.0)(typescript@5.8.3)
-      styled-components:
-        specifier: ^6.4.3
-        version: 6.4.3(css-to-react-native@3.2.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
-      ultracite:
-        specifier: 7.9.3
-        version: 7.9.3(eslint@9.39.4(jiti@2.7.0))(oxfmt@0.58.0)(oxlint@1.73.0)(typescript@5.8.3)
 
 packages:
 

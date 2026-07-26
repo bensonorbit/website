@@ -1,9 +1,9 @@
 import { DocumentTextIcon } from "@sanity/icons/DocumentText";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
-import { author } from "@/sanity/schemas/author";
-import { category } from "@/sanity/schemas/category";
-import { image } from "@/sanity/schemas/image";
+import { author } from "./author";
+import { category } from "./category";
+import { image } from "./image";
 
 export const article = defineType({
   fields: [

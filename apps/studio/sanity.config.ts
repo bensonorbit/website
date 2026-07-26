@@ -3,13 +3,13 @@ import type { PluginOptions } from "sanity";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 
-import { BensonAstronautIcon } from "@/components/icons";
-import { apiVersion, dataset, projectId } from "@/sanity/constants";
-import { article } from "@/sanity/schemas/article";
-import { author } from "@/sanity/schemas/author";
-import { category } from "@/sanity/schemas/category";
-import { settings } from "@/sanity/schemas/settings";
-import { pageStructure, singletonPlugin } from "@/sanity/singleton";
+import { BensonAstronautIcon } from "./src/benson-astronaut-icon";
+import { apiVersion, dataset, projectId } from "./src/constants";
+import { article } from "./src/schemas/article";
+import { author } from "./src/schemas/author";
+import { category } from "./src/schemas/category";
+import { settings } from "./src/schemas/settings";
+import { pageStructure, singletonPlugin } from "./src/singleton";
 
 const plugins: PluginOptions[] = [
   structureTool({ structure: pageStructure([settings]) }),

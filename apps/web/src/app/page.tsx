@@ -10,8 +10,8 @@ import { ExternalLinkIcon } from "@/components/icons";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { socials } from "@/lib/data";
 import { mergeMeta } from "@/lib/utils";
-import type { LatestArticlesQueryResult } from "@/sanity.types";
 import { getLatestArticles, getSettings } from "@/sanity/fetch";
+import type { LatestArticlesQueryResult } from "@/sanity/types";
 
 export const metadata = mergeMeta({
   description: "The student-run newspaper of Benson Polytechnic High School",

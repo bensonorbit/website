@@ -3,5 +3,8 @@ import ultracite from "ultracite/oxfmt";
 
 export default defineConfig({
   ...ultracite,
-  ignorePatterns: [...(ultracite.ignorePatterns || []), "sanity.types.ts"],
+  ignorePatterns: [
+    ...(ultracite.ignorePatterns || []),
+    "apps/web/src/sanity/types.ts",
+  ],
 });

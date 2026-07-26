@@ -1,7 +1,7 @@
 import { CogIcon } from "@sanity/icons/Cog";
 import { defineField, defineType } from "sanity";
 
-import { article } from "@/sanity/schemas/article";
+import { article } from "./article";
 
 export const settings = defineType({
   fields: [

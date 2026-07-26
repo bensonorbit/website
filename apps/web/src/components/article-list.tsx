@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { Authors } from "@/components/authors";
 import { DateFormat } from "@/components/date-format";
-import type { LatestArticlesQueryResult } from "@/sanity.types";
+import type { LatestArticlesQueryResult } from "@/sanity/types";
 
 export function ArticleList(props: {
   articles: LatestArticlesQueryResult;
