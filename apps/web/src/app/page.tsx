@@ -162,7 +162,6 @@ function HeroArticle(props: { article: LatestArticlesQueryResult[0] }) {
           blurDataURL={coverImage.lqip || undefined}
           sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, (min-width: 768px) 65vw, 100vw"
           preload
-          fetchPriority="high"
         />
 
         <h2 className="my-3 text-3xl font-bold group-hover:underline md:my-6 md:text-4xl">

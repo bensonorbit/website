@@ -17,6 +17,7 @@ export function NavbarLogo(props: { className?: string }) {
         height="107"
         alt="The Benson Orbit"
         className="h-auto w-52 lg:w-64"
+        loading="eager"
       />
     </Link>
   );
