@@ -344,7 +344,7 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | Geopoint;
 
-// Source: sanity/fetch.ts
+// Source: ../web/src/sanity/fetch.ts
 // Variable: articleQuery
 // Query: *[_type == "article" && slug.current == $slug] [0] {			content[] {				...,				_type == "image" => {					"url": @.asset->url,					"aspectRatio": @.asset->metadata.dimensions.aspectRatio,					"lqip": @.asset->metadata.lqip,					alt,					caption,				}			},			// groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  "primaryCategory": categories[0]-> {    _id,    "title": coalesce(title, "Untitled Category"),    "slug": slug.current,    "showArticleEyebrow": coalesce(showArticleEyebrow, false),  },  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }		}
 export type ArticleQueryResult = {
@@ -409,7 +409,7 @@ export type ArticleQueryResult = {
   };
 } | null;
 
-// Source: sanity/fetch.ts
+// Source: ../web/src/sanity/fetch.ts
 // Variable: latestArticlesQuery
 // Query: *[_type == "article"] | order(date desc) [0...20] {			// groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  "primaryCategory": categories[0]-> {    _id,    "title": coalesce(title, "Untitled Category"),    "slug": slug.current,    "showArticleEyebrow": coalesce(showArticleEyebrow, false),  },  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }		}
 export type LatestArticlesQueryResult = Array<{
@@ -439,7 +439,7 @@ export type LatestArticlesQueryResult = Array<{
   };
 }>;
 
-// Source: sanity/fetch.ts
+// Source: ../web/src/sanity/fetch.ts
 // Variable: categoryQuery
 // Query: *[_type == "category" && slug.current == $slug] [0] {      _id,      "title": coalesce(title, "Untitled Category"),      "slug": slug.current,      description,      "articles": *[_type == "article" && references(^._id)] | order(date desc) [0...14] {        // groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  "primaryCategory": categories[0]-> {    _id,    "title": coalesce(title, "Untitled Category"),    "slug": slug.current,    "showArticleEyebrow": coalesce(showArticleEyebrow, false),  },  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }      }    }
 export type CategoryQueryResult = {
@@ -492,7 +492,7 @@ export type CategoryQueryResult = {
   }>;
 } | null;
 
-// Source: sanity/fetch.ts
+// Source: ../web/src/sanity/fetch.ts
 // Variable: allCategoriesQuery
 // Query: *[_type == "category"] | order(title asc) {      _id,      "title": coalesce(title, "Untitled Category"),      "slug": slug.current,    }
 export type AllCategoriesQueryResult = Array<{
@@ -501,7 +501,7 @@ export type AllCategoriesQueryResult = Array<{
   slug: string;
 }>;
 
-// Source: sanity/fetch.ts
+// Source: ../web/src/sanity/fetch.ts
 // Variable: allArticlesQuery
 // Query: *[_type == "article"] | order(date desc) {			// groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  "primaryCategory": categories[0]-> {    _id,    "title": coalesce(title, "Untitled Category"),    "slug": slug.current,    "showArticleEyebrow": coalesce(showArticleEyebrow, false),  },  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }		}
 export type AllArticlesQueryResult = Array<{
@@ -531,7 +531,7 @@ export type AllArticlesQueryResult = Array<{
   };
 }>;
 
-// Source: sanity/fetch.ts
+// Source: ../web/src/sanity/fetch.ts
 // Variable: settingsQuery
 // Query: *[_type == "settings"] [0] {			...,			"featuredArticles": featuredArticles[]-> {				// groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  "primaryCategory": categories[0]-> {    _id,    "title": coalesce(title, "Untitled Category"),    "slug": slug.current,    "showArticleEyebrow": coalesce(showArticleEyebrow, false),  },  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }			}		}
 export type SettingsQueryResult = {
@@ -586,7 +586,7 @@ export type SettingsQueryResult = {
   }> | null;
 } | null;
 
-// Source: sanity/fetch.ts
+// Source: ../web/src/sanity/fetch.ts
 // Variable: authorQuery
 // Query: *[_type == "author" && slug.current == $slug] [0] {			...,			"photo": {				"url": photo.asset->url,				"aspectRatio": photo.asset->metadata.dimensions.aspectRatio,				"lqip": photo.asset->metadata.lqip,			},			"articles": *[_type == "article" && references(^._id)] | order(date desc) {				// groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  "primaryCategory": categories[0]-> {    _id,    "title": coalesce(title, "Untitled Category"),    "slug": slug.current,    "showArticleEyebrow": coalesce(showArticleEyebrow, false),  },  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }			}		}
 export type AuthorQueryResult = {
@@ -649,7 +649,7 @@ export type AuthorQueryResult = {
   }>;
 } | null;
 
-// Source: sanity/fetch.ts
+// Source: ../web/src/sanity/fetch.ts
 // Variable: allAuthorsQuery
 // Query: *[_type == "author"] {			slug,			role,			name,		}
 export type AllAuthorsQueryResult = Array<{
@@ -657,6 +657,11 @@ export type AllAuthorsQueryResult = Array<{
   role: string;
   name: string;
 }>;
+
+// Source: ../web/src/sanity/rewrites.ts
+// Variable: categorySlugsQuery
+// Query: *[_type == "category"].slug.current
+export type CategorySlugsQueryResult = Array<string>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -670,5 +675,6 @@ declare module "@sanity/client" {
     '\n\t\t*[_type == "settings"] [0] {\n\t\t\t...,\n\t\t\t"featuredArticles": featuredArticles[]-> {\n\t\t\t\t// groq\n  _id,\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  summary,\n  "primaryCategory": categories[0]-> {\n    _id,\n    "title": coalesce(title, "Untitled Category"),\n    "slug": slug.current,\n    "showArticleEyebrow": coalesce(showArticleEyebrow, false),\n  },\n  "date": coalesce(date, _updatedAt),\n  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),\n  authors[] -> {\n    "name": coalesce(name, "Unknown Author"),\n    "slug": slug.current,\n  },\n  "coverImage": {\n\t"url": coverImage.asset->url,\n\t"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,\n\t"lqip": coverImage.asset->metadata.lqip,\n\t"alt": coverImage.alt,\n\t"caption": coverImage.caption,\n\t"credit": coverImage.credit,\n  }\n\n\t\t\t}\n\t\t}\n\t': SettingsQueryResult;
     '\n\t\t*[_type == "author" && slug.current == $slug] [0] {\n\t\t\t...,\n\t\t\t"photo": {\n\t\t\t\t"url": photo.asset->url,\n\t\t\t\t"aspectRatio": photo.asset->metadata.dimensions.aspectRatio,\n\t\t\t\t"lqip": photo.asset->metadata.lqip,\n\t\t\t},\n\t\t\t"articles": *[_type == "article" && references(^._id)] | order(date desc) {\n\t\t\t\t// groq\n  _id,\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  summary,\n  "primaryCategory": categories[0]-> {\n    _id,\n    "title": coalesce(title, "Untitled Category"),\n    "slug": slug.current,\n    "showArticleEyebrow": coalesce(showArticleEyebrow, false),\n  },\n  "date": coalesce(date, _updatedAt),\n  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),\n  authors[] -> {\n    "name": coalesce(name, "Unknown Author"),\n    "slug": slug.current,\n  },\n  "coverImage": {\n\t"url": coverImage.asset->url,\n\t"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,\n\t"lqip": coverImage.asset->metadata.lqip,\n\t"alt": coverImage.alt,\n\t"caption": coverImage.caption,\n\t"credit": coverImage.credit,\n  }\n\n\t\t\t}\n\t\t}\n\t': AuthorQueryResult;
     '\n\t\t*[_type == "author"] {\n\t\t\tslug,\n\t\t\trole,\n\t\t\tname,\n\t\t}\n\t': AllAuthorsQueryResult;
+    '*[_type == "category"].slug.current': CategorySlugsQueryResult;
   }
 }
