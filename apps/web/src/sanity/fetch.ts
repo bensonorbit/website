@@ -2,12 +2,7 @@ import "server-only";
 import { createClient, defineQuery } from "next-sanity";
 import { cacheLife, cacheTag } from "next/cache";
 
-import { apiVersion, dataset, projectId, assert } from "@/sanity/constants";
-
-const token = assert(
-  process.env.SANITY_API_READ_TOKEN,
-  "SANITY_API_READ_TOKEN"
-);
+import { apiVersion, dataset, projectId, token } from "@/sanity/constants";
 
 const client = createClient({
   apiVersion,

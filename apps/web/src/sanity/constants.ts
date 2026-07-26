@@ -17,5 +17,10 @@ export const projectId = assert(
   "SANITY_API_PROJECT_ID"
 );
 
+export const token = assert(
+  process.env.SANITY_API_READ_TOKEN,
+  "SANITY_API_READ_TOKEN"
+);
+
 // See https://www.sanity.io/docs/api-versioning for how versioning works
 export const apiVersion = "2025-01-01";
