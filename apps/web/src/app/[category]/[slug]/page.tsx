@@ -7,6 +7,7 @@ import { Authors } from "@/components/authors";
 import { CustomPortableText } from "@/components/custom-portable-text";
 import { DateFormat } from "@/components/date-format";
 import { Fancybox } from "@/components/fancybox";
+import { newsMediaOrganization, webSite } from "@/lib/structured-data";
 import { fullUrl, mergeMeta } from "@/lib/utils";
 import { getArticleBySlug } from "@/sanity/fetch";
 
@@ -75,6 +76,8 @@ export default async function ArticlePage(props: Props) {
     redirect(article.url);
   }
 
+  const articleUrl = fullUrl(article.url);
+
   return (
     <article className="mx-auto prose prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-sm prose-img:drop-shadow-xs prose-img:hover:cursor-zoom-in">
       {article.primaryCategory.showArticleEyebrow && (
@@ -104,13 +107,17 @@ export default async function ArticlePage(props: Props) {
       <JsonLd<NewsArticle>
         item={{
           "@context": "https://schema.org",
+          "@id": `${articleUrl}#article`,
           "@type": "NewsArticle",
+          articleSection: article.categories.map((category) => category.title),
           author: article.authors?.map((author) => ({
             "@type": "Person",
             name: author.name,
             url: fullUrl(`/authors/${author.slug}`),
           })),
+          dateModified: article.dateModified,
           datePublished: article.date,
+          description: article.summary || undefined,
           headline: article.title,
           image: [
             // 16:9
@@ -122,6 +129,16 @@ export default async function ArticlePage(props: Props) {
             // 1:1
             `${article.coverImage.url}?w=800&h=800&fit=crop`,
           ],
+          inLanguage: "en-US",
+          isAccessibleForFree: true,
+          isPartOf: webSite,
+          mainEntityOfPage: {
+            "@id": articleUrl,
+            "@type": "WebPage",
+          },
+          publisher: newsMediaOrganization,
+          thumbnailUrl: `${article.coverImage.url}?w=1200&h=630&fit=crop`,
+          url: articleUrl,
         }}
       />
     </article>
