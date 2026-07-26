@@ -26,7 +26,7 @@ import { parseBody } from "next-sanity/webhook";
 import { revalidateTag } from "next/cache";
 import type { NextRequest } from "next/server";
 
-import { assert } from "@/sanity/constants";
+import { assert } from "@/lib/utils";
 
 interface DocumentSnapshot {
   _type: string;
@@ -130,6 +130,27 @@ function getTagsToRevalidate(body: WebhookBody) {
   return null;
 }
 
+function didCategorySlugChange(body: WebhookBody) {
+  const { after, before } = body;
+  const type = after?._type ?? before?._type;
+
+  return (
+    type === "category" && (before?.slug ?? null) !== (after?.slug ?? null)
+  );
+}
+
+async function triggerDeployment() {
+  const deployHookUrl = assert(
+    process.env.VERCEL_DEPLOY_HOOK_URL,
+    "VERCEL_DEPLOY_HOOK_URL"
+  );
+  const response = await fetch(deployHookUrl, { method: "POST" });
+
+  if (!response.ok) {
+    throw new Error("Failed to trigger deployment");
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const secret = assert(
@@ -157,6 +178,10 @@ export async function POST(req: NextRequest) {
 
     for (const tag of tags) {
       revalidateTag(tag, "max");
+    }
+
+    if (didCategorySlugChange(body)) {
+      await triggerDeployment();
     }
 
     return new Response(null, { status: 200 });
