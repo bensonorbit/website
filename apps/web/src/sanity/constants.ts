@@ -1,4 +1,4 @@
-import { assert } from "@/lib/utils";
+import { assert } from "../lib/utils";
 
 export const dataset = assert(
   process.env.SANITY_API_DATASET,
