@@ -55,6 +55,11 @@ const nextConfig: NextConfig = {
         permanent: true,
         source: "/studio",
       },
+      {
+        destination: "/:category",
+        permanent: true,
+        source: "/category/:category",
+      },
     ];
   },
 };
