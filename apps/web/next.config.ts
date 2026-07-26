@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+import { getSanityRewrites } from "./src/sanity/rewrites";
+
 const isDevelopment = process.env.NODE_ENV === "development";
 
 const contentSecurityPolicy = [
@@ -55,7 +57,15 @@ const nextConfig: NextConfig = {
         permanent: true,
         source: "/studio",
       },
+      {
+        destination: "/:category",
+        permanent: true,
+        source: "/category/:category",
+      },
     ];
+  },
+  async rewrites() {
+    return await getSanityRewrites();
   },
 };
 
