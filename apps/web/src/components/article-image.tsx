@@ -25,8 +25,9 @@ export function ArticleImage(props: Props) {
         width={width}
         height={height}
         alt={props.alt || ""}
-        sizes="(max-width: 581px) 100vw, 581px"
+        sizes="(max-width: 629px) calc(100vw - 48px), 581px"
         fetchPriority={props.isCover ? "high" : undefined}
+        loading={props.isCover ? "eager" : undefined}
         placeholder={props.lqip ? "blur" : undefined}
         blurDataURL={props.lqip || undefined}
         data-fancybox

@@ -160,8 +160,9 @@ function HeroArticle(props: { article: LatestArticlesQueryResult[0] }) {
           className="rounded-sm drop-shadow-xs"
           placeholder="blur"
           blurDataURL={coverImage.lqip || undefined}
-          sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, (min-width: 768px) 65vw, 100vw"
+          sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, (min-width: 768px) 65vw, calc(100vw - 48px)"
           preload
+          fetchPriority="high"
         />
 
         <h2 className="my-3 text-3xl font-bold group-hover:underline md:my-6 md:text-4xl">
@@ -211,7 +212,7 @@ function TopArticle(props: { article: LatestArticlesQueryResult[0] }) {
             className="rounded-sm object-cover drop-shadow-xs"
             placeholder="blur"
             blurDataURL={coverImage.lqip || undefined}
-            sizes="(min-width: 1280px) 300px, (min-width: 1024px) 25vw, (min-width: 768px) 35vw, 100vw"
+            sizes="(min-width: 1280px) 300px, (min-width: 1024px) 25vw, (min-width: 768px) 35vw, calc(100vw - 48px)"
           />
         </div>
 
