@@ -48,6 +48,8 @@ export default async function HomePage() {
 
   return (
     <>
+      <h1 className="sr-only">The Benson Orbit</h1>
+
       <div className="grid grid-cols-8">
         {heroArticle && (
           <Left>
