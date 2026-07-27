@@ -1,5 +1,6 @@
 import { Image } from "next-sanity/image";
 import Link from "next/link";
+import { Suspense } from "react";
 import { JsonLd } from "react-schemaorg";
 import type { NewsMediaOrganization, WebSite } from "schema-dts";
 
@@ -11,7 +12,7 @@ import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { socials } from "@/lib/data";
 import { newsMediaOrganization, webSite } from "@/lib/structured-data";
 import { fullUrl, mergeMeta } from "@/lib/utils";
-import { getLatestArticles, getSettings } from "@/sanity/fetch";
+import { getFeaturedArticles, getLatestArticles } from "@/sanity/fetch";
 import type { LatestArticlesQueryResult } from "@/sanity/types";
 
 export const metadata = mergeMeta({
@@ -27,66 +28,25 @@ export const metadata = mergeMeta({
   },
 });
 
-export default async function HomePage() {
-  const [settings, articles] = await Promise.all([
-    getSettings(),
-    getLatestArticles(),
-  ]);
-
-  // Featured articles are defined in the studio
-  const featuredArticles = settings?.featuredArticles || [];
-
-  // First featured article is the hero article
-  const heroArticle = featuredArticles.at(0);
-
-  // Next 3 featured articles are top articles
-  const topArticles = featuredArticles.slice(1, 4);
-
-  // Remaining featured articles are in the right column
-  const moreFeaturedArticles = featuredArticles.slice(4);
-
-  const latestArticles = articles.filter(
-    (article) =>
-      !featuredArticles.some((featured) => featured._id === article._id)
-  );
+export default function HomePage() {
+  const featuredArticlesPromise = getFeaturedArticles();
+  const latestArticlesPromise = getLatestArticles();
 
   return (
     <>
       <h1 className="sr-only">The Benson Orbit</h1>
 
-      <div className="grid grid-cols-8">
-        {heroArticle && (
-          <Left>
-            <HeroArticle article={heroArticle} />
-          </Left>
-        )}
-
-        {topArticles.length > 0 && (
-          <Middle>
-            {topArticles.map((article) => (
-              <TopArticle article={article} key={article._id} />
-            ))}
-          </Middle>
-        )}
-
-        {moreFeaturedArticles.length > 0 && (
-          <Right>
-            {moreFeaturedArticles.map((article) => (
-              <FeaturedArticle article={article} key={article._id} />
-            ))}
-          </Right>
-        )}
-      </div>
+      <Suspense fallback="Loading featured articles...">
+        <FeaturedArticles featuredArticlesPromise={featuredArticlesPromise} />
+      </Suspense>
 
       <div className="flex flex-col gap-6 pt-8 lg:flex-row">
-        {latestArticles.length > 0 && (
-          <section>
-            <h2 className="max-w-3xl border-b pb-3 font-sans font-medium tracking-wide uppercase">
-              Latest
-            </h2>
-            <ArticleList articles={latestArticles} />
-          </section>
-        )}
+        <Suspense fallback="Loading latest articles...">
+          <LatestArticles
+            featuredArticlesPromise={featuredArticlesPromise}
+            latestArticlesPromise={latestArticlesPromise}
+          />
+        </Suspense>
 
         <aside className="sticky top-23 mx-auto h-fit w-full max-w-lg grow basis-0">
           <SocialMediaFollowCard />
@@ -107,6 +67,72 @@ export default async function HomePage() {
         }}
       />
     </>
+  );
+}
+
+async function FeaturedArticles(props: {
+  featuredArticlesPromise: ReturnType<typeof getFeaturedArticles>;
+}) {
+  const featuredArticles = await props.featuredArticlesPromise;
+
+  // First featured article is the hero article
+  const heroArticle = featuredArticles.at(0);
+
+  // Next 3 featured articles are top articles
+  const topArticles = featuredArticles.slice(1, 4);
+
+  // Remaining featured articles are in the right column
+  const moreFeaturedArticles = featuredArticles.slice(4);
+
+  return (
+    <div className="grid grid-cols-8">
+      {heroArticle && (
+        <Left>
+          <HeroArticle article={heroArticle} />
+        </Left>
+      )}
+
+      {topArticles.length > 0 && (
+        <Middle>
+          {topArticles.map((article) => (
+            <TopArticle article={article} key={article._id} />
+          ))}
+        </Middle>
+      )}
+
+      {moreFeaturedArticles.length > 0 && (
+        <Right>
+          {moreFeaturedArticles.map((article) => (
+            <FeaturedArticle article={article} key={article._id} />
+          ))}
+        </Right>
+      )}
+    </div>
+  );
+}
+
+async function LatestArticles(props: {
+  featuredArticlesPromise: ReturnType<typeof getFeaturedArticles>;
+  latestArticlesPromise: ReturnType<typeof getLatestArticles>;
+}) {
+  const featuredArticles = await props.featuredArticlesPromise;
+  const articles = await props.latestArticlesPromise;
+  const latestArticles = articles.filter(
+    (article) =>
+      !featuredArticles.some((featured) => featured._id === article._id)
+  );
+
+  if (latestArticles.length === 0) {
+    return null;
+  }
+
+  return (
+    <section>
+      <h2 className="max-w-3xl border-b pb-3 font-sans font-medium tracking-wide uppercase">
+        Latest
+      </h2>
+      <ArticleList articles={latestArticles} />
+    </section>
   );
 }
 
