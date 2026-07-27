@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArticleList } from "@/components/article-list";
 import { CustomPortableText } from "@/components/custom-portable-text";
 import { fullUrl, mergeMeta } from "@/lib/utils";
-import { getCategoryBySlug } from "@/sanity/fetch";
+import { getArticlesByCategorySlug, getCategoryBySlug } from "@/sanity/fetch";
 
 interface Props {
   params: Promise<{ category: string }>;
@@ -40,6 +40,7 @@ export default async function CategoryPage(props: Props) {
   if (!category) {
     notFound();
   }
+  const articles = await getArticlesByCategorySlug(slug);
 
   return (
     <>
@@ -51,8 +52,8 @@ export default async function CategoryPage(props: Props) {
           <CustomPortableText value={category.description} />
         </div>
       )}
-      {category.articles.length ? (
-        <ArticleList articles={category.articles} />
+      {articles.length ? (
+        <ArticleList articles={articles} />
       ) : (
         <p className="pt-3">
           We haven&apos;t published anything in that category yet.

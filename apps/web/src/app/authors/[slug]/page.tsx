@@ -8,7 +8,7 @@ import { ArticleList } from "@/components/article-list";
 import { CustomPortableText } from "@/components/custom-portable-text";
 import { newsMediaOrganization, webSite } from "@/lib/structured-data";
 import { fullUrl, mergeMeta } from "@/lib/utils";
-import { getAuthorBySlug } from "@/sanity/fetch";
+import { getArticlesByAuthorSlug, getAuthorBySlug } from "@/sanity/fetch";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -48,6 +48,7 @@ export default async function AuthorPage(props: Props) {
   if (!author) {
     notFound();
   }
+  const articles = await getArticlesByAuthorSlug(params.slug);
   const firstName = author.name?.split(" ")[0] || "this author";
   const authorUrl = fullUrl(`/authors/${params.slug}`);
   const personId = `${authorUrl}#person`;
@@ -82,11 +83,11 @@ export default async function AuthorPage(props: Props) {
 
       <CustomPortableText value={author.bio} />
 
-      {author.articles.length > 0 && (
+      {articles.length > 0 && (
         <>
           <h2 className="mt-0 mb-0 py-3">Articles by {firstName}</h2>
           <ArticleList
-            articles={author.articles}
+            articles={articles}
             className="not-prose mx-auto border-t text-foreground"
           />
         </>
@@ -99,7 +100,7 @@ export default async function AuthorPage(props: Props) {
           "@type": "ProfilePage",
           dateCreated: author._createdAt,
           dateModified: author._updatedAt,
-          hasPart: author.articles.map((article) => ({
+          hasPart: articles.map((article) => ({
             "@id": `${fullUrl(article.url)}#article`,
             "@type": "NewsArticle",
             author: {
