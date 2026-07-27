@@ -9,15 +9,30 @@ export async function Footer() {
   return (
     <footer className="border-t bg-gray-100 text-sm text-gray-600 md:text-base dark:bg-black dark:text-gray-400">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-x-10 lg:py-12 xl:border-x print:px-0">
-        <section className="flex max-w-sm flex-col items-start gap-3 sm:col-span-2 lg:col-span-2">
+        <section className="flex max-w-sm flex-col items-start sm:col-span-2 lg:col-span-2">
           <FooterWordmark />
 
-          <p>
+          <p className="my-3">
             The student-run newspaper of Benson Polytechnic High School in
             Portland, Oregon.
           </p>
 
-          <p className="mt-1 text-xs">
+          <p className="text-xs *:hover:underline">
+            ISSN{" "}
+            <a href="https://portal.issn.org/resource/ISSN/3071-5261">
+              3071-5261
+            </a>{" "}
+            (Print), ISSN{" "}
+            <a href="https://portal.issn.org/resource/ISSN/3071-527X">
+              3071-527X
+            </a>{" "}
+            (Online), ISSN-L{" "}
+            <a href="https://portal.issn.org/resource/ISSN/3071-527X">
+              3071-527X
+            </a>
+          </p>
+
+          <p className="text-xs mt-1">
             &copy; 2024-{year} The Benson Orbit. All rights reserved.
           </p>
         </section>
