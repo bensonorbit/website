@@ -45,7 +45,7 @@ export default function HomePage() {
             Latest
           </h2>
 
-          <Suspense fallback={<ArticleListSkeleton />}>
+          <Suspense fallback={<ArticleListSkeleton length={10} />}>
             <LatestArticles
               featuredArticlesPromise={featuredArticlesPromise}
               latestArticlesPromise={latestArticlesPromise}
