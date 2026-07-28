@@ -26,7 +26,7 @@ export function ArticleList({
 export function ArticleListSkeleton(props: { length: number }) {
   return (
     <>
-      <output className="sr-only">Loading latest articles...</output>
+      <output className="sr-only">Loading articles...</output>
 
       <div className="flex max-w-3xl animate-pulse flex-col motion-reduce:animate-none">
         {Array.from({ length: props.length }, (_, index) => (
