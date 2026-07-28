@@ -53,7 +53,7 @@ export default function HomePage() {
           </Suspense>
         </section>
 
-        <aside className="sticky top-23 mx-auto h-fit w-full max-w-lg grow basis-0">
+        <aside className="sticky top-[calc(var(--navbar-height)+var(--spacing)*8)] mx-auto h-fit w-full max-w-lg grow basis-0">
           <SocialMediaFollowCard />
         </aside>
       </div>
