@@ -26,13 +26,15 @@ Before committing, run `pnpm run format` to format your code using [Prettier](ht
     _type,
     "slug": slug.current,
     "categorySlugs": categories[]->slug.current,
-    "authorSlugs": authors[]->slug.current
+    "authorSlugs": authors[]->slug.current,
+    "topicSlugs": topics[]->slug.current
   },
   "after": after() {
     _type,
     "slug": slug.current,
     "categorySlugs": categories[]->slug.current,
-    "authorSlugs": authors[]->slug.current
+    "authorSlugs": authors[]->slug.current,
+    "topicSlugs": topics[]->slug.current
   }
 }
 ```

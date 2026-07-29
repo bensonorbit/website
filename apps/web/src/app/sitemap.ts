@@ -5,6 +5,7 @@ import {
   getAllArticles,
   getAllAuthors,
   getAllCategories,
+  getAllTopics,
 } from "@/sanity/fetch";
 
 export default async function sitemap() {
@@ -36,6 +37,12 @@ export default async function sitemap() {
   for (const author of await getAllAuthors()) {
     entries.push({
       url: fullUrl(`/authors/${author.slug?.current}`),
+    });
+  }
+
+  for (const topic of await getAllTopics()) {
+    entries.push({
+      url: fullUrl(`/topics/${topic.slug}`),
     });
   }
 

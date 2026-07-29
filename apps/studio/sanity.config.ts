@@ -9,6 +9,7 @@ import { article } from "./src/schemas/article";
 import { author } from "./src/schemas/author";
 import { category } from "./src/schemas/category";
 import { settings } from "./src/schemas/settings";
+import { topic } from "./src/schemas/topic";
 import { pageStructure, singletonPlugin } from "./src/singleton";
 
 const plugins: PluginOptions[] = [
@@ -28,7 +29,7 @@ export default defineConfig({
   plugins,
   projectId,
   schema: {
-    types: [settings, article, author, category],
+    types: [settings, article, author, category, topic],
   },
   title: "Orbit Studio",
 });

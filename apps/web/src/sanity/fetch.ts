@@ -155,6 +155,59 @@ export async function getAllCategories() {
   return categories;
 }
 
+export async function getTopicBySlug(slug: string) {
+  "use cache: remote";
+  cacheLife("max");
+
+  const topicQuery = defineQuery(`
+    *[_type == "topic" && slug.current == $slug] [0] {
+      _id,
+      "name": coalesce(name, "Untitled Topic"),
+      "slug": slug.current,
+      description
+    }
+  `);
+
+  const topic = await client.fetch(topicQuery, { slug });
+  cacheTag(`topic:${slug}`);
+  return topic;
+}
+
+export async function getArticlesByTopicSlug(slug: string) {
+  "use cache: remote";
+  cacheLife("max");
+
+  const articlesByTopicQuery = defineQuery(`
+    *[
+      _type == "article" &&
+      $slug in topics[]->slug.current
+    ] | order(date desc) [0...14] {
+      ${articleFields}
+    }
+  `);
+
+  const articles = await client.fetch(articlesByTopicQuery, { slug });
+  cacheTag(`articles:topic:${slug}`, "topic-article-lists");
+  return articles;
+}
+
+export async function getAllTopics() {
+  "use cache: remote";
+  cacheLife("max");
+
+  const allTopicsQuery = defineQuery(`
+    *[_type == "topic"] | order(name asc) {
+      _id,
+      "name": coalesce(name, "Untitled Topic"),
+      "slug": slug.current,
+    }
+  `);
+
+  const topics = await client.fetch(allTopicsQuery, {});
+  cacheTag("topics");
+  return topics;
+}
+
 export async function getAllArticles() {
   "use cache: remote";
   cacheLife("max");

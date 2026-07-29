@@ -4,6 +4,7 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 import { author } from "./author";
 import { category } from "./category";
 import { image } from "./image";
+import { topic } from "./topic";
 
 export const article = defineType({
   fields: [
@@ -38,6 +39,18 @@ export const article = defineType({
       title: "Categories",
       type: "array",
       validation: (rule) => rule.required().min(1).unique(),
+    }),
+    defineField({
+      name: "topics",
+      of: [
+        defineArrayMember({
+          to: [{ type: topic.name }],
+          type: "reference",
+        }),
+      ],
+      title: "Topics",
+      type: "array",
+      validation: (rule) => rule.unique(),
     }),
     defineField({
       name: "content",

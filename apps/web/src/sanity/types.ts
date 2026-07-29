@@ -15,6 +15,40 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type Topic = {
+  _id: string;
+  _type: "topic";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  slug: Slug;
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
 export type CategoryReference = {
   _ref: string;
   _type: "reference";
@@ -50,12 +84,6 @@ export type Category = {
   }>;
   showArticleEyebrow?: boolean;
   parent?: CategoryReference;
-};
-
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
 };
 
 export type SanityImageAssetReference = {
@@ -117,6 +145,13 @@ export type SanityImageHotspot = {
   width: number;
 };
 
+export type TopicReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "topic";
+};
+
 export type AuthorReference = {
   _ref: string;
   _type: "reference";
@@ -136,6 +171,11 @@ export type Article = {
     {
       _key: string;
     } & CategoryReference
+  >;
+  topics?: Array<
+    {
+      _key: string;
+    } & TopicReference
   >;
   content?: Array<
     | {
@@ -324,13 +364,15 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | Topic
+  | Slug
   | CategoryReference
   | Category
-  | Slug
   | SanityImageAssetReference
   | Author
   | SanityImageCrop
   | SanityImageHotspot
+  | TopicReference
   | AuthorReference
   | Article
   | ArticleReference
@@ -521,6 +563,78 @@ export type ArticlesByCategoryQueryResult = Array<{
 export type AllCategoriesQueryResult = Array<{
   _id: string;
   title: string;
+  slug: string;
+}>;
+
+// Source: ../web/src/sanity/fetch.ts
+// Variable: topicQuery
+// Query: *[_type == "topic" && slug.current == $slug] [0] {      _id,      "name": coalesce(name, "Untitled Topic"),      "slug": slug.current,      description    }
+export type TopicQueryResult = {
+  _id: string;
+  name: string;
+  slug: string;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+} | null;
+
+// Source: ../web/src/sanity/fetch.ts
+// Variable: articlesByTopicQuery
+// Query: *[      _type == "article" &&      $slug in topics[]->slug.current    ] | order(date desc) [0...14] {      // groq  _id,  "title": coalesce(title, "Untitled"),  "slug": slug.current,  summary,  "primaryCategory": categories[0]-> {    _id,    "title": coalesce(title, "Untitled Category"),    "slug": slug.current,    "showArticleEyebrow": coalesce(showArticleEyebrow, false),  },  categories[] -> {    _id,    "title": coalesce(title, "Untitled Category"),    "slug": slug.current,    "showArticleEyebrow": coalesce(showArticleEyebrow, false),  },  "date": coalesce(date, _updatedAt),  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),  authors[] -> {    "name": coalesce(name, "Unknown Author"),    "slug": slug.current,  },  "coverImage": {	"url": coverImage.asset->url,	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,	"lqip": coverImage.asset->metadata.lqip,	"alt": coverImage.alt,	"caption": coverImage.caption,	"credit": coverImage.credit,  }    }
+export type ArticlesByTopicQueryResult = Array<{
+  _id: string;
+  title: string;
+  slug: string;
+  summary: string | null;
+  primaryCategory: {
+    _id: string;
+    title: string;
+    slug: string;
+    showArticleEyebrow: boolean | false;
+  } | null;
+  categories: Array<{
+    _id: string;
+    title: string;
+    slug: string;
+    showArticleEyebrow: boolean | false;
+  }>;
+  date: string;
+  url: string | "/";
+  authors: Array<{
+    name: string;
+    slug: string;
+  }> | null;
+  coverImage: {
+    url: string | null;
+    aspectRatio: number | null;
+    lqip: string | null;
+    alt: string | null;
+    caption: string | null;
+    credit: string | null;
+  };
+}>;
+
+// Source: ../web/src/sanity/fetch.ts
+// Variable: allTopicsQuery
+// Query: *[_type == "topic"] | order(name asc) {      _id,      "name": coalesce(name, "Untitled Topic"),      "slug": slug.current,    }
+export type AllTopicsQueryResult = Array<{
+  _id: string;
+  name: string;
   slug: string;
 }>;
 
@@ -718,6 +832,9 @@ declare module "@sanity/client" {
     '\n\t\t*[_type == "category" && slug.current == $slug] [0] {\n      _id,\n      "title": coalesce(title, "Untitled Category"),\n      "slug": slug.current,\n      description\n    }\n\t': CategoryQueryResult;
     '\n    *[\n      _type == "article" &&\n      $slug in categories[]->slug.current\n    ] | order(date desc) [0...14] {\n      // groq\n  _id,\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  summary,\n  "primaryCategory": categories[0]-> {\n    _id,\n    "title": coalesce(title, "Untitled Category"),\n    "slug": slug.current,\n    "showArticleEyebrow": coalesce(showArticleEyebrow, false),\n  },\n  categories[] -> {\n    _id,\n    "title": coalesce(title, "Untitled Category"),\n    "slug": slug.current,\n    "showArticleEyebrow": coalesce(showArticleEyebrow, false),\n  },\n  "date": coalesce(date, _updatedAt),\n  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),\n  authors[] -> {\n    "name": coalesce(name, "Unknown Author"),\n    "slug": slug.current,\n  },\n  "coverImage": {\n\t"url": coverImage.asset->url,\n\t"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,\n\t"lqip": coverImage.asset->metadata.lqip,\n\t"alt": coverImage.alt,\n\t"caption": coverImage.caption,\n\t"credit": coverImage.credit,\n  }\n\n    }\n  ': ArticlesByCategoryQueryResult;
     '\n    *[_type == "category"] | order(title asc) {\n      _id,\n      "title": coalesce(title, "Untitled Category"),\n      "slug": slug.current,\n    }\n  ': AllCategoriesQueryResult;
+    '\n    *[_type == "topic" && slug.current == $slug] [0] {\n      _id,\n      "name": coalesce(name, "Untitled Topic"),\n      "slug": slug.current,\n      description\n    }\n  ': TopicQueryResult;
+    '\n    *[\n      _type == "article" &&\n      $slug in topics[]->slug.current\n    ] | order(date desc) [0...14] {\n      // groq\n  _id,\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  summary,\n  "primaryCategory": categories[0]-> {\n    _id,\n    "title": coalesce(title, "Untitled Category"),\n    "slug": slug.current,\n    "showArticleEyebrow": coalesce(showArticleEyebrow, false),\n  },\n  categories[] -> {\n    _id,\n    "title": coalesce(title, "Untitled Category"),\n    "slug": slug.current,\n    "showArticleEyebrow": coalesce(showArticleEyebrow, false),\n  },\n  "date": coalesce(date, _updatedAt),\n  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),\n  authors[] -> {\n    "name": coalesce(name, "Unknown Author"),\n    "slug": slug.current,\n  },\n  "coverImage": {\n\t"url": coverImage.asset->url,\n\t"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,\n\t"lqip": coverImage.asset->metadata.lqip,\n\t"alt": coverImage.alt,\n\t"caption": coverImage.caption,\n\t"credit": coverImage.credit,\n  }\n\n    }\n  ': ArticlesByTopicQueryResult;
+    '\n    *[_type == "topic"] | order(name asc) {\n      _id,\n      "name": coalesce(name, "Untitled Topic"),\n      "slug": slug.current,\n    }\n  ': AllTopicsQueryResult;
     '\n\t\t*[_type == "article"] | order(date desc) {\n\t\t\t// groq\n  _id,\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  summary,\n  "primaryCategory": categories[0]-> {\n    _id,\n    "title": coalesce(title, "Untitled Category"),\n    "slug": slug.current,\n    "showArticleEyebrow": coalesce(showArticleEyebrow, false),\n  },\n  categories[] -> {\n    _id,\n    "title": coalesce(title, "Untitled Category"),\n    "slug": slug.current,\n    "showArticleEyebrow": coalesce(showArticleEyebrow, false),\n  },\n  "date": coalesce(date, _updatedAt),\n  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),\n  authors[] -> {\n    "name": coalesce(name, "Unknown Author"),\n    "slug": slug.current,\n  },\n  "coverImage": {\n\t"url": coverImage.asset->url,\n\t"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,\n\t"lqip": coverImage.asset->metadata.lqip,\n\t"alt": coverImage.alt,\n\t"caption": coverImage.caption,\n\t"credit": coverImage.credit,\n  }\n\n\t\t}\n\t': AllArticlesQueryResult;
     '\n\t\t*[_type == "settings"] [0] {\n\t\t\tabout\n\t\t}\n\t': SettingsQueryResult;
     '\n    coalesce(\n      *[_type == "settings"][0].featuredArticles[]-> {\n        // groq\n  _id,\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  summary,\n  "primaryCategory": categories[0]-> {\n    _id,\n    "title": coalesce(title, "Untitled Category"),\n    "slug": slug.current,\n    "showArticleEyebrow": coalesce(showArticleEyebrow, false),\n  },\n  categories[] -> {\n    _id,\n    "title": coalesce(title, "Untitled Category"),\n    "slug": slug.current,\n    "showArticleEyebrow": coalesce(showArticleEyebrow, false),\n  },\n  "date": coalesce(date, _updatedAt),\n  "url": coalesce("/" + categories[0]->slug.current + "/" + slug.current, "/"),\n  authors[] -> {\n    "name": coalesce(name, "Unknown Author"),\n    "slug": slug.current,\n  },\n  "coverImage": {\n\t"url": coverImage.asset->url,\n\t"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,\n\t"lqip": coverImage.asset->metadata.lqip,\n\t"alt": coverImage.alt,\n\t"caption": coverImage.caption,\n\t"credit": coverImage.credit,\n  }\n\n      },\n      []\n    )\n  ': FeaturedArticlesQueryResult;
