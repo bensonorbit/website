@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { JsonLd } from "react-schemaorg";
 import type { NewsArticle } from "schema-dts";
@@ -77,6 +78,7 @@ export default async function ArticlePage(props: Props) {
   }
 
   const articleUrl = fullUrl(article.url);
+  const topics = article.topics.filter((topic) => topic?.slug);
 
   return (
     <article className="mx-auto prose prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-sm prose-img:drop-shadow-xs prose-img:hover:cursor-zoom-in">
@@ -101,6 +103,38 @@ export default async function ArticlePage(props: Props) {
 
       <ArticleImage isCover {...article.coverImage} />
       <CustomPortableText value={article.content} />
+
+      {topics.length > 0 && (
+        <div className="not-prose mt-8 border-t pt-4 font-sans flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-4">
+          <p className="m-0 shrink-0 text-sm font-semibold tracking-wider text-gray-600 uppercase dark:text-gray-400">
+            Topics
+          </p>
+
+          <ul className="m-0 flex list-none flex-wrap p-0">
+            {topics.map((topic, index) => (
+              <li
+                className="m-0 inline-flex items-baseline p-0"
+                key={topic.slug}
+              >
+                {index > 0 && (
+                  <span
+                    aria-hidden="true"
+                    className="mx-2 text-gray-400 dark:text-gray-600"
+                  >
+                    ·
+                  </span>
+                )}
+                <Link
+                  className="font-medium text-foreground underline decoration-border underline-offset-4 hover:text-primary hover:decoration-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                  href={`/topics/${topic.slug}`}
+                >
+                  {topic.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <Fancybox />
 

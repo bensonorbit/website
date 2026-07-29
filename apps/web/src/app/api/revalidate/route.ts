@@ -33,6 +33,7 @@ interface DocumentSnapshot {
   authorSlugs?: string[] | undefined;
   categorySlugs?: string[] | undefined;
   slug?: string | undefined;
+  topicSlugs?: string[] | undefined;
 }
 
 interface WebhookBody {
@@ -68,6 +69,12 @@ function getArticleTags(
   ]) {
     tags.add(`articles:author:${slug}`);
   }
+  for (const slug of [
+    ...(before?.topicSlugs ?? []),
+    ...(after?.topicSlugs ?? []),
+  ]) {
+    tags.add(`articles:topic:${slug}`);
+  }
 
   return tags;
 }
@@ -91,6 +98,22 @@ function getCategoryTags(
   }
   if (after?.slug) {
     tags.add(`category:${after.slug}`);
+  }
+
+  return tags;
+}
+
+function getTopicTags(
+  before: DocumentSnapshot | null | undefined,
+  after: DocumentSnapshot | null | undefined
+) {
+  const tags = new Set(["topics", "topic-article-lists"]);
+
+  if (before?.slug) {
+    tags.add(`topic:${before.slug}`);
+  }
+  if (after?.slug) {
+    tags.add(`topic:${after.slug}`);
   }
 
   return tags;
@@ -131,6 +154,9 @@ function getTagsToRevalidate(body: WebhookBody) {
   }
   if (type === "category") {
     return getCategoryTags(before, after);
+  }
+  if (type === "topic") {
+    return getTopicTags(before, after);
   }
   if (type === "author") {
     return getAuthorTags(before, after);
