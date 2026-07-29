@@ -81,7 +81,7 @@ export default async function ArticlePage(props: Props) {
   const topics = article.topics.filter((topic) => topic?.slug);
 
   return (
-    <article className="mx-auto prose prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-sm prose-img:drop-shadow-xs prose-img:hover:cursor-zoom-in">
+    <article className="mx-auto prose prose-gray dark:prose-invert prose-a:decoration-border prose-a:underline-offset-4 prose-a:hover:text-foreground prose-a:hover:decoration-primary prose-a:focus-visible:text-foreground prose-a:focus-visible:decoration-primary prose-img:rounded-sm prose-img:drop-shadow-xs prose-img:hover:cursor-zoom-in">
       {article.primaryCategory.showArticleEyebrow && (
         <p className="mt-0 mb-2 font-sans font-medium tracking-wider uppercase">
           {article.primaryCategory.title}
@@ -94,7 +94,7 @@ export default async function ArticlePage(props: Props) {
         <Authors
           authors={article.authors}
           link
-          className="font-semibold no-underline"
+          className="font-semibold no-underline hover:text-(--tw-prose-links) hover:underline hover:decoration-primary focus-visible:text-(--tw-prose-links) focus-visible:underline focus-visible:decoration-primary"
         />
         <strong>
           <DateFormat date={article.date} />
@@ -125,7 +125,7 @@ export default async function ArticlePage(props: Props) {
                   </span>
                 )}
                 <Link
-                  className="font-medium text-foreground underline decoration-border underline-offset-4 hover:text-primary hover:decoration-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                  className="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-primary focus-visible:decoration-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
                   href={`/topics/${topic.slug}`}
                 >
                   {topic.name}
