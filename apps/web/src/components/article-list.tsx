@@ -70,7 +70,7 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
     <article className="group">
       <Link
         href={article.url}
-        className="group flex flex-col gap-3 border-b py-3 text-balance group-last:border-b-0 md:min-h-42 md:flex-row md:gap-6"
+        className="group flex flex-col gap-3 border-b py-3 text-balance group-last:border-b-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary md:min-h-42 md:flex-row md:gap-6"
       >
         <Image
           src={imageUrl}
@@ -82,7 +82,7 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
         />
 
         <div>
-          <h3 className="text-xl font-bold group-hover:underline">
+          <h3 className="text-xl font-bold group-hover:underline group-focus-visible:underline">
             {article.title}
           </h3>
 
