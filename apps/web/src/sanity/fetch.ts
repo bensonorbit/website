@@ -38,6 +38,15 @@ const articleFields = `// groq
     "name": coalesce(name, "Unknown Author"),
     "slug": slug.current,
   },
+  "topics": array::compact(
+    coalesce(
+      topics[]-> {
+        "name": coalesce(name, "Untitled Topic"),
+        "slug": slug.current,
+      },
+      []
+    )
+  ),
   "coverImage": {
 	"url": coverImage.asset->url,
 	"aspectRatio": coverImage.asset->metadata.dimensions.aspectRatio,
@@ -80,6 +89,11 @@ export async function getArticleBySlug(slug: string) {
   for (const author of article?.authors ?? []) {
     if (author.slug) {
       tags.add(`author:${author.slug}`);
+    }
+  }
+  for (const topic of article?.topics ?? []) {
+    if (topic?.slug) {
+      tags.add(`topic:${topic.slug}`);
     }
   }
   cacheTag(...tags);
