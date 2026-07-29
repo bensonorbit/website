@@ -128,7 +128,7 @@ function SocialMediaFollowCard() {
               className="bg-background rounded-sm border px-3 py-2 font-sans font-semibold flex items-center gap-2 hover:border-primary group justify-between"
             >
               <div className="flex items-center gap-2">
-                <div className="rounded-full bg-gray-100 text-gray-700 dark:text-gray-300 dark:bg-gray-900 p-2 border group-hover:text-primary">
+                <div className="rounded-full bg-surface text-foreground-secondary p-2 border group-hover:text-primary">
                   <social.icon className="size-4" />
                 </div>
 
@@ -136,7 +136,7 @@ function SocialMediaFollowCard() {
               </div>
 
               <ExternalLinkIcon
-                className="size-4 mr-2 text-gray-600 dark:text-gray-400"
+                className="size-4 mr-2 text-foreground-muted"
                 aria-hidden="true"
               />
             </a>

@@ -107,7 +107,7 @@ function MobileMenu(props: { id: string; handleClose: () => void }) {
         <div className="mt-2 pt-2">
           {socials.map((social) => (
             <MobileMenuLink key={social.name} href={social.href}>
-              <social.icon className="size-4 text-gray-700 dark:text-gray-300" />
+              <social.icon className="size-4 text-foreground-secondary" />
               {social.name}
             </MobileMenuLink>
           ))}

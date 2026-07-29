@@ -14,7 +14,7 @@ export default function NotFound() {
             That page drifted out of orbit.
           </h1>
 
-          <p className="mt-5 font-sans leading-7 text-gray-600 sm:text-lg dark:text-gray-400">
+          <p className="mt-5 font-sans leading-7 text-foreground-muted sm:text-lg">
             The address may be incorrect, or the page may have moved. Return to
             the home page, or let us know if a link sent you here.
           </p>

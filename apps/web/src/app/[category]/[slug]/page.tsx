@@ -106,7 +106,7 @@ export default async function ArticlePage(props: Props) {
 
       {topics.length > 0 && (
         <div className="not-prose mt-8 border-t pt-4 font-sans flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-4">
-          <p className="m-0 shrink-0 text-sm font-semibold tracking-wider text-gray-600 uppercase dark:text-gray-400">
+          <p className="m-0 shrink-0 text-sm font-semibold tracking-wider text-foreground-muted uppercase">
             Topics
           </p>
 

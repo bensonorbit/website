@@ -16,8 +16,7 @@ export const buttonVariants = cv({
       true: "relative isolate before:pointer-events-none before:absolute before:-inset-1 before:-z-10 before:rounded-sm before:bg-linear-to-b before:from-(--button-from) before:to-(--button-to) before:opacity-0 before:blur before:transition-opacity hover:before:opacity-35 focus-visible:before:opacity-35",
     },
     variant: {
-      ghost:
-        "text-foreground hover:bg-gray-100 dark:hover:bg-gray-900 active:translate-y-px",
+      ghost: "text-foreground hover:bg-surface active:translate-y-px",
       solid:
         "bg-linear-to-b from-(--button-from) to-(--button-to) text-white inset-shadow-2xs inset-shadow-white/35 hover:-translate-y-px active:translate-y-0 dark:text-gray-950",
     },

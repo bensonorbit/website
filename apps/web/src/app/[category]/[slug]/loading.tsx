@@ -46,9 +46,5 @@ export default function LoadingArticle() {
 }
 
 function Skeleton(props: { className?: string }) {
-  return (
-    <div
-      className={`rounded-lg bg-gray-200 dark:bg-gray-800 ${props.className}`}
-    />
-  );
+  return <div className={`rounded-lg bg-skeleton ${props.className}`} />;
 }

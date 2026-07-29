@@ -7,7 +7,7 @@ import { getCurrentYear } from "@/lib/time";
 export async function Footer() {
   const year = await getCurrentYear();
   return (
-    <footer className="border-t bg-gray-100 text-sm text-gray-600 md:text-base dark:bg-black dark:text-gray-400">
+    <footer className="border-t bg-surface dark:bg-black text-sm text-foreground-muted md:text-base">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-8 px-6 py-10 sm:grid-cols-2 lg:grid-cols-6 lg:gap-x-10 lg:py-12 xl:border-x print:px-0">
         <section className="flex max-w-sm flex-col items-start sm:col-span-2 lg:col-span-2">
           <FooterWordmark />
