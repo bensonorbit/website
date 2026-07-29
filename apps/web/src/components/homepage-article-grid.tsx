@@ -139,7 +139,10 @@ function HeroArticle({ article }: { article: FeaturedArticleData }) {
 
   return (
     <article>
-      <Link href={article.url} className="group flex flex-col text-balance">
+      <Link
+        href={article.url}
+        className="group flex flex-col text-balance focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+      >
         <Image
           alt={coverImage.alt || ""}
           src={imageUrl}
@@ -153,7 +156,7 @@ function HeroArticle({ article }: { article: FeaturedArticleData }) {
           fetchPriority="high"
         />
 
-        <h2 className="my-3 text-3xl font-bold group-hover:underline md:my-6 md:text-4xl">
+        <h2 className="my-3 text-3xl font-bold group-hover:underline group-focus-visible:underline md:my-6 md:text-4xl">
           {article.title}
         </h2>
 
@@ -187,7 +190,7 @@ function TopArticle({ article }: { article: FeaturedArticleData }) {
     <article className="h-full border-b py-3 first:pt-0 last:border-b-0 md:max-h-72 lg:last:pb-0">
       <Link
         href={article.url}
-        className="group flex h-full min-h-52 flex-col justify-between text-balance"
+        className="group flex h-full min-h-52 flex-col justify-between text-balance focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
       >
         <div className="relative h-3/5 min-h-48 md:min-h-0">
           <Image
@@ -201,7 +204,7 @@ function TopArticle({ article }: { article: FeaturedArticleData }) {
           />
         </div>
 
-        <h3 className="my-3 text-xl leading-6 font-bold group-hover:underline md:my-1">
+        <h3 className="my-3 text-xl leading-6 font-bold group-hover:underline group-focus-visible:underline md:my-1">
           {article.title}
         </h3>
 
@@ -263,10 +266,10 @@ function FeaturedArticle({ article }: { article: FeaturedArticleData }) {
     <article className="first:pt-0 last:pb-0 lg:py-3">
       <Link
         href={article.url}
-        className="group flex items-start justify-between gap-2 text-balance"
+        className="group flex items-start justify-between gap-2 text-balance focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
       >
         <div>
-          <h3 className="text-lg leading-6 font-bold group-hover:underline">
+          <h3 className="text-lg leading-6 font-bold group-hover:underline group-focus-visible:underline">
             {article.title}
           </h3>
           <p className="mt-1 font-sans text-sm text-foreground-muted">

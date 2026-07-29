@@ -46,7 +46,7 @@ export async function generateMetadata(props: Props) {
 
 export default function AuthorPage(props: Props) {
   return (
-    <div className="mx-auto prose max-w-3xl prose-gray dark:prose-invert prose-a:transition-colors prose-a:hover:text-primary prose-img:rounded-sm prose-img:drop-shadow-xs">
+    <div className="mx-auto prose max-w-3xl prose-gray dark:prose-invert prose-a:decoration-border prose-a:underline-offset-4 prose-a:hover:text-foreground prose-a:hover:decoration-primary prose-a:focus-visible:text-foreground prose-a:focus-visible:decoration-primary prose-img:rounded-sm prose-img:drop-shadow-xs">
       <Suspense fallback={<AuthorProfileSkeleton />}>
         <AuthorProfile params={props.params} />
       </Suspense>
