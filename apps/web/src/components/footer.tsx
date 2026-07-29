@@ -17,7 +17,7 @@ export async function Footer() {
             Portland, Oregon.
           </p>
 
-          <p className="text-xs *:hover:underline">
+          <p className="text-xs *:hover:text-foreground *:hover:underline">
             ISSN{" "}
             <a href="https://portal.issn.org/resource/ISSN/3071-5261">
               3071-5261
@@ -109,7 +109,7 @@ function FooterSection(props: {
           <li key={link.href}>
             <Link
               href={link.href}
-              className="hover:underline focus-visible:text-foreground"
+              className="hover:text-foreground hover:underline focus-visible:text-foreground"
             >
               {link.label}
             </Link>
