@@ -86,19 +86,19 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
             {article.title}
           </h3>
 
-          <p className="my-1 text-lg text-gray-700 dark:text-gray-300">
+          <p className="my-1 text-lg text-foreground-secondary">
             {article.summary}
           </p>
 
-          <p className="font-sans text-gray-600 dark:text-gray-400">
+          <p className="font-sans text-foreground-muted">
             <Authors
               authors={article.authors}
               max={4}
-              className="font-semibold text-gray-700 dark:text-gray-300"
+              className="font-semibold text-foreground-secondary"
             />
             <DateFormat
               date={article.date}
-              className="font-semibold text-gray-700 dark:text-gray-300"
+              className="font-semibold text-foreground-secondary"
             />
           </p>
         </div>

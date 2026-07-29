@@ -4,14 +4,22 @@
 :root {
   --background: var(--color-gray-50);
   --foreground: var(--color-gray-950);
+  --foreground-secondary: var(--color-gray-700);
+  --foreground-muted: var(--color-gray-600);
   --border: var(--color-gray-200);
+  --surface: var(--color-gray-100);
+  --skeleton: var(--color-gray-200);
   --primary: var(--color-orange-600);
   --primary-hover: var(--color-orange-500);
 
   @media (prefers-color-scheme: dark) {
     --background: var(--color-gray-950);
     --foreground: var(--color-gray-50);
+    --foreground-secondary: var(--color-gray-300);
+    --foreground-muted: var(--color-gray-400);
     --border: var(--color-gray-800);
+    --surface: var(--color-gray-900);
+    --skeleton: var(--color-gray-800);
     --primary: var(--color-orange-400);
     --primary-hover: var(--color-orange-300);
   }
@@ -20,7 +28,11 @@
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
   --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-skeleton: var(--skeleton);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
 }

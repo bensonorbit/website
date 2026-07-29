@@ -5,7 +5,7 @@ export function Card({ className, ...props }: React.ComponentProps<"div">) {
     <div
       {...props}
       className={cx(
-        "relative overflow-hidden rounded-sm border bg-gray-100 p-4 shadow-xs sm:p-6 dark:bg-gray-900 isolate",
+        "relative isolate overflow-hidden rounded-sm border bg-surface p-4 shadow-xs sm:p-6",
         className
       )}
     />
@@ -39,7 +39,7 @@ export function CardDescription({
     <p
       {...props}
       className={cx(
-        "my-3 font-sans text-base leading-relaxed text-gray-600 dark:text-gray-300",
+        "my-3 font-sans text-base leading-relaxed text-foreground-muted",
         className
       )}
     >

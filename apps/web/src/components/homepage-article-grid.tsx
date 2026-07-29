@@ -157,18 +157,16 @@ function HeroArticle({ article }: { article: FeaturedArticleData }) {
           {article.title}
         </h2>
 
-        <p className="text-xl text-gray-700 dark:text-gray-300">
-          {article.summary}
-        </p>
+        <p className="text-xl text-foreground-secondary">{article.summary}</p>
 
-        <p className="mt-3 font-sans text-lg text-gray-600 md:mt-6 dark:text-gray-400">
+        <p className="mt-3 font-sans text-lg text-foreground-muted md:mt-6">
           <Authors
             authors={article.authors}
             max={4}
-            className="font-semibold text-gray-700 dark:text-gray-300"
+            className="font-semibold text-foreground-secondary"
           />
           <DateFormat
-            className="font-semibold text-gray-700 dark:text-gray-300"
+            className="font-semibold text-foreground-secondary"
             date={article.date}
           />
         </p>
@@ -207,20 +205,20 @@ function TopArticle({ article }: { article: FeaturedArticleData }) {
           {article.title}
         </h3>
 
-        <p className="text-lg text-gray-700 md:hidden dark:text-gray-300">
+        <p className="text-lg text-foreground-secondary md:hidden">
           {article.summary}
         </p>
 
-        <p className="mt-2 font-sans text-gray-600 md:my-0 dark:text-gray-400">
+        <p className="mt-2 font-sans text-foreground-muted md:my-0">
           <Authors
             authors={article.authors}
             max={2}
-            className="font-medium text-gray-700 dark:text-gray-300"
+            className="font-medium text-foreground-secondary"
           />
           <DateFormat
             date={article.date}
             dateStyle="medium"
-            className="font-medium text-gray-700 dark:text-gray-300"
+            className="font-medium text-foreground-secondary"
           />
         </p>
       </Link>
@@ -271,16 +269,16 @@ function FeaturedArticle({ article }: { article: FeaturedArticleData }) {
           <h3 className="text-lg leading-6 font-bold group-hover:underline">
             {article.title}
           </h3>
-          <p className="mt-1 font-sans text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-1 font-sans text-sm text-foreground-muted">
             <Authors
               authors={article.authors}
               max={2}
-              className="font-medium text-gray-700 dark:text-gray-300"
+              className="font-medium text-foreground-secondary"
             />
             <DateFormat
               date={article.date}
               dateStyle="medium"
-              className="text-gray-700 dark:text-gray-300"
+              className="text-foreground-secondary"
             />
           </p>
         </div>
