@@ -15,7 +15,7 @@ export default async function ArchivePage() {
   const articles = await getAllArticles();
 
   return (
-    <div className="mx-auto prose prose-gray dark:prose-invert prose-a:font-normal prose-a:no-underline prose-a:transition-colors prose-a:hover:text-primary">
+    <div className="mx-auto prose prose-gray dark:prose-invert prose-a:font-normal prose-a:decoration-border prose-a:underline-offset-4 prose-a:hover:text-foreground prose-a:hover:decoration-primary prose-a:focus-visible:text-foreground prose-a:focus-visible:decoration-primary">
       <h1>Archive</h1>
       <p>Every article that The Benson Orbit has published.</p>
 
@@ -23,7 +23,7 @@ export default async function ArchivePage() {
         {articles.map((article) => (
           <li key={article._id}>
             <Link href={article.url}>
-              <strong className="underline">
+              <strong>
                 <DateFormat date={article.date} dateStyle="medium" />
               </strong>
               : {article.title}
