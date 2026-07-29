@@ -4,18 +4,57 @@ import Link from "next/link";
 
 import { Authors } from "@/components/authors";
 import { DateFormat } from "@/components/date-format";
+import { Skeleton } from "@/components/ui/skeleton";
 import type { LatestArticlesQueryResult } from "@/sanity/types";
 
-export function ArticleList(props: {
+export function ArticleList({
+  articles,
+  className,
+}: {
   articles: LatestArticlesQueryResult;
   className?: string;
 }) {
   return (
-    <div className={cx("flex max-w-3xl flex-col", props.className)}>
-      {props.articles.map((article) => (
+    <div className={cx("flex max-w-3xl flex-col", className)}>
+      {articles.map((article) => (
         <Article key={article._id} article={article} />
       ))}
     </div>
+  );
+}
+
+export function ArticleListSkeleton(props: { length: number }) {
+  return (
+    <>
+      <output className="sr-only">Loading articles...</output>
+
+      <div className="flex max-w-3xl animate-pulse flex-col motion-reduce:animate-none">
+        {Array.from({ length: props.length }, (_, index) => (
+          <article className="group" key={`article-${index}`}>
+            <div
+              aria-hidden="true"
+              className="flex flex-col gap-3 border-b py-3 group-last:border-b-0 md:min-h-42 md:flex-row md:gap-6"
+            >
+              <Skeleton className="aspect-8/5 w-full shrink-0 md:w-48" />
+
+              <div className="flex-1 space-y-2">
+                <div className="space-y-2">
+                  <Skeleton className="h-6 w-full" />
+                  <Skeleton className="h-6 w-3/4" />
+                </div>
+
+                <div className="space-y-2">
+                  <Skeleton className="h-5 w-full" />
+                  <Skeleton className="h-5 w-11/12" />
+                </div>
+
+                <Skeleton className="h-5 w-2/3" />
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -31,7 +70,7 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
     <article className="group">
       <Link
         href={article.url}
-        className="group flex flex-col gap-3 border-b py-3 text-balance group-last:border-b-0 md:flex-row md:gap-6"
+        className="group flex flex-col gap-3 border-b py-3 text-balance group-last:border-b-0 md:min-h-42 md:flex-row md:gap-6"
       >
         <Image
           src={imageUrl}

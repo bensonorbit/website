@@ -55,18 +55,18 @@ function getArticleTags(
     tags.add(`article:${after.slug}`);
   }
 
-  // Refresh both the old and new category/author pages when relationships change.
+  // Refresh article lists for both the old and new relationships.
   for (const slug of [
     ...(before?.categorySlugs ?? []),
     ...(after?.categorySlugs ?? []),
   ]) {
-    tags.add(`category:${slug}`);
+    tags.add(`articles:category:${slug}`);
   }
   for (const slug of [
     ...(before?.authorSlugs ?? []),
     ...(after?.authorSlugs ?? []),
   ]) {
-    tags.add(`author:${slug}`);
+    tags.add(`articles:author:${slug}`);
   }
 
   return tags;
@@ -77,7 +77,13 @@ function getCategoryTags(
   after: DocumentSnapshot | null | undefined
 ) {
   // Category data is embedded in article projections and the category list.
-  const tags = new Set(["articles", "categories"]);
+  const tags = new Set([
+    "articles",
+    "categories",
+    "featured-articles",
+    "category-article-lists",
+    "author-article-lists",
+  ]);
 
   // Revalidate both URLs when a category is renamed, created, or deleted.
   if (before?.slug) {
@@ -95,7 +101,13 @@ function getAuthorTags(
   after: DocumentSnapshot | null | undefined
 ) {
   // Author data is embedded in article projections and the author list.
-  const tags = new Set(["articles", "authors"]);
+  const tags = new Set([
+    "articles",
+    "authors",
+    "featured-articles",
+    "category-article-lists",
+    "author-article-lists",
+  ]);
 
   // Revalidate both URLs when an author is renamed, created, or deleted.
   // This also revalidates any article that has that author, because
@@ -124,7 +136,7 @@ function getTagsToRevalidate(body: WebhookBody) {
     return getAuthorTags(before, after);
   }
   if (type === "settings") {
-    return new Set(["settings"]);
+    return new Set(["settings", "featured-articles"]);
   }
 
   return null;

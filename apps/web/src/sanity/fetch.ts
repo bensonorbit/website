@@ -71,13 +71,15 @@ export async function getArticleBySlug(slug: string) {
 
   const article = await client.fetch(articleQuery, { slug });
 
-  const tags = [`article:${slug}`];
-  if (article?.primaryCategory?.slug) {
-    tags.push(`category:${article.primaryCategory.slug}`);
+  const tags = new Set([`article:${slug}`]);
+  for (const category of article?.categories ?? []) {
+    if (category.slug) {
+      tags.add(`category:${category.slug}`);
+    }
   }
   for (const author of article?.authors ?? []) {
     if (author.slug) {
-      tags.push(`author:${author.slug}`);
+      tags.add(`author:${author.slug}`);
     }
   }
   cacheTag(...tags);
@@ -109,16 +111,31 @@ export async function getCategoryBySlug(slug: string) {
       _id,
       "title": coalesce(title, "Untitled Category"),
       "slug": slug.current,
-      description,
-      "articles": *[_type == "article" && references(^._id)] | order(date desc) [0...14] {
-        ${articleFields}
-      }
+      description
     }
 	`);
 
   const category = await client.fetch(categoryQuery, { slug });
   cacheTag(`category:${slug}`);
   return category;
+}
+
+export async function getArticlesByCategorySlug(slug: string) {
+  "use cache: remote";
+  cacheLife("max");
+
+  const articlesByCategoryQuery = defineQuery(`
+    *[
+      _type == "article" &&
+      $slug in categories[]->slug.current
+    ] | order(date desc) [0...14] {
+      ${articleFields}
+    }
+  `);
+
+  const articles = await client.fetch(articlesByCategoryQuery, { slug });
+  cacheTag(`articles:category:${slug}`, "category-article-lists");
+  return articles;
 }
 
 export async function getAllCategories() {
@@ -159,16 +176,37 @@ export async function getSettings() {
 
   const settingsQuery = defineQuery(`
 		*[_type == "settings"] [0] {
-			...,
-			"featuredArticles": featuredArticles[]-> {
-				${articleFields}
-			}
+			about
 		}
 	`);
 
   const settings = await client.fetch(settingsQuery, {});
-  cacheTag("settings", "articles");
+  cacheTag("settings");
   return settings;
+}
+
+export async function getFeaturedArticles() {
+  "use cache: remote";
+  cacheLife("max");
+
+  const featuredArticlesQuery = defineQuery(`
+    coalesce(
+      *[_type == "settings"][0].featuredArticles[]-> {
+        ${articleFields}
+      },
+      []
+    )
+  `);
+
+  const articles = await client.fetch(featuredArticlesQuery, {});
+  const tags = new Set(["featured-articles"]);
+  for (const article of articles) {
+    if (article.slug) {
+      tags.add(`article:${article.slug}`);
+    }
+  }
+  cacheTag(...tags);
+  return articles;
 }
 
 export async function getAuthorBySlug(slug: string) {
@@ -182,9 +220,6 @@ export async function getAuthorBySlug(slug: string) {
 				"url": photo.asset->url,
 				"aspectRatio": photo.asset->metadata.dimensions.aspectRatio,
 				"lqip": photo.asset->metadata.lqip,
-			},
-			"articles": *[_type == "article" && references(^._id)] | order(date desc) {
-				${articleFields}
 			}
 		}
 	`);
@@ -192,6 +227,24 @@ export async function getAuthorBySlug(slug: string) {
   const author = await client.fetch(authorQuery, { slug });
   cacheTag(`author:${slug}`);
   return author;
+}
+
+export async function getArticlesByAuthorSlug(slug: string) {
+  "use cache: remote";
+  cacheLife("max");
+
+  const articlesByAuthorQuery = defineQuery(`
+    *[
+      _type == "article" &&
+      $slug in authors[]->slug.current
+    ] | order(date desc) {
+      ${articleFields}
+    }
+  `);
+
+  const articles = await client.fetch(articlesByAuthorQuery, { slug });
+  cacheTag(`articles:author:${slug}`, "author-article-lists");
+  return articles;
 }
 
 export async function getAllAuthors() {

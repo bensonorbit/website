@@ -58,14 +58,14 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     >
       <body
         className={cx(
-          "flex min-h-dvh flex-col justify-between bg-background font-sans text-foreground antialiased selection:bg-orange-500/30",
+          "flex min-h-dvh flex-col justify-between bg-background font-sans text-foreground antialiased [--navbar-height:--spacing(13)] selection:bg-orange-500/30 lg:[--navbar-height:--spacing(17)]",
           publicSans.variable,
           notoSerif.variable
         )}
       >
         <Navbar />
 
-        <main className="mx-auto w-full max-w-7xl grow p-6 font-serif xl:border-x">
+        <main className="mx-auto min-h-[calc(100svh-var(--navbar-height))] w-full max-w-7xl grow p-6 font-serif xl:border-x print:min-h-0">
           {props.children}
         </main>
 
