@@ -7,6 +7,7 @@ import type { ProfilePage } from "schema-dts";
 
 import { ArticleList, ArticleListSkeleton } from "@/components/article-list";
 import { CustomPortableText } from "@/components/custom-portable-text";
+import { Prose } from "@/components/prose";
 import { Skeleton } from "@/components/ui/skeleton";
 import { newsMediaOrganization, webSite } from "@/lib/structured-data";
 import { fullUrl, mergeMeta } from "@/lib/utils";
@@ -46,7 +47,7 @@ export async function generateMetadata(props: Props) {
 
 export default function AuthorPage(props: Props) {
   return (
-    <div className="mx-auto prose max-w-3xl prose-gray dark:prose-invert prose-a:decoration-border prose-a:underline-offset-4 prose-a:hover:text-foreground prose-a:hover:decoration-primary prose-a:focus-visible:text-foreground prose-a:focus-visible:decoration-primary prose-img:rounded-sm prose-img:drop-shadow-xs">
+    <Prose className="max-w-3xl">
       <Suspense fallback={<AuthorProfileSkeleton />}>
         <AuthorProfile params={props.params} />
       </Suspense>
@@ -60,7 +61,7 @@ export default function AuthorPage(props: Props) {
       <Suspense fallback={null}>
         <AuthorStructuredData params={props.params} />
       </Suspense>
-    </div>
+    </Prose>
   );
 }
 

@@ -1,6 +1,8 @@
+import { Prose } from "@/components/prose";
+
 export default function LoadingArticle() {
   return (
-    <div className="mx-auto prose animate-pulse">
+    <Prose className="animate-pulse">
       {/* Title */}
       <Skeleton className="mb-1 h-10 w-80" />
       <Skeleton className="mb-2 h-10 w-80" />
@@ -41,7 +43,7 @@ export default function LoadingArticle() {
       <Skeleton className="mb-2 h-5 w-full" />
       <Skeleton className="mb-2 h-5 w-full" />
       <Skeleton className="mb-8 h-5 w-full" />
-    </div>
+    </Prose>
   );
 }
 

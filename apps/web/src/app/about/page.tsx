@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { CustomPortableText } from "@/components/custom-portable-text";
+import { Prose } from "@/components/prose";
 import { fullUrl, mergeMeta } from "@/lib/utils";
 import { getAllAuthors, getSettings } from "@/sanity/fetch";
 
@@ -28,7 +29,7 @@ export default async function AboutPage() {
   });
 
   return (
-    <div className="mx-auto prose prose-gray dark:prose-invert prose-a:decoration-border prose-a:underline-offset-4 prose-a:hover:text-foreground prose-a:hover:decoration-primary prose-a:focus-visible:text-foreground prose-a:focus-visible:decoration-primary prose-img:rounded-sm prose-img:drop-shadow-xs">
+    <Prose>
       <h1 className="mb-2 text-balance">About Benson Orbit</h1>
       <CustomPortableText value={settings?.about} />
 
@@ -58,6 +59,6 @@ export default async function AboutPage() {
             </li>
           ))}
       </ul>
-    </div>
+    </Prose>
   );
 }

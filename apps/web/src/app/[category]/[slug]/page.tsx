@@ -8,6 +8,7 @@ import { Authors } from "@/components/authors";
 import { CustomPortableText } from "@/components/custom-portable-text";
 import { DateFormat } from "@/components/date-format";
 import { Fancybox } from "@/components/fancybox";
+import { Prose } from "@/components/prose";
 import { newsMediaOrganization, webSite } from "@/lib/structured-data";
 import { fullUrl, mergeMeta } from "@/lib/utils";
 import { getArticleBySlug } from "@/sanity/fetch";
@@ -81,7 +82,7 @@ export default async function ArticlePage(props: Props) {
   const topics = article.topics.filter((topic) => topic?.slug);
 
   return (
-    <article className="mx-auto prose prose-gray dark:prose-invert prose-a:decoration-border prose-a:underline-offset-4 prose-a:hover:text-foreground prose-a:hover:decoration-primary prose-a:focus-visible:text-foreground prose-a:focus-visible:decoration-primary prose-img:rounded-sm prose-img:drop-shadow-xs prose-img:hover:cursor-zoom-in">
+    <Prose as="article" className="prose-img:hover:cursor-zoom-in">
       {article.primaryCategory.showArticleEyebrow && (
         <p className="mt-0 mb-2 font-sans font-medium tracking-wider uppercase">
           {article.primaryCategory.title}
@@ -175,6 +176,6 @@ export default async function ArticlePage(props: Props) {
           url: articleUrl,
         }}
       />
-    </article>
+    </Prose>
   );
 }

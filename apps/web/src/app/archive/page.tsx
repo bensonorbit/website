@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { DateFormat } from "@/components/date-format";
+import { Prose } from "@/components/prose";
 import { fullUrl, mergeMeta } from "@/lib/utils";
 import { getAllArticles } from "@/sanity/fetch";
 
@@ -15,7 +16,7 @@ export default async function ArchivePage() {
   const articles = await getAllArticles();
 
   return (
-    <div className="mx-auto prose prose-gray dark:prose-invert prose-a:font-normal prose-a:decoration-border prose-a:underline-offset-4 prose-a:hover:text-foreground prose-a:hover:decoration-primary prose-a:focus-visible:text-foreground prose-a:focus-visible:decoration-primary">
+    <Prose>
       <h1>Archive</h1>
       <p>Every article that The Benson Orbit has published.</p>
 
@@ -31,6 +32,6 @@ export default async function ArchivePage() {
           </li>
         ))}
       </ul>
-    </div>
+    </Prose>
   );
 }
