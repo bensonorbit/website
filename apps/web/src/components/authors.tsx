@@ -17,7 +17,7 @@ export function Authors(props: {
 
   return authors.map((author, i) => (
     <Fragment key={author.slug}>
-      {seperator(i, authors.length)}
+      {separator(i, authors.length)}
 
       {props.link ? (
         <Link href={`/authors/${author.slug}`} className={props.className}>
@@ -26,15 +26,13 @@ export function Authors(props: {
       ) : (
         <span className={props.className}>{author.name}</span>
       )}
-
-      {i === authors.length - 1 && " — "}
     </Fragment>
   ));
 }
 
-function seperator(i: number, length: number) {
+function separator(i: number, length: number) {
   if (i === 0) {
-    return "By ";
+    return null;
   }
   if (i === length - 1) {
     if (length > 2) {

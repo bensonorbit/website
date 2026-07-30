@@ -19,12 +19,13 @@ export function ArticleImage(props: Props) {
   const lightboxSrc = `${props.url}?w=1200&auto=format&fit=min`;
 
   return (
-    <figure className={props.isCover ? "mt-4 mb-4" : undefined}>
+    <figure className={props.isCover ? "mt-6 mb-6" : undefined}>
       <Image
         src={props.url}
         width={width}
         height={height}
         alt={props.alt || ""}
+        className="rounded-sm drop-shadow-xs hover:cursor-zoom-in"
         sizes="(max-width: 629px) calc(100vw - 48px), 581px"
         fetchPriority={props.isCover ? "high" : undefined}
         loading={props.isCover ? "eager" : undefined}
@@ -35,11 +36,15 @@ export function ArticleImage(props: Props) {
         data-caption={props.caption}
       />
       {(props.caption || props.credit) && (
-        <figcaption>
+        <figcaption
+          className={
+            props.isCover
+              ? "mt-2 font-sans text-sm leading-relaxed text-foreground-muted"
+              : "font-sans"
+          }
+        >
           {props.caption}
-          {props.credit && (
-            <span className="font-sans text-xs"> {props.credit}</span>
-          )}
+          {props.credit && <span className="text-xs"> {props.credit}</span>}
         </figcaption>
       )}
     </figure>

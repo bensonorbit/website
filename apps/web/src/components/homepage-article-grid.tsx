@@ -163,11 +163,17 @@ function HeroArticle({ article }: { article: FeaturedArticleData }) {
         <p className="text-xl text-foreground-secondary">{article.summary}</p>
 
         <p className="mt-3 font-sans text-lg text-foreground-muted md:mt-6">
-          <Authors
-            authors={article.authors}
-            max={4}
-            className="font-semibold text-foreground-secondary"
-          />
+          {article.authors && article.authors.length >= 1 && (
+            <>
+              By{" "}
+              <Authors
+                authors={article.authors}
+                max={4}
+                className="font-semibold text-foreground-secondary"
+              />{" "}
+              —{" "}
+            </>
+          )}
           <DateFormat
             className="font-semibold text-foreground-secondary"
             date={article.date}
@@ -213,11 +219,17 @@ function TopArticle({ article }: { article: FeaturedArticleData }) {
         </p>
 
         <p className="mt-2 font-sans text-foreground-muted md:my-0">
-          <Authors
-            authors={article.authors}
-            max={2}
-            className="font-medium text-foreground-secondary"
-          />
+          {article.authors && article.authors.length >= 1 && (
+            <>
+              By{" "}
+              <Authors
+                authors={article.authors}
+                max={2}
+                className="font-medium text-foreground-secondary"
+              />{" "}
+              —{" "}
+            </>
+          )}
           <DateFormat
             date={article.date}
             dateStyle="medium"
@@ -273,11 +285,17 @@ function FeaturedArticle({ article }: { article: FeaturedArticleData }) {
             {article.title}
           </h3>
           <p className="mt-1 font-sans text-sm text-foreground-muted">
-            <Authors
-              authors={article.authors}
-              max={2}
-              className="font-medium text-foreground-secondary"
-            />
+            {article.authors && article.authors.length >= 1 && (
+              <>
+                By{" "}
+                <Authors
+                  authors={article.authors}
+                  max={2}
+                  className="font-medium text-foreground-secondary"
+                />{" "}
+                —{" "}
+              </>
+            )}
             <DateFormat
               date={article.date}
               dateStyle="medium"

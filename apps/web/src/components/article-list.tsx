@@ -91,11 +91,17 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
           </p>
 
           <p className="font-sans text-foreground-muted">
-            <Authors
-              authors={article.authors}
-              max={4}
-              className="font-semibold text-foreground-secondary"
-            />
+            {article.authors && article.authors.length >= 1 && (
+              <>
+                By{" "}
+                <Authors
+                  authors={article.authors}
+                  max={4}
+                  className="font-semibold text-foreground-secondary"
+                />{" "}
+                —{" "}
+              </>
+            )}
             <DateFormat
               date={article.date}
               className="font-semibold text-foreground-secondary"
