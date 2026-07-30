@@ -82,31 +82,54 @@ export default async function ArticlePage(props: Props) {
   const topics = article.topics.filter((topic) => topic?.slug);
 
   return (
-    <Prose as="article" className="prose-img:hover:cursor-zoom-in">
-      {article.primaryCategory.showArticleEyebrow && (
-        <p className="mt-0 mb-2 font-sans font-medium tracking-wider uppercase">
-          {article.primaryCategory.title}
-        </p>
-      )}
-      <h1 className="mb-0 text-balance">{article.title}</h1>
-      <p className="lead mt-2 mb-2 text-balance">{article.summary}</p>
+    <article className="mx-auto max-w-[65ch]">
+      <header>
+        {article.primaryCategory.showArticleEyebrow && (
+          <p className="mb-3 font-sans text-xs font-semibold tracking-[0.16em] text-primary uppercase sm:text-sm">
+            <Link
+              href={`/${article.primaryCategory.slug}`}
+              className="hover:underline"
+            >
+              {article.primaryCategory.title}
+            </Link>
+          </p>
+        )}
 
-      <p className="lead mt-0 font-sans text-lg">
-        <Authors
-          authors={article.authors}
-          link
-          className="font-semibold no-underline hover:text-(--tw-prose-links) hover:underline hover:decoration-primary focus-visible:text-(--tw-prose-links) focus-visible:underline focus-visible:decoration-primary"
-        />
-        <strong>
+        <h1 className="text-[clamp(2.25rem,4.5vw,3rem)] leading-[1.08] font-bold tracking-tight text-pretty">
+          {article.title}
+        </h1>
+
+        <p className="mt-4 text-lg leading-[1.55] text-foreground-secondary text-pretty sm:text-xl">
+          {article.summary}
+        </p>
+
+        <p className="mt-4 font-sans text-sm leading-6 text-foreground-muted sm:text-base">
+          {article.authors && article.authors.length >= 1 && (
+            <>
+              By{" "}
+              <Authors
+                authors={article.authors}
+                link
+                className="font-semibold text-foreground decoration-primary underline-offset-4 hover:underline focus-visible:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              />
+              <span aria-hidden="true" className="mx-1">
+                ·
+              </span>
+              <span className="sr-only">, published </span>
+            </>
+          )}
           <DateFormat date={article.date} />
-        </strong>
-      </p>
+        </p>
+      </header>
 
       <ArticleImage isCover {...article.coverImage} />
-      <CustomPortableText value={article.content} />
+
+      <Prose className="sm:prose-lg prose-headings:leading-tight prose-headings:tracking-[-0.02em] prose-h2:mt-12 prose-h2:mb-4 prose-h3:mt-8 prose-h3:mb-3 prose-p:leading-[1.75] prose-p:first:mt-0 prose-li:leading-[1.75] prose-blockquote:border-primary prose-blockquote:font-normal prose-blockquote:not-italic">
+        <CustomPortableText value={article.content} />
+      </Prose>
 
       {topics.length > 0 && (
-        <div className="not-prose mt-8 border-t pt-4 font-sans flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-4">
+        <div className="mt-8 border-t pt-4 font-sans flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-4">
           <p className="m-0 shrink-0 text-sm font-semibold tracking-wider text-foreground-muted uppercase">
             Topics
           </p>
@@ -176,6 +199,6 @@ export default async function ArticlePage(props: Props) {
           url: articleUrl,
         }}
       />
-    </Prose>
+    </article>
   );
 }

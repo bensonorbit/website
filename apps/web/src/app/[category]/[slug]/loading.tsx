@@ -1,28 +1,25 @@
-import { Prose } from "@/components/prose";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function LoadingArticle() {
   return (
-    <Prose className="animate-pulse">
-      {/* Title */}
-      <Skeleton className="mb-1 h-10 w-80" />
-      <Skeleton className="mb-2 h-10 w-80" />
+    <article className="mx-auto max-w-[65ch] animate-pulse motion-reduce:animate-none">
+      <header>
+        <Skeleton className="mb-3 h-4 w-20" />
 
-      {/* Date and author */}
-      <Skeleton className="h-6 w-60" />
+        <div className="space-y-2">
+          <Skeleton className="h-10 w-full sm:h-12" />
+          <Skeleton className="h-10 w-4/5 sm:h-12" />
+        </div>
 
-      {/* Cover image */}
-      <Skeleton className="mt-4 mb-5 h-[387px] w-full" />
+        <div className="mt-4 space-y-2">
+          <Skeleton className="h-6 w-full" />
+          <Skeleton className="h-6 w-3/4" />
+        </div>
 
-      {/* Body */}
-      <Skeleton className="mb-2 h-5 w-full" />
-      <Skeleton className="mb-2 h-5 w-full" />
-      <Skeleton className="mb-2 h-5 w-full" />
-      <Skeleton className="mb-8 h-5 w-full" />
+        <Skeleton className="mt-4 h-5 w-64" />
+      </header>
 
-      <Skeleton className="mb-2 h-5 w-full" />
-      <Skeleton className="mb-2 h-5 w-full" />
-      <Skeleton className="mb-2 h-5 w-full" />
-      <Skeleton className="mb-8 h-5 w-full" />
+      <Skeleton className="mt-6 mb-6 aspect-3/2 w-full" />
 
       <Skeleton className="mb-2 h-5 w-full" />
       <Skeleton className="mb-2 h-5 w-full" />
@@ -43,10 +40,16 @@ export default function LoadingArticle() {
       <Skeleton className="mb-2 h-5 w-full" />
       <Skeleton className="mb-2 h-5 w-full" />
       <Skeleton className="mb-8 h-5 w-full" />
-    </Prose>
+
+      <Skeleton className="mb-2 h-5 w-full" />
+      <Skeleton className="mb-2 h-5 w-full" />
+      <Skeleton className="mb-2 h-5 w-full" />
+      <Skeleton className="mb-8 h-5 w-full" />
+
+      <Skeleton className="mb-2 h-5 w-full" />
+      <Skeleton className="mb-2 h-5 w-full" />
+      <Skeleton className="mb-2 h-5 w-full" />
+      <Skeleton className="mb-8 h-5 w-full" />
+    </article>
   );
-}
-
-function Skeleton(props: { className?: string }) {
-  return <div className={`rounded-lg bg-skeleton ${props.className}`} />;
 }
