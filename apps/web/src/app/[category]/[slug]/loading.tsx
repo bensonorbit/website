@@ -1,3 +1,5 @@
+import { Skeleton } from "@/components/ui/skeleton";
+
 export default function LoadingArticle() {
   return (
     <article className="mx-auto max-w-[65ch] animate-pulse motion-reduce:animate-none">
@@ -50,8 +52,4 @@ export default function LoadingArticle() {
       <Skeleton className="mb-8 h-5 w-full" />
     </article>
   );
-}
-
-function Skeleton(props: { className?: string }) {
-  return <div className={`rounded-lg bg-skeleton ${props.className}`} />;
 }
