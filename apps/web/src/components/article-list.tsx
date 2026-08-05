@@ -75,7 +75,7 @@ function Article({ article }: { article: LatestArticlesQueryResult[0] }) {
         <Image
           src={imageUrl}
           alt={coverImage.alt || ""}
-          className="h-full rounded-sm drop-shadow-xs md:max-w-48"
+          className="h-full rounded-sm bg-skeleton drop-shadow-xs md:max-w-48"
           width={400}
           height={250}
           sizes="(min-width: 768px) 200px, calc(100vw - 48px)"

@@ -148,9 +148,7 @@ function HeroArticle({ article }: { article: FeaturedArticleData }) {
           src={imageUrl}
           width={800}
           height={550}
-          className="rounded-sm drop-shadow-xs"
-          placeholder="blur"
-          blurDataURL={coverImage.lqip || undefined}
+          className="rounded-sm bg-skeleton drop-shadow-xs"
           sizes="(min-width: 1280px) 620px, (min-width: 1024px) 50vw, (min-width: 768px) 65vw, calc(100vw - 48px)"
           preload
           fetchPriority="high"
@@ -203,9 +201,7 @@ function TopArticle({ article }: { article: FeaturedArticleData }) {
             alt={coverImage.alt || ""}
             src={imageUrl}
             fill
-            className="rounded-sm object-cover drop-shadow-xs"
-            placeholder="blur"
-            blurDataURL={coverImage.lqip || undefined}
+            className="rounded-sm bg-skeleton object-cover drop-shadow-xs"
             sizes="(min-width: 1280px) 300px, (min-width: 1024px) 25vw, (min-width: 768px) 35vw, calc(100vw - 48px)"
           />
         </div>
@@ -309,9 +305,7 @@ function FeaturedArticle({ article }: { article: FeaturedArticleData }) {
           src={imageUrl}
           width={90}
           height={90}
-          className="rounded-sm drop-shadow-xs"
-          placeholder="blur"
-          blurDataURL={coverImage.lqip || undefined}
+          className="rounded-sm bg-skeleton drop-shadow-xs"
           sizes="90px"
         />
       </Link>
