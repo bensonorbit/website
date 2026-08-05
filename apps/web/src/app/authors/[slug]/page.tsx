@@ -84,9 +84,7 @@ async function AuthorProfile(props: Props) {
             width={76}
             height={76}
             alt={author.name || "Photo of author"}
-            className="not-prose rounded-full outline-1 -outline-offset-1 outline-white/15 drop-shadow"
-            placeholder="blur"
-            blurDataURL={author.photo.lqip || undefined}
+            className="not-prose rounded-full bg-skeleton outline-1 -outline-offset-1 outline-white/15 drop-shadow"
           />
         )}
 
