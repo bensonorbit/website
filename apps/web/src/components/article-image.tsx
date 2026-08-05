@@ -25,12 +25,12 @@ export function ArticleImage(props: Props) {
         width={width}
         height={height}
         alt={props.alt || ""}
-        className="rounded-sm bg-skeleton drop-shadow-xs hover:cursor-zoom-in"
+        className="rounded-sm drop-shadow-xs hover:cursor-zoom-in"
         sizes="(max-width: 629px) calc(100vw - 48px), 581px"
         fetchPriority={props.isCover ? "high" : undefined}
         loading={props.isCover ? "eager" : undefined}
-        placeholder={!props.isCover && props.lqip ? "blur" : undefined}
-        blurDataURL={props.isCover ? undefined : props.lqip || undefined}
+        placeholder={props.lqip ? "blur" : undefined}
+        blurDataURL={props.lqip || undefined}
         data-fancybox
         data-src={lightboxSrc}
         data-caption={props.caption}
