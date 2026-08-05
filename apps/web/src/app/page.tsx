@@ -1,12 +1,8 @@
-import { Suspense } from "react";
 import { JsonLd } from "react-schemaorg";
 import type { NewsMediaOrganization, WebSite } from "schema-dts";
 
-import { ArticleList, ArticleListSkeleton } from "@/components/article-list";
-import {
-  HomepageArticleGrid,
-  HomepageArticleGridSkeleton,
-} from "@/components/homepage-article-grid";
+import { ArticleList } from "@/components/article-list";
+import { HomepageArticleGrid } from "@/components/homepage-article-grid";
 import { ExternalLinkIcon } from "@/components/icons";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { socials } from "@/lib/data";
@@ -27,17 +23,23 @@ export const metadata = mergeMeta({
   },
 });
 
-export default function HomePage() {
-  const featuredArticlesPromise = getFeaturedArticles();
-  const latestArticlesPromise = getLatestArticles();
+export default async function HomePage() {
+  const [featuredArticles, articles] = await Promise.all([
+    getFeaturedArticles(),
+    getLatestArticles(),
+  ]);
+  const latestArticles = articles
+    .filter(
+      (article) =>
+        !featuredArticles.some((featured) => featured._id === article._id)
+    )
+    .slice(0, 10);
 
   return (
     <>
       <h1 className="sr-only">The Benson Orbit</h1>
 
-      <Suspense fallback={<HomepageArticleGridSkeleton />}>
-        <FeaturedArticles featuredArticlesPromise={featuredArticlesPromise} />
-      </Suspense>
+      <HomepageArticleGrid articles={featuredArticles} />
 
       <div className="flex flex-col gap-6 pt-8 lg:flex-row">
         <section className="w-full max-w-3xl">
@@ -45,12 +47,9 @@ export default function HomePage() {
             Latest
           </h2>
 
-          <Suspense fallback={<ArticleListSkeleton length={10} />}>
-            <LatestArticles
-              featuredArticlesPromise={featuredArticlesPromise}
-              latestArticlesPromise={latestArticlesPromise}
-            />
-          </Suspense>
+          {latestArticles.length > 0 && (
+            <ArticleList articles={latestArticles} />
+          )}
         </section>
 
         <aside className="sticky top-[calc(var(--navbar-height)+var(--spacing)*8)] mx-auto h-fit w-full max-w-lg grow basis-0">
@@ -73,39 +72,6 @@ export default function HomePage() {
       />
     </>
   );
-}
-
-async function FeaturedArticles({
-  featuredArticlesPromise,
-}: {
-  featuredArticlesPromise: ReturnType<typeof getFeaturedArticles>;
-}) {
-  const featuredArticles = await featuredArticlesPromise;
-
-  return <HomepageArticleGrid articles={featuredArticles} />;
-}
-
-async function LatestArticles({
-  featuredArticlesPromise,
-  latestArticlesPromise,
-}: {
-  featuredArticlesPromise: ReturnType<typeof getFeaturedArticles>;
-  latestArticlesPromise: ReturnType<typeof getLatestArticles>;
-}) {
-  const featuredArticles = await featuredArticlesPromise;
-  const articles = await latestArticlesPromise;
-  const latestArticles = articles
-    .filter(
-      (article) =>
-        !featuredArticles.some((featured) => featured._id === article._id)
-    )
-    .slice(0, 10);
-
-  if (latestArticles.length === 0) {
-    return null;
-  }
-
-  return <ArticleList articles={latestArticles} />;
 }
 
 function SocialMediaFollowCard() {
